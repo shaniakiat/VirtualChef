@@ -1,7 +1,9 @@
 # VirtualChef
+We feel an app which can help recommend foods to you based on your ingredients on hand and/or your taste would not only be a convenient edition to your everyday life, but could become a necessary time saving commodity in your everyday routine. No more indecision when looking for restaurants, no more struggling to find something to eat when your pantry isn’t fully stocked. This app would allow to make the most of what you have, or give you ideas you might not have had before. 
 
+Keep track of stories -- Trello Board : https://trello.com/b/NoPaPb3O/software-engineering-project 
 
-Trello Board : https://trello.com/b/NoPaPb3O/software-engineering-project
+Tech Stack : MERN ( MongoDb, Express, React.js, Redux ), Python (AI/ML)
 
 
 Estimated sprint schedule :

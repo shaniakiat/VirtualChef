@@ -12,6 +12,10 @@ Tech Stack : MERN ( MongoDb, Express, React.js, Redux ), Python (AI/ML)
 
 ![demo](https://github.com/shaniakiat/VirtualChef/blob/master/diagrams/UseCaseDiagram.png)
 
+![demo](https://github.com/shaniakiat/VirtualChef/blob/master/diagrams/ContextDiagram.png)
+
+![demo](https://github.com/shaniakiat/VirtualChef/blob/master/diagrams/ArchitecturePlan.png)
+
 # Estimated Sprint Schedule:
 
 ## Sprint 1:

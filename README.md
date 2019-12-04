@@ -12,9 +12,9 @@ Tech Stack : MERN ( MongoDb, Express, React.js, Redux ), Python (AI/ML)
 
 ![demo](https://github.com/shaniakiat/VirtualChef/blob/master/diagrams/UseCaseDiagram.png)
 
-# Estimated sprint schedule :
+# Estimated Sprint Schedule:
 
-## Sprint 1 :
+## Sprint 1:
 
 1. Prototype of UI should be completed
 2. EDA a few models should be completed

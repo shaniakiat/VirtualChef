@@ -1,0 +1,32 @@
+{
+  "name": "virtualchef",
+  "version": "1.0.0",
+  "description": "Virtual Chef is an web application that recommends user new food/ingredients",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "server": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DavidLuong98/VirtualChef.git"
+  },
+  "keywords": [
+    "MERN"
+  ],
+  "author": "David Luong, Shania Kiat, Anthony Ibe",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DavidLuong98/VirtualChef/issues"
+  },
+  "homepage": "https://github.com/DavidLuong98/VirtualChef#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "concurrently": "^5.0.2",
+    "express": "^4.17.1",
+    "mongoose": "^5.8.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
+}

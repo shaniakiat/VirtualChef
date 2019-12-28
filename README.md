@@ -6,6 +6,8 @@ Keep track of stories -- Trello Board : https://trello.com/b/NoPaPb3O/software-e
 
 Tech Stack : MERN ( MongoDb, Express, React.js, Redux ), Python (AI/ML)
 
+Naming branches : name/feature/short-description
+
 # Diagrams
 
 ## Use Case Diagram

@@ -6,8 +6,6 @@ Keep track of stories -- Trello Board : https://trello.com/b/NoPaPb3O/software-e
 
 Tech Stack : MERN ( MongoDb, Express, React.js, Redux ), Python (AI/ML)
 
-Naming branches : name/feature/short-description
-
 # Diagrams
 
 ## Use Case Diagram
@@ -39,3 +37,8 @@ Naming branches : name/feature/short-description
 2. Meet most non-functional requirements
 3. Optimze for better performance
 4. Be ready for final demonstration
+
+#Creating branches format: 
+
+Naming branches : name/feature/short-description
+Example : david/blogs/logo-fix

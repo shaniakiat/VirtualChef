@@ -40,5 +40,5 @@ Tech Stack : MERN ( MongoDb, Express, React.js, Redux ), Python (AI/ML)
 
 # Creating Branches Format:
 
-**Naming branches:** name/feature/short-description
+**Naming branches:** name/feature/short-description <br />
 **Example:** david/blogs/logo-fix

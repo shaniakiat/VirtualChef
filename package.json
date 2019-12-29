@@ -27,7 +27,10 @@
     "body-parser": "^1.19.0",
     "concurrently": "^5.0.2",
     "express": "^4.17.1",
-    "mongoose": "^5.8.3"
+    "mongoose": "^5.8.3",
+    "react-scripts": "^3.3.0",
+    "semantic-ui-css": "^2.4.1",
+    "semantic-ui-react": "^0.88.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.2"

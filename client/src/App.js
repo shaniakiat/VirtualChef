@@ -3,6 +3,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import AppNavbar from "./components/AppNavbar";
 import ShoppingList from "./components/ShoppingList";
+import ItemModal from "./components/itemModal";
+
+import { Container } from "reactstrap";
 
 import { Provider } from "react-redux";
 import store from "./store";
@@ -23,8 +26,10 @@ function App() {
         <AppNavbar leftItems={leftItems} rightItems={rightItems}>
           {/* <Image src="https://react.semantic-ui.com/assets/images/wireframe/paragraph.png" /> */}
         </AppNavbar>
-        <h1>Hello, David!</h1>
-        <ShoppingList />
+        <Container>
+          <ItemModal />
+          <ShoppingList />
+        </Container>
       </div>
     </Provider>
   );

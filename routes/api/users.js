@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
+const config = require("config");
+const jwt = require("jsonwebtoken");
 
 //Item model
 //need this to do queries, find,save etc
@@ -34,13 +36,25 @@ router.post("/", (req, res) => {
         if (err) throw err;
         newUser.password = hash;
         newUser.save().then(user => {
-          res.json({
-            user: {
-              name: user.id,
-              email: user.email,
-              password: user.password
+          //user id will be in the token, it will know each user. otherwise any token can access anything
+          jwt.sign(
+            { id: user.id },
+            config.get("jwtSecret"),
+            {
+              expiresIn: 3600
+            },
+            (err, token) => {
+              if (err) throw err;
+              res.json({
+                token,
+                user: {
+                  name: user.id,
+                  email: user.email,
+                  password: user.password
+                }
+              });
             }
-          });
+          );
         });
       });
     });

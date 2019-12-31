@@ -12,7 +12,6 @@ import {
 import { connect } from "react-redux";
 import { addItem } from "../actions/itemActions";
 import PropTypes from "prop-types";
-import uuid from "uuid";
 import itemReducer from "../reducers/itemReducer";
 
 class ItemModal extends Component {
@@ -32,7 +31,6 @@ class ItemModal extends Component {
   onSubmit = e => {
     e.preventDefault();
     const newItem = {
-      id: uuid(),
       name: this.state.name
     };
 

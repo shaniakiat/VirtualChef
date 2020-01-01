@@ -25,9 +25,12 @@
   },
   "homepage": "https://github.com/DavidLuong98/VirtualChef#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "concurrently": "^5.0.2",
+    "config": "^3.2.4",
     "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.8.3",
     "react-scripts": "^3.3.0",
     "semantic-ui-css": "^2.4.1",

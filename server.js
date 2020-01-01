@@ -1,23 +1,21 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const bodyParser = require("body-parser");
 const path = require("path");
+
 const items = require("./routes/api/items");
+const users = require("./routes/api/users");
+const auth = require("./routes/api/auth");
 
 const app = express();
 
+const config = require("config");
 //bodyparser middleware
-app.use(bodyParser.json());
+app.use(express.json());
 
 //database config
-const db = require("./config/keys").mongoURI;
+const db = config.get("mongoURI");
 
 //connecting to MOngo
-
-// mongoose
-//   .connect(db)
-//   .then(() => console.log("mongodb connected"))
-//   .catch(err => console.log(err));
 mongoose
   .connect(db, {
     useUnifiedTopology: true,
@@ -29,6 +27,8 @@ mongoose
 
 //use routes
 app.use("/api/items", items);
+app.use("/api/users", users);
+app.use("/api/auth", auth);
 
 //serve static assests
 if (process.env.NODE_ENV === "production") {

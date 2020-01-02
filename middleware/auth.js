@@ -8,7 +8,7 @@ function auth(req, res, next) {
   try {
     //check for token
     if (!token) {
-      res.status(401).json({ msg: "no token, authorization denied" });
+      return res.status(401).json({ msg: "no token, authorization denied" });
     }
     //if there is a token, need to vertify
     const decoded = jwt.verify(token, config.get("jwtSecret"));

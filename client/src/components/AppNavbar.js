@@ -1,6 +1,6 @@
 import _ from "lodash";
 import React, { Component } from "react";
-import logo from "../logo-white.png"
+import logo from "../logo-white.png";
 import {
   Container,
   Icon,
@@ -9,6 +9,9 @@ import {
   Sidebar,
   Responsive
 } from "semantic-ui-react";
+import NavLink from "reactstrap";
+
+import RegisterModal from "./auth/RegisterModal";
 
 const NavBarMobile = ({
   children,
@@ -35,13 +38,15 @@ const NavBarMobile = ({
     >
       <Menu fixed="top" inverted>
         <Menu.Item>
-          <Image size="mini" src={logo} alt="logo"/>
+          <Image size="mini" src={logo} alt="logo" />
         </Menu.Item>
         <Menu.Item onClick={onToggle}>
           <Icon name="sidebar" />
         </Menu.Item>
         <Menu.Menu position="right">
-          {_.map(rightItems, item => <Menu.Item {...item} />)}
+          {_.map(rightItems, item => (
+            <Menu.Item {...item} />
+          ))}
         </Menu.Menu>
       </Menu>
       {children}
@@ -52,12 +57,12 @@ const NavBarMobile = ({
 const NavBarDesktop = ({ leftItems, rightItems }) => (
   <Menu fixed="top" inverted>
     <Menu.Item>
-      <Image size="mini" src={logo} alt="logo"/>
+      <Image size="mini" src={logo} alt="logo" />
     </Menu.Item>
-      {_.map(leftItems, item => <Menu.Item {...item} />)}
-    <Menu.Menu position="right">
-      {_.map(rightItems, item => <Menu.Item {...item} />)}
-    </Menu.Menu>
+    {_.map(leftItems, item => (
+      <Menu.Item {...item} />
+    ))}
+    <Menu.Menu position="right">{rightItems}</Menu.Menu>
   </Menu>
 );
 
@@ -95,14 +100,14 @@ class AppNavbar extends Component {
             <NavBarChildren>{children}</NavBarChildren>
           </NavBarMobile>
         </Responsive>
+
         <Responsive minWidth={Responsive.onlyTablet.minWidth}>
-          <NavBarDesktop leftItems={leftItems} rightItems={rightItems} />
+          <NavBarDesktop leftItems={leftItems} rightItems={<RegisterModal />} />
           <NavBarChildren>{children}</NavBarChildren>
         </Responsive>
       </div>
     );
   }
 }
-
 
 export default AppNavbar;

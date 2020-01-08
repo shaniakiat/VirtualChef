@@ -1,114 +1,82 @@
-import _ from "lodash";
-import React, { Component } from "react";
-import logo from "../logo-white.png";
+import React, { Component, Fragment } from "react";
 import {
-  Container,
-  Icon,
-  Image,
-  Menu,
-  Sidebar,
-  Responsive
-} from "semantic-ui-react";
-import NavLink from "reactstrap";
-
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink,
+  Container
+} from "reactstrap";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 import RegisterModal from "./auth/RegisterModal";
+import LoginModal from "./auth/LoginModal";
 import Logout from "./auth/Logout";
-
-const NavBarMobile = ({
-  children,
-  leftItems,
-  onPusherClick,
-  onToggle,
-  rightItems,
-  visible
-}) => (
-  <Sidebar.Pushable>
-    <Sidebar
-      as={Menu}
-      animation="overlay"
-      icon="labeled"
-      inverted
-      items={leftItems}
-      vertical
-      visible={visible}
-    />
-    <Sidebar.Pusher
-      dimmed={visible}
-      onClick={onPusherClick}
-      style={{ minHeight: "100vh" }}
-    >
-      <Menu fixed="top" inverted>
-        <Menu.Item>
-          <Image size="mini" src={logo} alt="logo" />
-        </Menu.Item>
-        <Menu.Item onClick={onToggle}>
-          <Icon name="sidebar" />
-        </Menu.Item>
-        <Menu.Menu position="right">
-          {_.map(rightItems, item => (
-            <Menu.Item {...item} />
-          ))}
-        </Menu.Menu>
-      </Menu>
-      {children}
-    </Sidebar.Pusher>
-  </Sidebar.Pushable>
-);
-
-const NavBarDesktop = ({ leftItems, rightItems }) => (
-  <Menu fixed="top" inverted>
-    <Menu.Item>
-      <Image size="mini" src={logo} alt="logo" />
-    </Menu.Item>
-    {_.map(leftItems, item => (
-      <Menu.Item {...item} />
-    ))}
-    <Menu.Menu position="right">{rightItems}</Menu.Menu>
-  </Menu>
-);
-
-const NavBarChildren = ({ children }) => (
-  <Container style={{ marginTop: "5em" }}>{children}</Container>
-);
 
 class AppNavbar extends Component {
   state = {
-    visible: false
+    isOpen: false
   };
 
-  handlePusher = () => {
-    const { visible } = this.state;
-
-    if (visible) this.setState({ visible: false });
+  static propTypes = {
+    auth: PropTypes.object.isRequired
   };
 
-  handleToggle = () => this.setState({ visible: !this.state.visible });
+  toggle = () => {
+    this.setState({
+      isOpen: !this.state.isOpen
+    });
+  };
 
   render() {
-    const { children, leftItems, rightItems } = this.props;
-    const { visible } = this.state;
+    const { isAuthenticated, user } = this.props.auth;
+
+    const authLinks = (
+      <Fragment>
+        <NavItem>
+          <span className="navbar-text mr-3">
+            <strong>{user ? `Welcome ${user.name}` : ""}</strong>
+          </span>
+        </NavItem>
+        <NavItem>
+          <Logout />
+        </NavItem>
+      </Fragment>
+    );
+
+    const guestLinks = (
+      <Fragment>
+        <NavItem>
+          <RegisterModal />
+        </NavItem>
+        <NavItem>
+          <LoginModal />
+        </NavItem>
+      </Fragment>
+    );
 
     return (
       <div>
-        <Responsive {...Responsive.onlyMobile}>
-          <NavBarMobile
-            leftItems={leftItems}
-            onPusherClick={this.handlePusher}
-            onToggle={this.handleToggle}
-            rightItems={rightItems}
-            visible={visible}
-          >
-            <NavBarChildren>{children}</NavBarChildren>
-          </NavBarMobile>
-        </Responsive>
-
-        <Responsive minWidth={Responsive.onlyTablet.minWidth}>
-          <NavBarDesktop leftItems={leftItems} rightItems={<RegisterModal />} />
-          <NavBarChildren>{children}</NavBarChildren>
-        </Responsive>
+        <Navbar color="dark" dark expand="sm" className="mb-5">
+          <Container>
+            <NavbarBrand href="/">VirtualChef</NavbarBrand>
+            <NavbarToggler onClick={this.toggle} />
+            <Collapse isOpen={this.state.isOpen} navbar>
+              <Nav className="ml-auto" navbar>
+                {isAuthenticated ? authLinks : guestLinks}
+              </Nav>
+            </Collapse>
+          </Container>
+        </Navbar>
       </div>
     );
   }
 }
 
-export default AppNavbar;
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+export default connect(mapStateToProps, null)(AppNavbar);

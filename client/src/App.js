@@ -11,15 +11,6 @@ import { Provider } from "react-redux";
 import store from "./store";
 import { loadUser } from "./actions/authActions";
 
-const leftItems = [
-  { as: "a", content: "Home", key: "home" },
-  { as: "a", content: "Users", key: "users" }
-];
-const rightItems = [
-  { as: "a", content: "Login", key: "login" },
-  { as: "a", content: "Register", key: "register" }
-];
-
 class App extends Component {
   componentDidMount() {
     store.dispatch(loadUser());
@@ -29,9 +20,7 @@ class App extends Component {
     return (
       <Provider store={store}>
         <div className="App">
-          <AppNavbar leftItems={leftItems} rightItems={rightItems}>
-            {/* <Image src="https://react.semantic-ui.com/assets/images/wireframe/paragraph.png" /> */}
-          </AppNavbar>
+          <AppNavbar />
           <Container>
             <ItemModal />
             <ShoppingList />

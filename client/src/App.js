@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import AppNavbar from "./components/AppNavbar";
-import ShoppingList from "./components/ShoppingList";
+import VirtualChef from "./components/VirtualChef";
 import ItemModal from "./components/itemModal";
 
 import { Container } from "reactstrap";
@@ -23,7 +23,7 @@ class App extends Component {
           <AppNavbar />
           <Container>
             <ItemModal />
-            <ShoppingList />
+            <VirtualChef />
           </Container>
         </div>
       </Provider>

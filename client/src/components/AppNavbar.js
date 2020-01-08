@@ -12,6 +12,7 @@ import {
 import NavLink from "reactstrap";
 
 import RegisterModal from "./auth/RegisterModal";
+import Logout from "./auth/Logout";
 
 const NavBarMobile = ({
   children,

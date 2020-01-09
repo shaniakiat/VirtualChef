@@ -12,7 +12,6 @@ import {
 import { connect } from "react-redux";
 import { addItem } from "../actions/itemActions";
 import PropTypes from "prop-types";
-import itemReducer from "../reducers/itemReducer";
 
 class ItemModal extends Component {
   state = {
@@ -20,38 +19,51 @@ class ItemModal extends Component {
     name: ""
   };
 
+  static propTypes = {
+    isAuthenticated: PropTypes.bool
+  };
+
   toggle = () => {
     this.setState({
       modal: !this.state.modal
     });
   };
+
   onChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
+
   onSubmit = e => {
     e.preventDefault();
+
     const newItem = {
       name: this.state.name
     };
 
-    //add item via additem action
+    // Add item via addItem action
     this.props.addItem(newItem);
-    //close the modal
+
+    // Close modal
     this.toggle();
   };
+
   render() {
     return (
       <div>
-        <Button
-          color="dark"
-          style={{ marginBottom: "2rem" }}
-          onClick={this.toggle}
-        >
-          Add Item
-        </Button>
+        {this.props.isAuthenticated ? (
+          <Button
+            color="dark"
+            style={{ marginBottom: "2rem" }}
+            onClick={this.toggle}
+          >
+            Add Item
+          </Button>
+        ) : (
+          <h4 className="mb-3 ml-4">Please log in to manage items</h4>
+        )}
 
         <Modal isOpen={this.state.modal} toggle={this.toggle}>
-          <ModalHeader toggle={this.toggle}>Add To shopping list</ModalHeader>
+          <ModalHeader toggle={this.toggle}>Add To Shopping List</ModalHeader>
           <ModalBody>
             <Form onSubmit={this.onSubmit}>
               <FormGroup>
@@ -74,7 +86,10 @@ class ItemModal extends Component {
     );
   }
 }
+
 const mapStateToProps = state => ({
-  item: state.item
+  item: state.item,
+  isAuthenticated: state.auth.isAuthenticated
 });
+
 export default connect(mapStateToProps, { addItem })(ItemModal);

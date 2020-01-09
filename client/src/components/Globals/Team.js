@@ -16,7 +16,7 @@ class Team extends Component {
             from various background.
             <div className="members">
               <div className="person">
-                <img src="images/" alt="" />
+                <img src="im" alt="" />
               </div>
             </div>
           </h1>

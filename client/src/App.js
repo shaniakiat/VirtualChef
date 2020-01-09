@@ -5,6 +5,7 @@ import AppNavbar from "./components/AppNavbar";
 import VirtualChef from "./components/Globals/VirtualChef";
 import ItemModal from "./components/Globals/itemModal";
 import Header from "./components/Globals/Header";
+import Team from "./components/Globals/Team";
 import store from "./store";
 
 import { Container } from "reactstrap";
@@ -24,6 +25,7 @@ class App extends Component {
           <Container>
             {/* <ItemModal /> */}
             <Header />
+            <Team />
             <VirtualChef />
           </Container>
         </div>

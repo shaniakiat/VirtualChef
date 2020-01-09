@@ -10,8 +10,7 @@ class Header extends Component {
   render() {
     return (
       <header id="home" class="home">
-        <h1>Explore Delicious Food</h1>
-        <h1>& The World's Cusines</h1>
+        <h1>Explore Delicious Food & The World's Cusines</h1>
         <h3>
           virtualchef lets you discover new range of food with the best mouthful
           taste and delicious experience

@@ -1,0 +1,75 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins:400,600,700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  /* font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif; */
+}
+
+h1 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-size: 65px;
+  color: #196d4c;
+}
+h3 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  color: #a08a6c;
+}
+
+.btnOutline {
+  display: block;
+  text-decoration: none;
+  color: white;
+  border: 2px solid #196d4c;
+  background-color: #196d4c;
+  border-radius: 50px;
+  width: 175px;
+  height: 50px;
+  line-height: 45px;
+  text-align: center;
+  margin-top: 20px;
+
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+}
+
+/* NAVBAR */
+.navbar-light .navbar-brand {
+  font-weight: 600;
+  color: rgb(46, 109, 76) !important;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  font-weight: 600;
+  color: rgb(46, 109, 76) !important;
+}
+
+/* HEADER */
+header {
+  height: 600px;
+  min-height: 600px;
+  padding: 10% 0;
+  margin-bottom: 20%;
+  background-image: url(./images/background_header.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: right;
+}
+
+header h1 {
+  width: 70%;
+  margin: 1em 0 0 0;
+}
+
+header h3 {
+  width: 50%;
+  margin: 1em 0 0 0;
+}

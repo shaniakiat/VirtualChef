@@ -9,6 +9,7 @@ import {
   NavLink,
   Container
 } from "reactstrap";
+
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import RegisterModal from "./auth/RegisterModal";
@@ -59,7 +60,7 @@ class AppNavbar extends Component {
 
     return (
       <div>
-        <Navbar color="dark" dark expand="sm" className="mb-5">
+        <Navbar color="faded" light expand="sm" className="mb-5 ">
           <Container>
             <NavbarBrand href="/">VirtualChef</NavbarBrand>
             <NavbarToggler onClick={this.toggle} />

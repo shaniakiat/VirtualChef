@@ -17,24 +17,24 @@ class Team extends Component {
           <h1>
             Our web application are crafted by our talented team of developers
             from various background.
-            <div className="members">
-              <div className="person">
-                <img src={David} alt="profile icon" />
-                <h3>David Luong</h3>
-                <p>Computer Science Student at La Salle University</p>
-              </div>
-              <div className="person">
-                <img src={Shania} alt="profile icon" />
-                <h3>Shania Kiat</h3>
-                <p>Computer Science Student at La Salle University</p>
-              </div>
-              <div className="person">
-                <img src={Anthony} alt="profile icon" />
-                <h3>Anthony Ibe</h3>
-                <p>Computer Science Student at La Salle University</p>
-              </div>
-            </div>
           </h1>
+          <div className="members">
+            <div className="person">
+              <img src={David} alt="profile icon" />
+              <h3>David Luong</h3>
+              <p>Computer Science Student at La Salle University</p>
+            </div>
+            <div className="person">
+              <img src={Shania} alt="profile icon" />
+              <h3>Shania Kiat</h3>
+              <p>Computer Science Student at La Salle University</p>
+            </div>
+            <div className="person">
+              <img src={Anthony} alt="profile icon" />
+              <h3>Anthony Ibe</h3>
+              <p>Computer Science Student at La Salle University</p>
+            </div>
+          </div>
         </div>
       </section>
     );

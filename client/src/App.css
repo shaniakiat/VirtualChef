@@ -1,5 +1,13 @@
 @import url("https://fonts.googleapis.com/css?family=Poppins:400,600,700&display=swap");
 
+:root {
+  --mainDarkGreen: #196d4c;
+  --mainGreen: #7ed49a;
+  --mainBrown: #a08a6c;
+  --mainBlack: #000000;
+  --mainWhite: #ffffff;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -14,42 +22,48 @@ h1 {
   font-family: "Poppins", sans-serif;
   font-weight: 700;
   font-size: 65px;
-  color: #196d4c;
+  color: var(--mainDarkGreen);
 }
 h3 {
   font-family: "Poppins", sans-serif;
   font-weight: 400;
   font-size: 20px;
-  color: #a08a6c;
+  color: var(--mainBrown);
 }
 
 .btnOutline {
   display: block;
   text-decoration: none;
   color: white;
-  border: 2px solid #196d4c;
-  background-color: #196d4c;
+  border: 2px solid var(--mainDarkGreen);
+  background-color: var(--mainDarkGreen);
   border-radius: 50px;
   width: 175px;
   height: 50px;
   line-height: 45px;
   text-align: center;
   margin-top: 20px;
-
   font-family: "Poppins", sans-serif;
   font-weight: 400;
   font-size: 20px;
 }
 
 /* NAVBAR */
+.navbar-light {
+  font-size: 15px;
+}
 .navbar-light .navbar-brand {
   font-weight: 600;
-  color: rgb(46, 109, 76) !important;
+  color: var(--mainDarkGreen) !important;
 }
 
 .navbar-light .navbar-nav .nav-link {
   font-weight: 600;
-  color: rgb(46, 109, 76) !important;
+  color: var(--mainBrown) !important;
+}
+
+.navbar-light .navbar-text {
+  color: var(--mainDarkGreen);
 }
 
 /* HEADER */
@@ -57,7 +71,6 @@ header {
   height: 600px;
   min-height: 600px;
   padding: 10% 0;
-  margin-bottom: 20%;
   background-image: url(./images/background_header.png);
   background-repeat: no-repeat;
   background-size: contain;
@@ -76,13 +89,13 @@ header h3 {
 
 /* TEAM */
 
-.team {
+/* .team {
   height: 600px;
   min-height: 600px;
   text-align: center;
   margin: 5em 0;
   padding: 10% 0;
-  /* background-image: url(./images/background_team.png); */
+  background-image: url(./images/background_team.png);
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -103,7 +116,7 @@ header h3 {
 
 .person {
   margin: 0 40px;
-  color: #196d4c;
+  color: var(--mainDarkGreen);
 }
 
 .person img {
@@ -114,4 +127,38 @@ header h3 {
 .team h3 {
   margin-bottom: 5px;
   font-weight: 600;
+} */
+
+/* ABOUT */
+.about {
+  height: 600px;
+  min-height: 600px;
+  text-align: center;
+  margin: 15% 0;
+  padding: 10% 0;
+  /* background-image: url(./images/background_about.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center; */
+}
+.about .box {
+  padding: 50px;
+  background-color: var(--mainDarkGreen);
+  /* border-radius: 10px; */
+}
+.about h1 {
+  color: var(--mainGreen);
+  margin-bottom: 30px;
+}
+.goals {
+  display: flex;
+  justify-content: center;
+  padding: 0 100px;
+}
+
+.goals p {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  color: var(--mainWhite);
 }

@@ -7,6 +7,8 @@ import ItemModal from "./components/Globals/itemModal";
 import Header from "./components/Globals/Header";
 import Team from "./components/Globals/Team";
 import About from "./components/Globals/About";
+// import Landing from "./components/Globals/About";
+import Login from "./components/Globals/Login";
 import store from "./store";
 
 import { Container } from "reactstrap";
@@ -25,10 +27,11 @@ class App extends Component {
           <AppNavbar />
           <Container>
             {/* <ItemModal /> */}
-            <Header />
+            {/* <Header />
+            <About /> */}
             {/* <Team /> */}
-            <About />
-            <VirtualChef />
+            <Login />
+            {/* <VirtualChef /> */}
           </Container>
         </div>
       </Provider>

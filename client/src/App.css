@@ -31,23 +31,6 @@ h3 {
   color: var(--mainBrown);
 }
 
-.btnOutline {
-  display: block;
-  text-decoration: none;
-  color: white;
-  border: 2px solid var(--mainDarkGreen);
-  background-color: var(--mainDarkGreen);
-  border-radius: 50px;
-  width: 175px;
-  height: 50px;
-  line-height: 45px;
-  text-align: center;
-  margin-top: 20px;
-  font-family: "Poppins", sans-serif;
-  font-weight: 400;
-  font-size: 20px;
-}
-
 /* NAVBAR */
 .navbar-light {
   font-size: 15px;
@@ -74,7 +57,7 @@ header {
   background-image: url(./images/background_header.png);
   background-repeat: no-repeat;
   background-size: contain;
-  background-position: right;
+  background-position: right bottom;
 }
 
 header h1 {
@@ -85,6 +68,28 @@ header h1 {
 header h3 {
   width: 50%;
   margin: 1em 0 0 0;
+}
+
+.btnOutline {
+  display: block;
+  text-decoration: none;
+  color: white;
+  border: 2px solid var(--mainDarkGreen);
+  background-color: var(--mainDarkGreen);
+  border-radius: 50px;
+  width: 175px;
+  height: 50px;
+  line-height: 45px;
+  text-align: center;
+  margin-top: 20px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+}
+
+.btnOutline:hover {
+  text-decoration: none;
+  color: var(--mainGreen);
 }
 
 /* TEAM */
@@ -136,29 +141,17 @@ header h3 {
   text-align: center;
   margin: 15% 0;
   padding: 10% 0;
-  /* background-image: url(./images/background_about.png);
-  background-repeat: no-repeat;
-  background-size: 100%;
-  background-position: center; */
-}
-.about .box {
-  padding: 50px;
-  background-color: var(--mainDarkGreen);
-  /* border-radius: 10px; */
 }
 .about h1 {
-  color: var(--mainGreen);
+  color: var(--mainDarkGreen);
   margin-bottom: 30px;
 }
-.goals {
-  display: flex;
-  justify-content: center;
-  padding: 0 100px;
-}
 
-.goals p {
+.about p {
   font-family: "Poppins", sans-serif;
   font-weight: 400;
   font-size: 20px;
-  color: var(--mainWhite);
+  color: var(--mainBrown);
+  padding: 0 20%;
+  padding-bottom: 20%;
 }

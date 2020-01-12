@@ -62,7 +62,7 @@ class AppNavbar extends Component {
       <div>
         <Navbar color="faded" light expand="sm" className="mb-5 ">
           <Container>
-            <NavbarBrand href="/">VirtualChef</NavbarBrand>
+            <NavbarBrand href="/#">VirtualChef</NavbarBrand>
             <NavbarToggler onClick={this.toggle} />
             <Collapse isOpen={this.state.isOpen} navbar>
               <Nav className="ml-auto" navbar>

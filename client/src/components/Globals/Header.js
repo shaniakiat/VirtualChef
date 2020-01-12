@@ -7,15 +7,24 @@ import React, { Component } from "react";
 // import Resume from "../../../../static/resume.pdf"
 
 class Header extends Component {
+  state = {
+    links: [
+      {
+        class: 1,
+        path: "/#about",
+        text: "about"
+      }
+    ]
+  };
   render() {
     return (
-      <header id="home" class="home">
+      <header id="home" className="home">
         <h1>Explore Delicious Food & The World's Cusines</h1>
         <h3>
           virtualchef lets you discover new range of food with the best mouthful
           taste and delicious experience
         </h3>
-        <a href="#" class="btnOutline">
+        <a href="#about" className="btnOutline">
           Learn More
         </a>
       </header>

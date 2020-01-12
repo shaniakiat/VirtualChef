@@ -41,7 +41,7 @@ router.post("/", (req, res) => {
           res.json({
             token,
             user: {
-              name: user.id,
+              name: user.name,
               email: user.email,
               password: user.password
             }

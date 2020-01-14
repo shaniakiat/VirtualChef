@@ -1,11 +1,20 @@
 @import url("https://fonts.googleapis.com/css?family=Poppins:400,600,700&display=swap");
 
-:root {
-  --mainDarkGreen: #196d4c;
+/* :root {
+  --mainGreen: #196d4c;
   --mainGreen: #7ed49a;
-  --mainBrown: #a08a6c;
+  --mainOrange: #a08a6c;
   --mainBlack: #000000;
   --mainWhite: #ffffff;
+} */
+
+:root {
+  --mainDark: #0f2d2f;
+  --mainGreen: #196d4c;
+  --mainLight: #7ed49a;
+  --mainOrange: #a64b2d;
+  --mainWhite: #ffffff;
+  --mainBlack: #000000;
 }
 
 * {
@@ -14,7 +23,7 @@
   border: 0;
   outline: 0;
   font-size: 100%;
-  vertical-align: baseline;
+  /* vertical-align: baseline; */
   /* font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif; */
 }
 
@@ -22,13 +31,13 @@ h1 {
   font-family: "Poppins", sans-serif;
   font-weight: 700;
   font-size: 65px;
-  color: var(--mainDarkGreen);
+  color: var(--mainGreen);
 }
 h3 {
   font-family: "Poppins", sans-serif;
   font-weight: 400;
   font-size: 20px;
-  color: var(--mainBrown);
+  color: var(--mainOrange);
 }
 
 /* NAVBAR */
@@ -37,23 +46,23 @@ h3 {
 }
 .navbar-light .navbar-brand {
   font-weight: 600;
-  color: var(--mainDarkGreen) !important;
+  color: var(--mainGreen) !important;
 }
 
 .navbar-light .navbar-nav .nav-link {
   font-weight: 600;
-  color: var(--mainBrown) !important;
+  color: var(--mainOrange) !important;
 }
 
 .navbar-light .navbar-text {
-  color: var(--mainDarkGreen);
+  color: var(--mainGreen);
 }
 
 /* HEADER */
 header {
   height: 600px;
   min-height: 600px;
-  padding: 10% 0;
+  padding: 15% 0;
   background-image: url(./images/background_header.png);
   background-repeat: no-repeat;
   background-size: contain;
@@ -74,8 +83,8 @@ header h3 {
   display: block;
   text-decoration: none;
   color: white;
-  border: 2px solid var(--mainDarkGreen);
-  background-color: var(--mainDarkGreen);
+  border: 2px solid var(--mainGreen);
+  background-color: var(--mainGreen);
   border-radius: 50px;
   width: 175px;
   height: 50px;
@@ -89,7 +98,7 @@ header h3 {
 
 .btnOutline:hover {
   text-decoration: none;
-  color: var(--mainGreen);
+  color: var(--mainLight);
 }
 
 /* TEAM */
@@ -121,7 +130,7 @@ header h3 {
 
 .person {
   margin: 0 40px;
-  color: var(--mainDarkGreen);
+  color: var(--mainGreen);
 }
 
 .person img {
@@ -143,7 +152,7 @@ header h3 {
   padding: 10% 0;
 }
 .about h1 {
-  color: var(--mainDarkGreen);
+  color: var(--mainGreen);
   margin-bottom: 30px;
 }
 
@@ -151,7 +160,21 @@ header h3 {
   font-family: "Poppins", sans-serif;
   font-weight: 400;
   font-size: 20px;
-  color: var(--mainBrown);
+  color: var(--mainOrange);
   padding: 0 20%;
-  padding-bottom: 20%;
+  /* padding-bottom: 20%; */
+}
+
+.footer {
+  color: var(--mainOrange);
+  font-size: 20px;
+}
+
+.footer a {
+  color: var(--mainGreen);
+  text-decoration: none;
+}
+
+.footer a:hover {
+  color: var(--mainDark);
 }

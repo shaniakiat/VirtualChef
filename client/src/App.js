@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import AppNavbar from "./components/AppNavbar";
+import Footer from "./components/Footer";
 import VirtualChef from "./components/Globals/VirtualChef";
 import ItemModal from "./components/Globals/itemModal";
 import Header from "./components/Globals/Header";
@@ -32,6 +33,7 @@ class App extends Component {
             {/* <Team /> */}
             <Login />
             {/* <VirtualChef /> */}
+            <Footer />
           </Container>
         </div>
       </Provider>

@@ -19,9 +19,12 @@ import About from "./About";
 class Login extends Component {
   render() {
     return (
-      <div>
+      <div className="login">
         {this.props.isAuthenticated ? (
-          <h1>you have logged in successfully! :)</h1>
+          <div>
+            <h1>welcome to virtualchef! </h1>
+            <h3>you have logged in successfully :)</h3>
+          </div>
         ) : (
           <div>
             <Header />

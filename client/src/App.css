@@ -185,9 +185,9 @@ header h3 {
 /* RESPONSIVE */
 
 @media only screen and (max-width: 1000px) {
-  body {
+  /* body {
     background-color: red;
-  }
+  } */
 
   header {
     height: 1100px;

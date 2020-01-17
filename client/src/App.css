@@ -166,8 +166,11 @@ header h3 {
 }
 
 .footer {
+  padding: 0 5%;
+  margin-bottom: 40px;
   color: var(--mainOrange);
   font-size: 20px;
+  text-align: center;
 }
 
 .footer a {
@@ -177,4 +180,67 @@ header h3 {
 
 .footer a:hover {
   color: var(--mainDark);
+}
+
+/* RESPONSIVE */
+
+@media only screen and (max-width: 1000px) {
+  body {
+    background-color: red;
+  }
+
+  header {
+    height: 1100px;
+    min-height: 1100px;
+
+    padding: 15% 0;
+    /* padding-bottom: 0; */
+    background-image: url(./images/background_header.png);
+    background-repeat: no-repeat;
+    background-size: 60%;
+    background-position: right bottom;
+  }
+  header h1 {
+    font-size: 80px;
+    width: 100%;
+    margin: 1em 0 0 0;
+  }
+  header h3 {
+    width: 60%;
+    margin: 1em 0 0 0;
+  }
+  .btnOutline {
+    width: 165px;
+    height: 40px;
+    line-height: 35px;
+    font-size: 15px;
+  }
+
+  .about {
+    height: 800px;
+    min-height: 800px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  header {
+    height: 1100px;
+    min-height: 1100px;
+    background-position: center bottom;
+    background-size: 80%;
+  }
+
+  header h1 {
+    font-size: 65px;
+    width: 100%;
+    margin: 1em 0 0 0;
+  }
+  header h3 {
+    width: 90%;
+    margin: 1em 0 0 0;
+  }
+
+  .about {
+    height: 1000px;
+  }
 }

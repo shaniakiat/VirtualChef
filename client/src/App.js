@@ -11,6 +11,7 @@ import About from "./components/Globals/About";
 // import Landing from "./components/Globals/About";
 import Login from "./components/Globals/Login";
 import store from "./store";
+import Prediction from "./components/Prediction";
 
 import { Container } from "reactstrap";
 import { Provider } from "react-redux";
@@ -34,6 +35,7 @@ class App extends Component {
             <Login />
             {/* <VirtualChef /> */}
             <Footer />
+            <Prediction />
           </Container>
         </div>
       </Provider>

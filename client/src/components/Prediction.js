@@ -24,18 +24,16 @@ class Prediction extends React.Component {
       })
       .then(myJson => {
         // console.log(myJson);
-        // document.getElementById("text-area").innerHTML = myJson;
-
         //getting individual words from the json file, now each element is formatted [{food, 0.9...}, {food2, 0.99}...]
         myObj = myJson;
-        this.setState({ domElementsObj: myJson });
-        myObj.map(function(obj, i) {
-          myObj[i] = obj[0];
-        });
-        console.log(myObj);
-        //fetch the ingredients, but we wil change our approach
-        // this.getIngredients(myObj);
-        // this.createUI(myObj);
+        if (myObj == "Sorry, we couldn't indentify this food yet.") {
+          this.setState({ domElementsObj: [] });
+        } else {
+          this.setState({ domElementsObj: myJson });
+          myObj.map(function(obj, i) {
+            myObj[i] = obj[0];
+          });
+        }
       })
       .catch(function(error) {
         console.error();
@@ -44,8 +42,6 @@ class Prediction extends React.Component {
   getIngredients = params => {
     // https://developer.edamam.com/admin/applications/1409619036598?service_id=2555417725632
     //example :https://api.edamam.com/search?q=chicken&app_id=${YOUR_APP_ID}&app_key=${YOUR_APP_KEY}&from=0&to=3&calories=591-722&health=alcohol-free
-
-    //what we will do is make each predicted food a button, when the user click it - > they will be able to see the ingredient
     console.log(params);
     const base = "https://api.edamam.com/search";
     const YOUR_APP_ID = "1379f77e";
@@ -64,8 +60,17 @@ class Prediction extends React.Component {
     });
   };
   render() {
-    let predictionDOM = this.state.domElementsObj.map(i => {
-      return <li>{i}</li>;
+    console.log(this.state.domElementsObj);
+    let predictionDOM = this.state.domElementsObj.map(function(obj, i) {
+      return (
+        <div>
+          <div>
+            <button> {obj[0]}</button>
+            <span> % of accuracy : {obj[1]}</span>
+            <button> Save to favorites</button>
+          </div>
+        </div>
+      );
     });
     return (
       <div>

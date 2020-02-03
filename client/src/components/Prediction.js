@@ -3,7 +3,7 @@ import React from "react";
 class Prediction extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { usersFood: "", domElementsObj: [] };
+    this.state = { usersFood: "", domElementsObj: [], foodTemp: [] };
   }
 
   handleChange = event => {
@@ -46,29 +46,28 @@ class Prediction extends React.Component {
     const base = "https://api.edamam.com/search";
     const YOUR_APP_ID = "1379f77e";
     const YOUR_APP_KEY = "5c98e2c53e8e6a98a17d608177ac37c1";
-    params.map(function(x, i) {
-      console.log(i);
-      fetch(
-        `${base}?q=${params[0]}&app_id=${YOUR_APP_ID}&app_key=${YOUR_APP_KEY}`
-      )
-        .then(response => {
-          console.log(response.json());
-        })
-        .catch(function(error) {
-          console.log(error);
-        });
-    });
+    // params.map(function(x, i) {
+    console.log(params);
+    fetch(`${base}?q=${params}&app_id=${YOUR_APP_ID}&app_key=${YOUR_APP_KEY}`)
+      .then(response => {
+        console.log(response.json());
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+    // });
   };
   render() {
-    console.log(this.state.domElementsObj);
-    let predictionDOM = this.state.domElementsObj.map(function(obj, i) {
+    let predictionDOM = this.state.domElementsObj.map((obj, i) => {
       return (
         <div>
-          <div>
-            <button> {obj[0]}</button>
-            <span> % of accuracy : {obj[1]}</span>
+          <li key={obj[0]}>
+            <button onClick={() => this.getIngredients(obj[0])}>
+              {obj[0] + " -----"}
+            </button>
+            <span> ---- % of accuracy : {obj[1]} --</span>
             <button> Save to favorites</button>
-          </div>
+          </li>
         </div>
       );
     });

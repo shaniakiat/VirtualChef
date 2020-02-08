@@ -3,7 +3,11 @@ import React from "react";
 class Prediction extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { usersFood: "", domElementsObj: [] };
+    this.state = {
+      usersFood: "",
+      domElementsObj: [],
+      ingredientList: []
+    };
   }
 
   handleChange = event => {
@@ -24,7 +28,7 @@ class Prediction extends React.Component {
       })
       .then(myJson => {
         myObj = myJson;
-        if (myObj == "Sorry, we couldn't indentify this food yet.") {
+        if (myObj === "Sorry, we couldn't indentify this food yet.") {
           this.setState({ domElementsObj: [] });
         } else {
           this.setState({ domElementsObj: myJson });
@@ -56,6 +60,16 @@ class Prediction extends React.Component {
       .then(resJson => {
         ingredientObj = resJson;
         console.log(ingredientObj);
+        //gets the recipe
+        this.setState({ ingredientList: [] });
+        ingredientObj.hits.forEach(hit =>
+          this.setState(ingredientList => ({
+            ingredientList: [
+              ...this.state.ingredientList,
+              hit.recipe.ingredientLines
+            ]
+          }))
+        );
       })
       .catch(function(error) {
         console.log(error);
@@ -75,6 +89,13 @@ class Prediction extends React.Component {
         </div>
       );
     });
+    let ingredients = this.state.ingredientList.map(i => {
+      return (
+        <div>
+          <span> {i}</span>
+        </div>
+      );
+    });
     return (
       <div>
         <h1>testing api</h1>
@@ -87,6 +108,7 @@ class Prediction extends React.Component {
         />
         <button onClick={this.getPredictions}>Make Predictions</button>
         {predictionDOM}
+        {ingredients}
       </div>
     );
   }

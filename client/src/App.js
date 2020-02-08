@@ -11,7 +11,7 @@ import About from "./components/Globals/About";
 // import Landing from "./components/Globals/About";
 import Login from "./components/Globals/Login";
 import store from "./store";
-import Prediction from "./components/Prediction";
+import Prediction from "./components/Predictions/Prediction";
 
 import { Container } from "reactstrap";
 import { Provider } from "react-redux";

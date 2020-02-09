@@ -15,6 +15,7 @@ import PropTypes from "prop-types";
 
 import Header from "./Header";
 import About from "./About";
+import PredictionHooks from "../Predictions/PredictionHooks";
 
 class Login extends Component {
   render() {
@@ -28,6 +29,7 @@ class Login extends Component {
         ) : (
           <div>
             <Header />
+            <PredictionHooks />
             <About />
           </div>
         )}

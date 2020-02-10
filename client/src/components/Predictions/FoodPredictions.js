@@ -9,6 +9,7 @@ const FoodPredictions = ({
   findPrediction,
   predictions,
   food,
+  predictionsRecipes,
   handleClickIngredients,
   foodButtonClick,
   predictionsIngredients
@@ -51,6 +52,34 @@ const FoodPredictions = ({
                         <button type="button" value={food}>
                           {obj[0]}
                         </button>
+                        {/*-----------------RECIPE---------------------------*/}
+                        <div>
+                          {/* <h1>API TESTING FOR THE INGREDIENTS</h1> */}
+                          <ul>
+                            <div class="grid-container">
+                              {predictionsRecipes.map(obj => (
+                                <div class="grid-item">
+                                  <li>
+                                    {console.log(obj.recipe.label)}
+                                    <h3>{obj.recipe.label}</h3>
+                                    <ul>
+                                      {obj.recipe.ingredientLines.map(
+                                        ngrdnt => (
+                                          <li>
+                                            {console.log(ngrdnt)}
+                                            {ngrdnt}
+                                          </li>
+                                        )
+                                      )}
+                                    </ul>
+                                  </li>
+                                </div>
+                              ))}
+                            </div>
+                          </ul>
+                          {/* <div>{JSON.stringify(predictionsRecipes)}</div> */}
+                        </div>
+                        {/*-------------------------------------------------*/}
                       </li>
                     ))}
                   </ul>

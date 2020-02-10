@@ -47,50 +47,50 @@ const PredictionHooks = () => {
   // display the ingredients list into the web using textbox
   // style it
 
-  const [food, setFood] = useState("");
-  const [idFromFoodButtonClick, setIdFromFoodButtonClick] = useState("");
-  const [foodButtonClick, setFoodButtonClick] = useState(false);
-  const [predictionsIngredients, setPredictionsIngredients] = useState([]);
-  const [findPredictionIngredients, setFindPredictionIngredients] = useState(
-    false
-  );
+  // const [food, setFood] = useState("");
+  // const [idFromFoodButtonClick, setIdFromFoodButtonClick] = useState("");
+  // const [foodButtonClick, setFoodButtonClick] = useState(false);
+  // const [predictionsIngredients, setPredictionsIngredients] = useState([]);
+  // const [findPredictionIngredients, setFindPredictionIngredients] = useState(
+  //   false
+  // );
+  const [predictionsRecipes, setPredictionsRecipes] = useState([]);
 
-  const handleClickIngredients = () => {
-    setIdFromFoodButtonClick("" + food);
-    setFood("");
-    setFoodButtonClick(true); //if this is true than open up the textbox with the list of ingredients
-  };
+  // const handleClickIngredients = () => {
+  //   setIdFromFoodButtonClick("" + food);
+  //   setFood("");
+  //   setFoodButtonClick(true); //if this is true than open up the textbox with the list of ingredients
+  // };
 
   useEffect(() => {
-    console.log({ idFromFoodButtonClick });
+    // console.log({ idFromFoodButtonClick });
     const base = "https://api.edamam.com/search";
     const YOUR_APP_ID = "1379f77e";
     const YOUR_APP_KEY = "5c98e2c53e8e6a98a17d608177ac37c1";
+
+    // let ingredients = [];
     axios
-      .get(`${base}?q=pasta&app_id=${YOUR_APP_ID}&app_key=${YOUR_APP_KEY}`)
+      .get(
+        `${base}?q=penne+pasta&app_id=${YOUR_APP_ID}&app_key=${YOUR_APP_KEY}`
+      )
       .then(res => {
         console.log(res.data);
-        setPredictionsIngredients(res.data);
+        console.log(res.data.hits);
+        setPredictionsRecipes(res.data.hits);
+
+        // setPredictionsIngredients(res.data);
+        // predictionsRecipes.hits.forEach(hit => ({
+        //   ingredients: [...this.state.ingredients, hit.recipe.ingredientLines]
+        // }));
+        // console.log(this.state.ingredients);
       })
       .catch(err => {
         console.log(err);
       });
-  }, [idFromFoodButtonClick]);
+  }, []);
 
   return (
     <div>
-      <div>
-        <h1>API TESTING FOR THE INGREDIENTS</h1>
-        <ul>
-          {predictionsIngredients.map((obj, i) => (
-            <li>
-              <button type="button" value={food}>
-                {obj[0]}
-              </button>
-            </li>
-          ))}
-        </ul>
-      </div>
       <FoodPrediction
         idFromButtonClick={idFromButtonClick}
         userFood={userFood}
@@ -99,6 +99,7 @@ const PredictionHooks = () => {
         buttonClick={buttonClick}
         findPrediction={findPrediction}
         predictions={predictions}
+        predictionsRecipes={predictionsRecipes}
       />
     </div>
   );

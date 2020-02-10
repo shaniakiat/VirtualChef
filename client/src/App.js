@@ -35,7 +35,7 @@ class App extends Component {
             <Login />
             {/* <VirtualChef /> */}
             <Footer />
-            <Prediction />
+            {/* <Prediction /> */}
           </Container>
         </div>
       </Provider>

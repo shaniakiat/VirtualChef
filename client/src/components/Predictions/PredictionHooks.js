@@ -5,14 +5,13 @@ import { Container } from "reactstrap";
 
 const PredictionHooks = () => {
   //   const [hasError, setErrors] = useState(false);
-  // const [userInput, setUserInput] = useState("");
   const [userFood, setUserFood] = useState("");
   const [predictions, setPredictions] = useState([]);
   const [idFromButtonClick, setIdFromButtonClick] = useState("");
   const [buttonClick, setButtonClick] = useState(false);
   const [findPrediction, setFindPrediction] = useState(false);
 
-  const handleClick = () => {
+  const handleClickPrediction = () => {
     setIdFromButtonClick("" + userFood);
     setUserFood("");
     setButtonClick(true);
@@ -22,27 +21,37 @@ const PredictionHooks = () => {
     console.log({ idFromButtonClick });
     axios
       .get(
-        `http://localhost:8000/prediction/${idFromButtonClick
+        `https://floating-plains-35923.herokuapp.com/prediction/${idFromButtonClick
           .replace(/\s/g, "")
           .toLowerCase()}`
       )
       .then(res => {
         console.log(res.data);
-        setPredictions(res.data);
-
         if (
           res.data.toString() === "Sorry, we couldn't indentify this food yet."
         ) {
           setFindPrediction(false);
+          setPredictions([]);
         } else {
           setFindPrediction(true);
+          setPredictions(res.data);
         }
       })
       .catch(err => {
         console.log(err);
       });
-  }, [idFromButtonClick, predictions]);
+  }, [idFromButtonClick]);
 
+  // TODO:
+  // get the ingredients as a list
+  // display the ingredients list into the web using textbox
+  // style it
+
+  const [ingredients, setIngredients] = useState([]);
+
+  const handleClickIngredients = () => {};
+
+  useEffect(() => {});
   /*Sorry, we couldn't indentify this food yet. */
   return (
     /* <div>
@@ -56,7 +65,7 @@ const PredictionHooks = () => {
           {idFromButtonClick
             .replace(/\s/g, "")
             .toString()
-            .toUpperCase()}
+            .toLowerCase()}
         </h3>
         <div>
           <input
@@ -68,7 +77,11 @@ const PredictionHooks = () => {
           />
 
           <br></br>
-          <button className="btnOutline" type="button" onClick={handleClick}>
+          <button
+            className="btnOutline"
+            type="button"
+            onClick={handleClickPrediction}
+          >
             Make Prediction
           </button>
           <div>
@@ -78,7 +91,12 @@ const PredictionHooks = () => {
                   <ul>
                     {predictions.map((obj, i) => (
                       <li>
-                        <button>{obj[0]}</button>
+                        <button
+                          type="button"
+                          onClick={handleClickIngredients(obj[0])}
+                        >
+                          {obj[0]}
+                        </button>
                       </li>
                     ))}
                   </ul>

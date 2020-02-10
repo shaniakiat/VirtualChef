@@ -9,9 +9,11 @@ const FoodPredictions = ({
   findPrediction,
   predictions,
   food,
+  setFood,
   predictionsRecipes,
-  handleClickIngredients,
-  foodButtonClick,
+  handleToogle,
+  isToggled,
+  idFromFoodButtonClick,
   predictionsIngredients
 }) => {
   return (
@@ -46,32 +48,48 @@ const FoodPredictions = ({
             {buttonClick ? (
               <div className="foodie">
                 {findPrediction ? (
-                  <ul>
-                    {predictions.map((obj, i) => (
-                      <li>
-                        <button type="button" value={food}>
-                          {obj[0]}
-                        </button>
-                        {/*-----------------RECIPE---------------------------*/}
+                  <div>
+                    <ul>
+                      {predictions.map((obj, i) => (
+                        <li>
+                          <button
+                            type="button"
+                            onClick={() => handleToogle(obj[0])}
+                          >
+                            {obj[0]}
+                          </button>
+                          {/*-----------------RECIPE---------------------------*/}
+
+                          {/*-------------------------------------------------*/}
+                        </li>
+                      ))}
+                    </ul>
+                    <div>
+                      {isToggled ? (
                         <div>
-                          {/* <h1>API TESTING FOR THE INGREDIENTS</h1> */}
+                          <h3>You have clicked on </h3>
+                          <h3 className="idFromButtonClick">
+                            {idFromFoodButtonClick.toString().toLowerCase()}
+                          </h3>
                           <ul>
                             <div class="grid-container">
                               {predictionsRecipes.map(obj => (
                                 <div class="grid-item">
                                   <li>
                                     {console.log(obj.recipe.label)}
-                                    <h3>{obj.recipe.label}</h3>
-                                    <ul>
-                                      {obj.recipe.ingredientLines.map(
-                                        ngrdnt => (
-                                          <li>
-                                            {console.log(ngrdnt)}
-                                            {ngrdnt}
-                                          </li>
-                                        )
-                                      )}
-                                    </ul>
+                                    <button type="button" className="label">
+                                      {obj.recipe.label.toLowerCase()}
+                                    </button>
+                                    {/* <ul>
+                                          {obj.recipe.ingredientLines.map(
+                                            ngrdnt => (
+                                              <li>
+                                                {console.log(ngrdnt)}
+                                                {ngrdnt.toLowerCase()}
+                                              </li>
+                                            )
+                                          )}
+                                        </ul> */}
                                   </li>
                                 </div>
                               ))}
@@ -79,10 +97,11 @@ const FoodPredictions = ({
                           </ul>
                           {/* <div>{JSON.stringify(predictionsRecipes)}</div> */}
                         </div>
-                        {/*-------------------------------------------------*/}
-                      </li>
-                    ))}
-                  </ul>
+                      ) : (
+                        <div></div>
+                      )}
+                    </div>
+                  </div>
                 ) : (
                   <div>
                     <p>Sorry, we couldn't indentify this food yet.</p>

@@ -156,7 +156,7 @@ input {
 .foodie ul li button {
   font-family: "Poppins", sans-serif;
   font-weight: 200;
-  font-size: 15px;
+  font-size: 20px;
   color: var(--mainGreen);
   background-color: var(--mainDark);
   font-weight: 400;
@@ -186,6 +186,31 @@ input {
 
 button:focus {
   outline: 0;
+}
+
+ul li .label {
+  font-size: 20px;
+  color: var(--mainGreen);
+  background: none;
+  background-size: 0px;
+  padding: 5px;
+}
+
+ul li .label:hover {
+  background-size: 4px 80px !important;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  padding: 10px;
+  margin: 10px;
+}
+
+.grid-item {
+  padding: 10px;
+  font-size: 12px;
+  text-align: center;
 }
 
 /* TEAM */

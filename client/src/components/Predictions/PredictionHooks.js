@@ -26,7 +26,8 @@ const PredictionHooks = () => {
           .toLowerCase()}`
       )
       .then(res => {
-        console.log(res.data);
+        console.log(idFromButtonClick.length);
+
         if (
           res.data.toString() === "Sorry, we couldn't indentify this food yet."
         ) {
@@ -39,6 +40,8 @@ const PredictionHooks = () => {
       })
       .catch(err => {
         console.log(err);
+        setFindPrediction(false);
+        setPredictions([]);
       });
   }, [idFromButtonClick]);
 
@@ -47,47 +50,45 @@ const PredictionHooks = () => {
   // display the ingredients list into the web using textbox
   // style it
 
-  // const [food, setFood] = useState("");
-  // const [idFromFoodButtonClick, setIdFromFoodButtonClick] = useState("");
-  // const [foodButtonClick, setFoodButtonClick] = useState(false);
-  // const [predictionsIngredients, setPredictionsIngredients] = useState([]);
-  // const [findPredictionIngredients, setFindPredictionIngredients] = useState(
-  //   false
-  // );
+  const [food, setFood] = useState("");
+  const [idFromFoodButtonClick, setIdFromFoodButtonClick] = useState("");
+  const [isToggled, setToggled] = useState(false);
+  const [predictionsIngredients, setPredictionsIngredients] = useState([]);
+  const [findPredictionIngredients, setFindPredictionIngredients] = useState(
+    false
+  );
   const [predictionsRecipes, setPredictionsRecipes] = useState([]);
 
-  // const handleClickIngredients = () => {
-  //   setIdFromFoodButtonClick("" + food);
-  //   setFood("");
-  //   setFoodButtonClick(true); //if this is true than open up the textbox with the list of ingredients
-  // };
+  const handleToogle = e => {
+    console.log(e);
+    setIdFromFoodButtonClick("" + e);
+    console.log(idFromFoodButtonClick.replace(/\s/g, "+").toLocaleLowerCase());
+    setFood("");
+    setToggled(true); //if this is true than open up the textbox with the list of ingredients
+  };
 
   useEffect(() => {
     // console.log({ idFromFoodButtonClick });
     const base = "https://api.edamam.com/search";
-    const YOUR_APP_ID = "1379f77e";
-    const YOUR_APP_KEY = "5c98e2c53e8e6a98a17d608177ac37c1";
+    const YOUR_APP_ID = "b1de00a5";
+    const YOUR_APP_KEY = "bfff8bc6c4056248b815aa647d415437";
 
     // let ingredients = [];
     axios
       .get(
-        `${base}?q=penne+pasta&app_id=${YOUR_APP_ID}&app_key=${YOUR_APP_KEY}`
+        `${base}?q=${idFromFoodButtonClick
+          .replace(/\s/g, "+")
+          .toLocaleLowerCase()}&app_id=${YOUR_APP_ID}&app_key=${YOUR_APP_KEY}`
       )
       .then(res => {
         console.log(res.data);
         console.log(res.data.hits);
         setPredictionsRecipes(res.data.hits);
-
-        // setPredictionsIngredients(res.data);
-        // predictionsRecipes.hits.forEach(hit => ({
-        //   ingredients: [...this.state.ingredients, hit.recipe.ingredientLines]
-        // }));
-        // console.log(this.state.ingredients);
       })
       .catch(err => {
         console.log(err);
       });
-  }, []);
+  }, [idFromFoodButtonClick]);
 
   return (
     <div>
@@ -99,7 +100,12 @@ const PredictionHooks = () => {
         buttonClick={buttonClick}
         findPrediction={findPrediction}
         predictions={predictions}
+        food={food}
+        setFood={setFood}
         predictionsRecipes={predictionsRecipes}
+        handleToogle={handleToogle}
+        isToggled={isToggled}
+        idFromFoodButtonClick={idFromFoodButtonClick}
       />
     </div>
   );

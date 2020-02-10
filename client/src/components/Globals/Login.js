@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+
 import {
   Button,
   Modal,
@@ -12,10 +13,10 @@ import {
 import { connect } from "react-redux";
 import { addItem } from "../../actions/itemActions";
 import PropTypes from "prop-types";
+import PredictionHooks from "../Predictions/PredictionHooks";
 
 import Header from "./Header";
 import About from "./About";
-import PredictionHooks from "../Predictions/PredictionHooks";
 
 class Login extends Component {
   render() {

@@ -21,8 +21,8 @@ class Header extends Component {
       <header id="home" className="home">
         <h1>Explore Delicious Food & The World's Cusines</h1>
         <h3>
-          virtualchef lets you discover new range of food with the best mouthful
-          taste and delicious experience
+          virtualchef lets you discover broad ranges of food with the best taste
+          and the most delicious experience
         </h3>
         <a href="#about" className="btnOutline">
           Learn More

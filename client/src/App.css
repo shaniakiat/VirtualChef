@@ -128,7 +128,7 @@ header h3 {
 .predictions .btnOutline {
   display: block;
   margin: auto;
-  font-size: 15px;
+  font-size: 17px;
 }
 
 .predictions .btnOutline:hover {
@@ -189,7 +189,7 @@ button:focus {
 }
 
 ul li .label {
-  font-size: 20px;
+  font-size: 1.6vw;
   color: var(--mainGreen);
   background: none;
   background-size: 0px;
@@ -210,9 +210,9 @@ ul li .label:hover {
 
 .grid-item {
   padding: 10px;
-  border: 1px solid var(--mainLight);
+  border: 1px solid var(--mainDark);
   background-color: var(--mainWhite);
-  font-size: 10px;
+  font-size: 1.3vw;
   font-family: "Poppins", sans-serif;
   font-weight: 400;
   color: var(--mainOrange);

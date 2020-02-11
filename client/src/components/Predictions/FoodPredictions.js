@@ -58,12 +58,10 @@ const FoodPredictions = ({
                           >
                             {obj[0]}
                           </button>
-                          {/*-----------------RECIPE---------------------------*/}
-
-                          {/*-------------------------------------------------*/}
                         </li>
                       ))}
                     </ul>
+                    {/*-----------------RECIPE---------------------------*/}
                     <div>
                       {isToggled ? (
                         <div>
@@ -77,13 +75,13 @@ const FoodPredictions = ({
                                 <div class="grid-item">
                                   <li>
                                     {console.log(obj.recipe.label)}
-                                    <h3 type="button" className="label">
+                                    <h3 className="label">
                                       {obj.recipe.label.toLowerCase()}
                                     </h3>
                                     <ul>
                                       {obj.recipe.ingredientLines.map(
                                         ngrdnt => (
-                                          <li>
+                                          <li className="ingredients">
                                             {/* {console.log(ngrdnt)} */}
                                             {ngrdnt.toLowerCase()}
                                           </li>
@@ -101,6 +99,7 @@ const FoodPredictions = ({
                         <div></div>
                       )}
                     </div>
+                    {/*--------------------------------------------------*/}
                   </div>
                 ) : (
                   <div>

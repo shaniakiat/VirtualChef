@@ -197,19 +197,25 @@ ul li .label {
 }
 
 ul li .label:hover {
-  background-size: 4px 80px !important;
+  background-size: 0px !important;
 }
 
 .grid-container {
   display: grid;
   grid-template-columns: auto auto auto;
+  background-color: var(--mainDark);
   padding: 10px;
   margin: 10px;
 }
 
 .grid-item {
   padding: 10px;
-  font-size: 12px;
+  border: 1px solid var(--mainLight);
+  background-color: var(--mainWhite);
+  font-size: 10px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  color: var(--mainOrange);
   text-align: center;
 }
 

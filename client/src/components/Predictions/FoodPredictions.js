@@ -77,19 +77,19 @@ const FoodPredictions = ({
                                 <div class="grid-item">
                                   <li>
                                     {console.log(obj.recipe.label)}
-                                    <button type="button" className="label">
+                                    <h3 type="button" className="label">
                                       {obj.recipe.label.toLowerCase()}
-                                    </button>
-                                    {/* <ul>
-                                          {obj.recipe.ingredientLines.map(
-                                            ngrdnt => (
-                                              <li>
-                                                {console.log(ngrdnt)}
-                                                {ngrdnt.toLowerCase()}
-                                              </li>
-                                            )
-                                          )}
-                                        </ul> */}
+                                    </h3>
+                                    <ul>
+                                      {obj.recipe.ingredientLines.map(
+                                        ngrdnt => (
+                                          <li>
+                                            {/* {console.log(ngrdnt)} */}
+                                            {ngrdnt.toLowerCase()}
+                                          </li>
+                                        )
+                                      )}
+                                    </ul>
                                   </li>
                                 </div>
                               ))}

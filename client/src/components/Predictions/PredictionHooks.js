@@ -83,6 +83,7 @@ const PredictionHooks = () => {
       .then(res => {
         console.log(res.data);
         console.log(res.data.hits);
+        console.log(1);
         setPredictionsRecipes(res.data.hits);
       })
       .catch(err => {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../../App.css";
-import FoodPrediction from "./FoodPredictions";
+import FoodPredictions from "./FoodPredictions";
 
 const PredictionHooks = () => {
   //   const [hasError, setErrors] = useState(false);
@@ -16,7 +16,7 @@ const PredictionHooks = () => {
     setUserFood("");
     setButtonClick(true);
   };
-
+  /*-----------------------FETCH THE PYTHON API FOR THE FOOD PREDICTIONS-----------------------*/
   useEffect(() => {
     console.log({ idFromButtonClick });
     axios
@@ -50,20 +50,14 @@ const PredictionHooks = () => {
   // display the ingredients list into the web using textbox
   // style it
 
-  const [food, setFood] = useState("");
   const [idFromFoodButtonClick, setIdFromFoodButtonClick] = useState("");
   const [isToggled, setToggled] = useState(false);
-  const [predictionsIngredients, setPredictionsIngredients] = useState([]);
-  const [findPredictionIngredients, setFindPredictionIngredients] = useState(
-    false
-  );
   const [predictionsRecipes, setPredictionsRecipes] = useState([]);
 
   const handleToogle = e => {
     console.log(e);
     setIdFromFoodButtonClick("" + e);
     console.log(idFromFoodButtonClick.replace(/\s/g, "+").toLocaleLowerCase());
-    setFood("");
     setToggled(true); //if this is true than open up the textbox with the list of ingredients
   };
 
@@ -73,7 +67,6 @@ const PredictionHooks = () => {
     const YOUR_APP_ID = "b1de00a5";
     const YOUR_APP_KEY = "bfff8bc6c4056248b815aa647d415437";
 
-    // let ingredients = [];
     axios
       .get(
         `${base}?q=${idFromFoodButtonClick
@@ -81,9 +74,9 @@ const PredictionHooks = () => {
           .toLocaleLowerCase()}&app_id=${YOUR_APP_ID}&app_key=${YOUR_APP_KEY}`
       )
       .then(res => {
-        console.log(res.data);
-        console.log(res.data.hits);
-        console.log(1);
+        // console.log(res.data);
+        // console.log(res.data.hits);
+        // console.log(1);
         setPredictionsRecipes(res.data.hits);
       })
       .catch(err => {
@@ -93,7 +86,8 @@ const PredictionHooks = () => {
 
   return (
     <div>
-      <FoodPrediction
+      <FoodPredictions
+        /*----------FOOD PREDICTIONS VARIABLES----------*/
         idFromButtonClick={idFromButtonClick}
         userFood={userFood}
         handleClickPrediction={handleClickPrediction}
@@ -101,8 +95,7 @@ const PredictionHooks = () => {
         buttonClick={buttonClick}
         findPrediction={findPrediction}
         predictions={predictions}
-        food={food}
-        setFood={setFood}
+        /*----------INGREDIENTS PREDICTIONS VARIABLES----------*/
         predictionsRecipes={predictionsRecipes}
         handleToogle={handleToogle}
         isToggled={isToggled}
@@ -113,7 +106,3 @@ const PredictionHooks = () => {
 };
 
 export default PredictionHooks;
-
-// food = { food }
-// handleClickIngredients = { handleClickIngredients }
-// foodButtonClick = { foodButtonClick }

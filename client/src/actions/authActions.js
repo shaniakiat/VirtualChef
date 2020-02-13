@@ -71,12 +71,12 @@ export const login = ({ email, password }) => dispatch => {
 
   axios
     .post("/api/auth", body, config)
-    .then(res =>
+    .then(res => {
       dispatch({
         type: LOGIN_SUCCESS,
         payload: res.data
-      })
-    )
+      });
+    })
     .catch(err => {
       dispatch(
         returnErrors(err.response.data, err.response.status, "LOGIN_FAIL")
@@ -89,6 +89,7 @@ export const login = ({ email, password }) => dispatch => {
 
 //logout users
 export const logout = () => {
+  localStorage.removeItem("token");
   return {
     type: LOGOUT_SUCCESS
   };

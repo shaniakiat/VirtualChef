@@ -14,7 +14,8 @@ const FoodPredictions = ({
   predictionsRecipes,
   handleToogle,
   isToggled,
-  idFromFoodButtonClick
+  idFromFoodButtonClick,
+  isLoading
 }) => {
   return (
     <Container className="prediction-container">
@@ -56,6 +57,7 @@ const FoodPredictions = ({
                     isToggled={isToggled}
                     idFromFoodButtonClick={idFromFoodButtonClick}
                     predictionsRecipes={predictionsRecipes}
+                    isLoading={isLoading}
                   />
                 ) : (
                   <div>

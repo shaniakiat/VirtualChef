@@ -16,10 +16,9 @@ import {
 export const loadUser = () => (dispatch, getState) => {
   //user loading
   dispatch({ type: USER_LOADING });
-
   //fetch the user
   axios
-    .get("/api/auth/user", tokenConfig.getState)
+    .get("/api/auth/user", tokenConfig(getState))
     .then(res => dispatch({ type: USER_LOADED, payload: res.data }))
     .catch(err => {
       dispatch(returnErrors(err.response.data, err.response.status));

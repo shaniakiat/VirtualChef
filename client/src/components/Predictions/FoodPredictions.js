@@ -1,5 +1,8 @@
 import React from "react";
 import { Container } from "reactstrap";
+
+import FoodPredictionsFound from "./FoodPredictionsFound";
+
 const FoodPredictions = ({
   idFromButtonClick,
   userFood,
@@ -8,19 +11,18 @@ const FoodPredictions = ({
   buttonClick,
   findPrediction,
   predictions,
-  food,
-  setFood,
   predictionsRecipes,
   handleToogle,
   isToggled,
   idFromFoodButtonClick,
-  predictionsIngredients
+  isLoading
 }) => {
   return (
     <Container className="prediction-container">
       <div className="predictions">
         <h1>Food Prediction</h1>
         <h3>You are looking for food that similar to </h3>
+        {/*---------------GETTING THE NAME OF THE FOOD WHEN USER INPUTS AND CLICKS ON THE BUTTON ---------------*/}
         <h3 className="idFromButtonClick">
           {idFromButtonClick
             .replace(/\s/g, "")
@@ -44,63 +46,19 @@ const FoodPredictions = ({
           >
             Make Prediction
           </button>
+          {/*---------------DISPLAY THE FOOD FROM THE FLASK API ---------------*/}
           <div>
             {buttonClick ? (
               <div className="foodie">
                 {findPrediction ? (
-                  <div>
-                    <ul>
-                      {predictions.map((obj, i) => (
-                        <li>
-                          <button
-                            type="button"
-                            onClick={() => handleToogle(obj[0])}
-                          >
-                            {obj[0]}
-                          </button>
-                        </li>
-                      ))}
-                    </ul>
-                    {/*-----------------RECIPE---------------------------*/}
-                    <div>
-                      {isToggled ? (
-                        <div>
-                          <h3>You have clicked on </h3>
-                          <h3 className="idFromButtonClick">
-                            {idFromFoodButtonClick.toString().toLowerCase()}
-                          </h3>
-                          <ul>
-                            <div class="grid-container">
-                              {predictionsRecipes.map(obj => (
-                                <div class="grid-item">
-                                  <li>
-                                    {console.log(obj.recipe.label)}
-                                    <h3 className="label">
-                                      {obj.recipe.label.toLowerCase()}
-                                    </h3>
-                                    <ul>
-                                      {obj.recipe.ingredientLines.map(
-                                        ngrdnt => (
-                                          <li className="ingredients">
-                                            {/* {console.log(ngrdnt)} */}
-                                            {ngrdnt.toLowerCase()}
-                                          </li>
-                                        )
-                                      )}
-                                    </ul>
-                                  </li>
-                                </div>
-                              ))}
-                            </div>
-                          </ul>
-                          {/* <div>{JSON.stringify(predictionsRecipes)}</div> */}
-                        </div>
-                      ) : (
-                        <div></div>
-                      )}
-                    </div>
-                    {/*--------------------------------------------------*/}
-                  </div>
+                  <FoodPredictionsFound
+                    predictions={predictions}
+                    handleToogle={handleToogle}
+                    isToggled={isToggled}
+                    idFromFoodButtonClick={idFromFoodButtonClick}
+                    predictionsRecipes={predictionsRecipes}
+                    isLoading={isLoading}
+                  />
                 ) : (
                   <div>
                     <p>Sorry, we couldn't indentify this food yet.</p>

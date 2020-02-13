@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useLayoutEffect } from "react";
 import axios from "axios";
+import Loader from "react-loader-spinner";
 import "../../App.css";
-import FoodPrediction from "./FoodPredictions";
+
+import FoodPredictions from "./FoodPredictions";
 
 const PredictionHooks = () => {
   //   const [hasError, setErrors] = useState(false);
@@ -11,14 +13,27 @@ const PredictionHooks = () => {
   const [buttonClick, setButtonClick] = useState(false);
   const [findPrediction, setFindPrediction] = useState(false);
 
+  const [isLoading, setLoading] = useState(false);
+  // const [loadingSpeed, setLoadingSpeed] = React.useState(1);
+
   const handleClickPrediction = () => {
+    setLoading(true);
+    setButtonClick(true);
     setIdFromButtonClick("" + userFood);
     setUserFood("");
-    setButtonClick(true);
   };
 
+  useLayoutEffect(() => {
+    if (isLoading) {
+      setTimeout(() => {
+        setLoading(false);
+      }, 2000);
+    }
+  });
+
+  /*-----------------------FETCH THE PYTHON API FOR THE FOOD PREDICTIONS-----------------------*/
   useEffect(() => {
-    console.log({ idFromButtonClick });
+    // console.log("THIS HAS TO BE TRUE: " + loading);
     axios
       .get(
         `https://floating-plains-35923.herokuapp.com/prediction/${idFromButtonClick
@@ -26,14 +41,17 @@ const PredictionHooks = () => {
           .toLowerCase()}`
       )
       .then(res => {
-        console.log(idFromButtonClick.length);
+        console.log("FETCHED");
+        // setLoading(false);
 
         if (
           res.data.toString() === "Sorry, we couldn't indentify this food yet."
         ) {
+          // setLoading(false);
           setFindPrediction(false);
           setPredictions([]);
         } else {
+          // setLoading(false);
           setFindPrediction(true);
           setPredictions(res.data);
         }
@@ -45,25 +63,14 @@ const PredictionHooks = () => {
       });
   }, [idFromButtonClick]);
 
-  // TODO:
-  // get the ingredients as a list
-  // display the ingredients list into the web using textbox
-  // style it
-
-  const [food, setFood] = useState("");
   const [idFromFoodButtonClick, setIdFromFoodButtonClick] = useState("");
   const [isToggled, setToggled] = useState(false);
-  const [predictionsIngredients, setPredictionsIngredients] = useState([]);
-  const [findPredictionIngredients, setFindPredictionIngredients] = useState(
-    false
-  );
   const [predictionsRecipes, setPredictionsRecipes] = useState([]);
 
   const handleToogle = e => {
     console.log(e);
     setIdFromFoodButtonClick("" + e);
     console.log(idFromFoodButtonClick.replace(/\s/g, "+").toLocaleLowerCase());
-    setFood("");
     setToggled(true); //if this is true than open up the textbox with the list of ingredients
   };
 
@@ -73,7 +80,6 @@ const PredictionHooks = () => {
     const YOUR_APP_ID = "b1de00a5";
     const YOUR_APP_KEY = "bfff8bc6c4056248b815aa647d415437";
 
-    // let ingredients = [];
     axios
       .get(
         `${base}?q=${idFromFoodButtonClick
@@ -81,9 +87,9 @@ const PredictionHooks = () => {
           .toLocaleLowerCase()}&app_id=${YOUR_APP_ID}&app_key=${YOUR_APP_KEY}`
       )
       .then(res => {
-        console.log(res.data);
-        console.log(res.data.hits);
-        console.log(1);
+        // console.log(res.data);
+        // console.log(res.data.hits);
+        // console.log(1);
         setPredictionsRecipes(res.data.hits);
       })
       .catch(err => {
@@ -92,28 +98,23 @@ const PredictionHooks = () => {
   }, [idFromFoodButtonClick]);
 
   return (
-    <div>
-      <FoodPrediction
-        idFromButtonClick={idFromButtonClick}
-        userFood={userFood}
-        handleClickPrediction={handleClickPrediction}
-        setUserFood={setUserFood}
-        buttonClick={buttonClick}
-        findPrediction={findPrediction}
-        predictions={predictions}
-        food={food}
-        setFood={setFood}
-        predictionsRecipes={predictionsRecipes}
-        handleToogle={handleToogle}
-        isToggled={isToggled}
-        idFromFoodButtonClick={idFromFoodButtonClick}
-      />
-    </div>
+    <FoodPredictions
+      /*----------FOOD PREDICTIONS VARIABLES----------*/
+      idFromButtonClick={idFromButtonClick}
+      userFood={userFood}
+      handleClickPrediction={handleClickPrediction}
+      setUserFood={setUserFood}
+      buttonClick={buttonClick}
+      findPrediction={findPrediction}
+      predictions={predictions}
+      isLoading={isLoading}
+      /*----------INGREDIENTS PREDICTIONS VARIABLES----------*/
+      predictionsRecipes={predictionsRecipes}
+      handleToogle={handleToogle}
+      isToggled={isToggled}
+      idFromFoodButtonClick={idFromFoodButtonClick}
+    />
   );
 };
 
 export default PredictionHooks;
-
-// food = { food }
-// handleClickIngredients = { handleClickIngredients }
-// foodButtonClick = { foodButtonClick }

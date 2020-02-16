@@ -15,18 +15,16 @@ import { addItem } from "../../actions/itemActions";
 import PropTypes from "prop-types";
 import PredictionHooks from "../Predictions/PredictionHooks";
 
+import UserProfile from "../User/UserProfile";
 import Header from "./Header";
 import About from "./About";
 
-class Login extends Component {
+class Dashboard extends Component {
   render() {
     return (
       <div className="login">
         {this.props.isAuthenticated ? (
-          <div>
-            <h1>welcome to virtualchef! </h1>
-            <h3>you have logged in successfully :)</h3>
-          </div>
+          <UserProfile />
         ) : (
           <div>
             <Header />
@@ -65,4 +63,4 @@ const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated
 });
 
-export default connect(mapStateToProps, { addItem })(Login);
+export default connect(mapStateToProps, { addItem })(Dashboard);

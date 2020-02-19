@@ -17,9 +17,13 @@ router.get("/", (req, res) => {
 //@desc create a post
 router.post("/", auth, (req, res) => {
   const newItem = new Item({
-    name: req.body.name
+    FoodFavorited: req.body.FoodFavorited,
+    userCode: req.body.userCode
   });
-  newItem.save().then(item => res.json(item));
+  newItem
+    .save()
+    .then(item => res.json(item))
+    .catch(err => console.log(err));
 });
 
 //@route DELETE request to API/items
@@ -28,6 +32,23 @@ router.delete("/:id", auth, (req, res) => {
   Item.findById(req.params.id)
     .then(item => item.remove().then(() => res.json({ success: true })))
     .catch(err => res.status(404).json({ success: false }));
+});
+
+router.get("/item/:userCode", (req, res) => {
+  Item.find({ userCode: req.params.userCode })
+    .then(userFoodFavs => {
+      if (!userFoodFavs) {
+        console.log("This user has no food");
+        return res.status(404).json.err;
+      } else {
+        console.log(userFoodFavs);
+        return res.json(userFoodFavs);
+      }
+    })
+    .catch(err => {
+      console.log(err);
+      return res.status(500).json(err);
+    });
 });
 
 module.exports = router;

@@ -37,7 +37,7 @@ const PredictionHooks = () => {
     axios
       .get(
         `https://floating-plains-35923.herokuapp.com/prediction/${idFromButtonClick
-          .replace(/\s/g, "")
+          // .replace(/\s/g, " ")
           .toLowerCase()}`
       )
       .then(res => {

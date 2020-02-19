@@ -94,20 +94,22 @@ export const logout = () => {
   };
 };
 //set up config/headers and token
+// Setup config/headers and token
 export const tokenConfig = getState => {
-  //get token from local storage
+  // Get token from localstorage
   const token = getState().auth.token;
 
-  //headers
+  // Headers
   const config = {
     headers: {
       "Content-type": "application/json"
     }
   };
 
-  //if token, add to headers
+  // If token, add to headers
   if (token) {
     config.headers["x-auth-token"] = token;
   }
+
   return config;
 };

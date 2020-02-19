@@ -35,11 +35,10 @@ router.delete("/:id", auth, (req, res) => {
 });
 
 router.get("/item/:userCode", (req, res) => {
-  const errors = {};
-  Feedback.find({ userCode: req.params.userCode })
+  Item.find({ userCode: req.params.userCode })
     .then(userFoodFavs => {
       if (!userFoodFavs) {
-        console.log("no teacher feedback");
+        console.log("This user has no food");
         return res.status(404).json.err;
       } else {
         console.log(userFoodFavs);

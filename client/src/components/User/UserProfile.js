@@ -13,15 +13,26 @@ import PropTypes from "prop-types";
 
 const UserProfile = props => {
   const [newUserFavorite, setNewUserFavorite] = useState("");
+  const [favArray, setFavArray] = useState([]);
   // const [userFavorite, setUserFavorite] = useInput({ type: "text" });
   const foodFavoritesArray = useSelector(state => state.item.items);
   const name = useSelector(state => state.auth.user.name);
   const userID = useSelector(state => state.auth.user._id);
+
   // const firstRender = useRef();
 
   useEffect(() => {
-    console.log(foodFavoritesArray);
-    console.log(userID);
+    axios
+      .get(`/api/items/item/${userID}`)
+      .then(res => {
+        return res;
+      })
+      .then(json => {
+        setFavArray(json);
+      })
+      .catch(err => console.log(err));
+
+    console.log(favArray);
   }, []);
 
   const submitFavorites = e => {
@@ -38,6 +49,7 @@ const UserProfile = props => {
   return (
     <main>
       <div>
+        <span></span>
         <span>Hello {name}!</span> <br />
         <span>Enter in the food you like</span>
         <textarea
@@ -53,11 +65,11 @@ const UserProfile = props => {
   );
 };
 
-UserProfile.propTypes = {
-  addItem: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired
-};
+// UserProfile.propTypes = {
+//   addItem: PropTypes.func.isRequired,
+//   auth: PropTypes.object.isRequired,
+//   errors: PropTypes.object.isRequired
+// };
 const mapStateToProps = state => ({
   auth: state.auth,
   errors: state.errors

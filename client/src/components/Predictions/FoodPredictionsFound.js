@@ -1,6 +1,7 @@
 import React from "react";
 import "../Styles/App.css";
 import IngredientsPredictions from "./IngredientsPredictions";
+import Fade from "react-reveal/Fade";
 
 const FoodPredictionsFound = ({
   predictions,
@@ -23,15 +24,17 @@ const FoodPredictionsFound = ({
         </div>
       ) : (
         <div>
-          <ul>
-            {predictions.map((obj, i) => (
-              <li>
-                <button type="button" onClick={() => handleToogle(obj[0])}>
-                  {obj[0]}
-                </button>
-              </li>
-            ))}
-          </ul>
+          <Fade up>
+            <ul>
+              {predictions.map((obj, i) => (
+                <li>
+                  <button type="button" onClick={() => handleToogle(obj[0])}>
+                    {obj[0]}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </Fade>
           {/*------------------------RECIPE---------------------------*/}
           <IngredientsPredictions
             isToggled={isToggled}

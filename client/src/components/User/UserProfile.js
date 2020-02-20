@@ -61,10 +61,10 @@ const UserProfile = props => {
 
   return (
     <div className="user-profile">
-      <span>{setLoad(true</span>
+      {/* <span>{setLoad(true</span> */}
       <h1>Hello {name}!</h1>
       <h3>Enter in the food you like</h3>
-      
+
       <input
         type="text"
         placeholder="Enter Your Favorite Food Here"

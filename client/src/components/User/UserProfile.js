@@ -14,6 +14,7 @@ import PropTypes from "prop-types";
 const UserProfile = props => {
   const [newUserFavorite, setNewUserFavorite] = useState("");
   const [favArray, setFavArray] = useState([]);
+  const [load, setLoad] = useState(false);
   // const [userFavorite, setUserFavorite] = useInput({ type: "text" });
   const foodFavoritesArray = useSelector(state => state.item.items);
   const name = useSelector(state => state.auth.user.name);
@@ -25,15 +26,14 @@ const UserProfile = props => {
     axios
       .get(`/api/items/item/${userID}`)
       .then(res => {
-        return res;
+        return res.data;
       })
       .then(json => {
         setFavArray(json);
       })
       .catch(err => console.log(err));
-
-    console.log(favArray);
-  }, []);
+  }, [userID]);
+  console.log(favArray);
 
   const submitFavorites = e => {
     e.preventDefault();
@@ -44,24 +44,47 @@ const UserProfile = props => {
     console.log("adding the item");
     props.addItem(newFoodFavorite, foodFavoritesArray);
     console.log(newFoodFavorite);
+    fetchFavoriteFood();
+  };
+
+  const fetchFavoriteFood = () => {
+    axios
+      .get(`/api/items/item/${userID}`)
+      .then(res => {
+        return res.data;
+      })
+      .then(json => {
+        setFavArray(json);
+      })
+      .catch(err => console.log(err));
   };
 
   return (
-    <main>
+    <div className="user-profile">
+      <span>{setLoad(true</span>
+      <h1>Hello {name}!</h1>
+      <h3>Enter in the food you like</h3>
+      
+      <input
+        type="text"
+        placeholder="Enter Your Favorite Food Here"
+        onChange={e => setNewUserFavorite(e.target.value)}
+        className="input"
+      ></input>
+      <button className="btnOutline" type="button" onClick={submitFavorites}>
+        Submit your favorite
+      </button>
       <div>
-        <span></span>
-        <span>Hello {name}!</span> <br />
-        <span>Enter in the food you like</span>
-        <textarea
-          type="text"
-          placeholder="Your favorites Food here"
-          onChange={e => setNewUserFavorite(e.target.value)}
-        ></textarea>
-        <button type="button" onClick={submitFavorites}>
-          Submit your favorite
-        </button>
+        <ul>
+          {favArray.map(obj => (
+            <li>
+              {obj.FoodFavorited}
+              {/* </button> */}
+            </li>
+          ))}
+        </ul>
       </div>
-    </main>
+    </div>
   );
 };
 

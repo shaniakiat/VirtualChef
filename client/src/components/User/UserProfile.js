@@ -104,7 +104,7 @@ const UserProfile = props => {
 
       <input
         type="text"
-        placeholder="Enter Your Favorite Food Here"
+        placeholder="Enter Your Favorite Food"
         onChange={e => setNewUserFavorite(e.target.value)}
         className="input"
       ></input>

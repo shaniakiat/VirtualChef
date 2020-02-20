@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./App.css";
 import AppNavbar from "./components/AppNavbar";
 import Footer from "./components/Footer";
 import VirtualChef from "./components/Globals/VirtualChef";
@@ -17,6 +16,8 @@ import { Container } from "reactstrap";
 import { Provider } from "react-redux";
 import { loadUser } from "./actions/authActions";
 
+import "./components/Styles/App.css";
+
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 class App extends Component {
   componentDidMount() {
@@ -29,16 +30,12 @@ class App extends Component {
         <Router>
           <div className="App">
             <AppNavbar />
-            <Container>
-              {/* <ItemModal /> */}
-              {/* <Header />
-            <About /> */}
-              {/* <Team /> */}
-              <DashBoard />
-              {/* <VirtualChef /> */}
-              <Footer />
-              {/* <Prediction /> */}
+            <Container className="page-container">
+              <Container className="content-wrap">
+                <DashBoard />
+              </Container>
             </Container>
+            <Footer />
           </div>
         </Router>
       </Provider>

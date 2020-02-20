@@ -1,5 +1,7 @@
 import React from "react";
 
+import "../Styles/Predictions.css";
+
 const IngredientsPredictions = ({
   isToggled,
   idFromFoodButtonClick,

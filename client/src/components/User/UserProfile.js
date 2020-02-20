@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 import { connect, useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { addItem } from "../../actions/itemActions";
-import PropTypes from "prop-types";
+import IngredientsPredictions from "../Predictions/IngredientsPredictions";
 
 const UserProfile = props => {
   const [newUserFavorite, setNewUserFavorite] = useState("");
@@ -59,11 +59,48 @@ const UserProfile = props => {
       .catch(err => console.log(err));
   };
 
+  // GETTING INGREDIENTS
+  const [idFromFoodButtonClick, setIdFromFoodButtonClick] = useState("");
+  const [isToggled, setToggled] = useState(false);
+  const [predictionsRecipes, setPredictionsRecipes] = useState([]);
+
+  const handleToogle = e => {
+    console.log(e);
+    setIdFromFoodButtonClick("" + e);
+    console.log(idFromFoodButtonClick.replace(/\s/g, "+").toLocaleLowerCase());
+    setToggled(true); //if this is true than open up the textbox with the list of ingredients
+  };
+
+  useEffect(() => {
+    // console.log({ idFromFoodButtonClick });
+    const base = "https://api.edamam.com/search";
+    const YOUR_APP_ID = "b1de00a5";
+    const YOUR_APP_KEY = "bfff8bc6c4056248b815aa647d415437";
+
+    axios
+      .get(
+        `${base}?q=${idFromFoodButtonClick
+          .replace(/\s/g, "+")
+          .toLocaleLowerCase()}&app_id=${YOUR_APP_ID}&app_key=${YOUR_APP_KEY}`
+      )
+      .then(res => {
+        // console.log(res.data);
+        // console.log(res.data.hits);
+        // console.log(1);
+        setPredictionsRecipes(res.data.hits);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, [idFromFoodButtonClick]);
+
   return (
-    <div className="user-profile">
+    <div className="login">
       {/* <span>{setLoad(true</span> */}
-      <h1>Hello {name}!</h1>
-      <h3>Enter in the food you like</h3>
+      <h1>
+        Hello {name.charAt(0).toUpperCase() + name.slice(1).toLowerCase()}!
+      </h1>
+      <h3>What is your favorite food?</h3>
 
       <input
         type="text"
@@ -71,18 +108,32 @@ const UserProfile = props => {
         onChange={e => setNewUserFavorite(e.target.value)}
         className="input"
       ></input>
-      <button className="btnOutline" type="button" onClick={submitFavorites}>
+      <button
+        className="btnOutline-login"
+        type="button"
+        onClick={submitFavorites}
+      >
         Submit your favorite
       </button>
-      <div>
+      <div className="favFoodList">
+        <h3>Your Favorite Food:</h3>
         <ul>
           {favArray.map(obj => (
             <li>
-              {obj.FoodFavorited}
-              {/* </button> */}
+              <button
+                type="button"
+                onClick={() => handleToogle(obj.FoodFavorited)}
+              >
+                {obj.FoodFavorited}
+              </button>
             </li>
           ))}
         </ul>
+        <IngredientsPredictions
+          isToggled={isToggled}
+          idFromFoodButtonClick={idFromFoodButtonClick}
+          predictionsRecipes={predictionsRecipes}
+        />
       </div>
     </div>
   );

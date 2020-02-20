@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useLayoutEffect } from "react";
 import axios from "axios";
 // import Loader from "react-loader-spinner";
-import "../../App.css";
+
+import "../Styles/Predictions.css";
 
 import FoodPredictions from "./FoodPredictions";
 

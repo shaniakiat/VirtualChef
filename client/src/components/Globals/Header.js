@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+
 // import makeCarousel from "react-reveal/makeCarousel"
 // import Fade from "react-reveal/Fade"
 // import { FaLinkedin } from "react-icons/fa"

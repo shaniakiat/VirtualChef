@@ -38,7 +38,12 @@ class AppNavbar extends Component {
       <Fragment>
         <NavItem>
           <span className="navbar-text mr-3">
-            <strong>{user ? `Welcome ${user.name}` : ""}</strong>
+            <strong>
+              {user
+                ? `Welcome ${user.name.charAt(0).toUpperCase() +
+                    user.name.slice(1).toLowerCase()}`
+                : ""}
+            </strong>
           </span>
         </NavItem>
         <NavItem>

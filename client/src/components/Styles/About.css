@@ -1,0 +1,13 @@
+@import url("App.css");
+
+/* ABOUT */
+.about {
+  overflow: hidden;
+  text-align: center;
+  margin: 10% 0;
+  padding: 10% 0;
+}
+.about h1 {
+  color: var(--mainGreen);
+  margin-bottom: 30px;
+}

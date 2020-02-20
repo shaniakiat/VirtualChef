@@ -1,0 +1,96 @@
+@import url("App.css");
+
+header {
+  height: 600px;
+  min-height: 600px;
+  padding: 15% 0;
+  background-image: url(../../images/background_header.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: right bottom;
+}
+
+header h1 {
+  width: 70%;
+  margin: 1em 0 0 0;
+}
+
+header h3 {
+  width: 50%;
+  margin: 1em 0 0 0;
+}
+
+.btnOutline {
+  display: block;
+  text-decoration: none;
+  color: white;
+  border: 2px solid var(--mainGreen);
+  background-color: var(--mainGreen);
+  border-radius: 50px;
+  width: 175px;
+  height: 40px;
+  line-height: 35px;
+  font-size: 20px;
+  text-align: center;
+  padding: 0 10px;
+  margin: 10px 0;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+}
+
+.btnOutline:hover {
+  text-decoration: none;
+  color: var(--mainLight);
+}
+
+@media only screen and (max-width: 1000px) {
+  /* body {
+    background-color: red;
+  } */
+
+  header {
+    height: 1100px;
+    min-height: 1100px;
+    padding: 15% 0;
+    /* padding-bottom: 0; */
+    background-image: url(../../images/background_header.png);
+    background-repeat: no-repeat;
+    background-size: 65%;
+    background-position: right bottom;
+  }
+  header h1 {
+    font-size: 80px;
+    width: 100%;
+    margin: 1em 0 0 0;
+  }
+  header h3 {
+    width: 60%;
+    margin: 1em 0 0 0;
+  }
+  .btnOutline {
+    width: 150px;
+    height: 40px;
+    line-height: 35px;
+    font-size: 15px;
+    padding: 0 10px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  header {
+    height: 1100px;
+    min-height: 1100px;
+    background-position: center bottom;
+    background-size: 80%;
+  }
+
+  header h1 {
+    font-size: 65px;
+    width: 100%;
+    margin: 1em 0 0 0;
+  }
+  header h3 {
+    width: 90%;
+    margin: 1em 0 0 0;
+  }
+}

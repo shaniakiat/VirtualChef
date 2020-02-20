@@ -1,0 +1,78 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins:400,600,700&display=swap");
+
+/* :root {
+  --mainGreen: #196d4c;
+  --mainGreen: #7ed49a;
+  --mainOrange: #a08a6c;
+  --mainBlack: #000000;
+  --mainWhite: #ffffff;
+} */
+
+:root {
+  --mainDark: #0f2d2f;
+  --mainGreen: #196d4c;
+  --mainLight: #7ed49a;
+  --mainOrange: #a64b2d;
+  --mainWhite: #ffffff;
+  --mainBlack: #000000;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  /* vertical-align: baseline; */
+  /* font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif; */
+}
+
+h1 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-size: 65px;
+  color: var(--mainGreen);
+}
+h3 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  color: var(--mainOrange);
+}
+
+p {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: 1.5vw;
+  color: var(--mainOrange);
+  padding: 0 10%;
+  /* padding-bottom: 20%; */
+}
+
+/* NAVBAR */
+.navbar-light {
+  font-size: 15px;
+}
+.navbar-light .navbar-brand {
+  font-weight: 600;
+  color: var(--mainGreen) !important;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  font-weight: 600;
+  color: var(--mainOrange) !important;
+}
+
+.navbar-light .navbar-text {
+  color: var(--mainGreen);
+}
+
+.page-container {
+  position: relative;
+  min-height: 100vh;
+}
+
+.content-wrap {
+  padding-bottom: 2.5rem; /* Footer height */
+}
+/* RESPONSIVE */

@@ -1,0 +1,185 @@
+@import url("App.css");
+
+/* PREDICTION */
+
+.prediction-container {
+  /* height: 600px; */
+  min-height: 600px;
+  padding: 10% 0;
+  margin: 10% 0;
+  text-align: center;
+  overflow: hidden;
+}
+
+.predictions {
+  text-align: center;
+  display: inline;
+}
+.predictions .btnOutline {
+  display: block;
+  margin: auto;
+  font-size: 17px;
+}
+
+.predictions .btnOutline:hover {
+  text-decoration: none;
+}
+.idFromButtonClick {
+  font-size: 30px;
+  font-weight: 700 !important;
+  color: var(--mainGreen);
+}
+
+input {
+  text-align: center;
+  height: 50px;
+  width: 40%;
+  border: 1px solid var(--mainDark);
+  margin: 10px 0;
+}
+
+.foodie {
+  padding: 30px;
+  display: inline;
+}
+.foodie ul li {
+  list-style: none;
+  padding: 5px;
+}
+.foodie ul li button {
+  font-family: "Poppins", sans-serif;
+  font-weight: 200;
+  font-size: 20px;
+  color: var(--mainGreen);
+  background-color: var(--mainDark);
+  font-weight: 400;
+  background: linear-gradient(
+    to bottom,
+    var(--mainDark) 0%,
+    var(--mainDark) 100%
+  );
+  background-position: 0 100%;
+  background-repeat: repeat-x;
+  background-size: 2px 2px;
+  transition: background-size 0.2s;
+  box-shadow: none;
+  border-image: none;
+  border-radius: 0;
+  padding: 5px;
+  text-decoration: none;
+  margin: 0;
+}
+
+.foodie ul li button:hover {
+  box-shadow: none;
+  text-decoration: none;
+  color: var(--mainWhite);
+  background-size: 4px 50px;
+}
+
+button:focus {
+  outline: 0;
+}
+
+ul li .label {
+  font-size: 1.6vw;
+  color: var(--mainGreen);
+  background: none;
+  background-size: 0px;
+  padding: 5px;
+}
+
+ul li .label:hover {
+  background-size: 0px !important;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  background-color: var(--mainDark);
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.grid-item {
+  padding: 10px;
+  border: 1px solid var(--mainDark);
+  background-color: var(--mainWhite);
+  font-size: 1.1vw;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  color: var(--mainOrange);
+  text-align: center;
+}
+
+.loading {
+  min-height: 5px;
+  padding: 3% 0;
+  margin: 3% 0;
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.lds-ellipsis {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  margin: auto;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}
+.lds-ellipsis div {
+  position: absolute;
+  top: 33px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: var(--mainDark);
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+.lds-ellipsis div:nth-child(1) {
+  left: 8px;
+  animation: lds-ellipsis1 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(2) {
+  left: 8px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(3) {
+  left: 32px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(4) {
+  left: 56px;
+  animation: lds-ellipsis3 0.6s infinite;
+}
+@keyframes lds-ellipsis1 {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes lds-ellipsis3 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+@keyframes lds-ellipsis2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(24px, 0);
+  }
+}

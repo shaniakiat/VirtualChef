@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+// import "../Styles/About.css";
 class Team extends Component {
   render() {
     return (

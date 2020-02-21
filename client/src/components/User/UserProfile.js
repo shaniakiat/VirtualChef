@@ -8,7 +8,7 @@ import React, {
 import { Link } from "react-router-dom";
 import { connect, useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import { addItem } from "../../actions/itemActions";
+import { addItem, deleteItem } from "../../actions/itemActions";
 import IngredientsPredictions from "../Predictions/IngredientsPredictions";
 
 const UserProfile = props => {
@@ -57,6 +57,10 @@ const UserProfile = props => {
         setFavArray(json);
       })
       .catch(err => console.log(err));
+  };
+  const deleteFav = id => {
+    props.deleteItem(id);
+    fetchFavoriteFood();
   };
 
   // GETTING INGREDIENTS
@@ -126,6 +130,9 @@ const UserProfile = props => {
               >
                 {obj.FoodFavorited}
               </button>
+              <button type="button" onClick={() => deleteFav(obj._id)}>
+                Delete button
+              </button>
             </li>
           ))}
         </ul>
@@ -149,4 +156,4 @@ const mapStateToProps = state => ({
   errors: state.errors
 });
 
-export default connect(mapStateToProps, { addItem })(UserProfile);
+export default connect(mapStateToProps, { addItem, deleteItem })(UserProfile);

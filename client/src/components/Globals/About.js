@@ -7,7 +7,7 @@ class Team extends Component {
       <section>
         <div id="about" className="about">
           <Fade up>
-            <h1>Our Goals</h1>
+            <h1>Our Mission</h1>
             {/* <div className="goals"> */}
             <p>
               We want to develop an app which helps to recommend foods based on

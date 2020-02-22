@@ -25,8 +25,9 @@ class Header extends Component {
         </Fade>
         <Fade right>
           <h3>
-            virtualchef lets you discover broad ranges of food with the best
-            taste and the most delicious experience
+            virtualchef uses <span className="ml">machine learning</span> to
+            help you discover broad ranges of food with the best taste and the
+            most delicious experience
           </h3>
         </Fade>
         <Fade left>

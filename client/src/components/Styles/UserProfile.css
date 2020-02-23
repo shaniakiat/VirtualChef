@@ -74,3 +74,15 @@ button:focus {
 .favFoodList ul {
   margin-bottom: 50px;
 }
+
+.tiDelete {
+  margin: 2px;
+  margin-left: 5px;
+  width: 25px;
+  height: 25px;
+  color: var(--mainGreen);
+}
+
+.tiDelete:hover {
+  color: var(--mainDark);
+}

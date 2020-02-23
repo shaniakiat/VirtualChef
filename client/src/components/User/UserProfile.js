@@ -5,6 +5,9 @@ import React, {
   useRef,
   useInput
 } from "react";
+
+import { TiDelete } from "react-icons/ti";
+
 import { Link } from "react-router-dom";
 import { connect, useDispatch, useSelector } from "react-redux";
 import axios from "axios";
@@ -130,9 +133,11 @@ const UserProfile = props => {
               >
                 {obj.FoodFavorited}
               </button>
-              <button type="button" onClick={() => deleteFav(obj._id)}>
-                Delete button
-              </button>
+              {/* <button>Delete button</button> */}
+              <TiDelete
+                className="tiDelete"
+                onClick={() => deleteFav(obj._id)}
+              />
             </li>
           ))}
         </ul>

@@ -8,6 +8,8 @@ import React, {
 
 import { TiDelete } from "react-icons/ti";
 
+import Restaurants from "../Restaurant/Restaurants";
+
 import { Link } from "react-router-dom";
 import { connect, useDispatch, useSelector } from "react-redux";
 import axios from "axios";
@@ -146,6 +148,7 @@ const UserProfile = props => {
           idFromFoodButtonClick={idFromFoodButtonClick}
           predictionsRecipes={predictionsRecipes}
         />
+        <Restaurants />
       </div>
     </div>
   );

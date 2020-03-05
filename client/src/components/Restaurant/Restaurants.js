@@ -25,26 +25,30 @@ const Restaurants = props => {
   //medium.com/@chaoyue_zhao/how-to-make-axios-api-calls-with-yelp-fusion-inside-react-js-10755d8485c5
 
   const findRestaurants = () => {
-    let zipInfo = zipcodes.lookup(parseInt(userZip));
-    axios
-      .get(
-        `${"https://cors-anywhere.herokuapp.com/"}https://api.yelp.com/v3/businesses/search?term=pizza`,
-        {
-          headers: {
-            Authorization: `Bearer ${key}`
-          },
-          params: {
-            latitude: zipInfo.latitude,
-            longitude: zipInfo.longitude
+    if (zipcodes.lookup(parseInt(userZip))) {
+      let zipInfo = zipcodes.lookup(parseInt(userZip));
+      axios
+        .get(
+          `${"https://cors-anywhere.herokuapp.com/"}https://api.yelp.com/v3/businesses/search?term=pizza`,
+          {
+            headers: {
+              Authorization: `Bearer ${key}`
+            },
+            params: {
+              latitude: zipInfo.latitude,
+              longitude: zipInfo.longitude
+            }
           }
-        }
-      )
-      .then(res => {
-        console.log(res);
-      })
-      .catch(err => {
-        console.log(err);
-      });
+        )
+        .then(res => {
+          console.log(res);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    } else {
+      alert("Please enter in a valid zipcode");
+    }
   };
   return (
     <div>

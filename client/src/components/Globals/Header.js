@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Fade from "react-reveal/Fade";
+import FoodDictonary from "./FoodDictionary";
 // import makeCarousel from "react-reveal/makeCarousel"
 // import Fade from "react-reveal/Fade"
 // import { FaLinkedin } from "react-icons/fa"
@@ -35,6 +36,7 @@ class Header extends Component {
             Learn More
           </a>
         </Fade>
+        <FoodDictonary />
       </header>
     );
   }

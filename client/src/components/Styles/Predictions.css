@@ -38,6 +38,14 @@ input {
   margin: 10px 0;
 }
 
+.auto-complete {
+  padding-bottom: 10px;
+  padding-top: 20px;
+  display: block;
+  margin: auto;
+  font-size: 17px;
+}
+
 .foodie {
   padding: 30px;
   display: inline;
@@ -96,20 +104,22 @@ ul li .label:hover {
 .grid-container {
   display: grid;
   grid-template-columns: auto auto auto;
-  background-color: var(--mainDark);
+  /* background-color: var(--mainDark); */
   padding: 10px;
   margin: 10px 0;
 }
 
 .grid-item {
   padding: 10px;
-  border: 1px solid var(--mainDark);
+  border: 2px solid var(--mainDark);
+  margin: 10px;
   background-color: var(--mainWhite);
   font-size: 1.1vw;
   font-family: "Poppins", sans-serif;
   font-weight: 400;
   color: var(--mainOrange);
   text-align: center;
+  border-radius: 20%;
 }
 
 .loading {

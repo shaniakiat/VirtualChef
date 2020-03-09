@@ -2,6 +2,7 @@ import React from "react";
 import { Container } from "reactstrap";
 import Fade from "react-reveal/Fade";
 
+import FoodDictonary from "./FoodDictionary";
 import FoodPredictionsFound from "./FoodPredictionsFound";
 import NutritionalGraphs from "../Globals/D3Graphs/NutritionalGraphs";
 
@@ -18,6 +19,10 @@ const FoodPredictions = ({
   isToggled,
   idFromFoodButtonClick,
   isLoading,
+  open,
+  setOpen,
+  options,
+  loading,
   nutrition
 }) => {
   return (
@@ -27,18 +32,23 @@ const FoodPredictions = ({
           <h1>Food Prediction</h1>
           <h3>You are looking for food that similar to </h3>
           <h3 className="idFromButtonClick">
-            {idFromButtonClick
-              .replace(/\s/g, "")
-              .toString()
-              .toLowerCase()}
+            {idFromButtonClick.toString().toLowerCase()}
           </h3>
           <div>
-            <input
+            {/* <input
               type="text"
               value={userFood}
               onChange={e => setUserFood("" + e.target.value)}
               placeholder="Enter Your Food"
               className="input"
+            /> */}
+            <FoodDictonary
+              open={open}
+              setOpen={setOpen}
+              options={options}
+              loading={loading}
+              userFood={userFood}
+              setUserFood={setUserFood}
             />
 
             <br></br>

@@ -2,9 +2,9 @@ import React from "react";
 import { Container } from "reactstrap";
 import Fade from "react-reveal/Fade";
 
-import FoodDictonary from "./FoodDictionary";
-import FoodPredictionsFound from "./FoodPredictionsFound";
-import NutritionalGraphs from "../Globals/D3Graphs/NutritionalGraphs";
+import AutoFillDictionary from "./AutoFillDictionary";
+import FoodList from "./FoodList";
+import NutritionalGraphs from "../D3Graphs/NutritionalGraphs";
 
 const FoodPredictions = ({
   idFromButtonClick,
@@ -42,7 +42,7 @@ const FoodPredictions = ({
               placeholder="Enter Your Food"
               className="input"
             /> */}
-            <FoodDictonary
+            <AutoFillDictionary
               open={open}
               setOpen={setOpen}
               options={options}
@@ -64,7 +64,7 @@ const FoodPredictions = ({
               {buttonClick ? (
                 <div className="foodie">
                   {findPrediction ? (
-                    <FoodPredictionsFound
+                    <FoodList
                       predictions={predictions}
                       handleToogle={handleToogle}
                       isToggled={isToggled}

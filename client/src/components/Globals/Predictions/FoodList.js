@@ -1,9 +1,10 @@
 import React from "react";
-import "../Styles/App.css";
+import "../../Styles/App.css";
 import IngredientsPredictions from "./IngredientsPredictions";
 import Fade from "react-reveal/Fade";
 
-const FoodPredictionsFound = ({
+/* -----DIPSLAY THE LIST OF FOOD TO THE USER ------*/
+const FoodList = ({
   predictions,
   handleToogle,
   isToggled,
@@ -48,4 +49,4 @@ const FoodPredictionsFound = ({
   );
 };
 
-export default FoodPredictionsFound;
+export default FoodList;

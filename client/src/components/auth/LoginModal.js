@@ -15,6 +15,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { login } from "../../actions/authActions";
 import { clearErrors } from "../../actions/errorActions";
+import { Link } from "react-router-dom";
 
 class LoginModal extends Component {
   state = {
@@ -109,7 +110,13 @@ class LoginModal extends Component {
                   className="mb-3"
                   onChange={this.onChange}
                 />
-                <Button color="dark" style={{ marginTop: "2rem" }} block>
+                <Button
+                  to="/user"
+                  renderas={Link}
+                  color="dark"
+                  style={{ marginTop: "2rem" }}
+                  block
+                >
                   Login
                 </Button>
               </FormGroup>

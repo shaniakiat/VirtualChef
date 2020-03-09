@@ -1,6 +1,6 @@
 import React from "react";
 
-import "../Styles/Predictions.css";
+import "../../Styles/Predictions.css";
 
 const IngredientsPredictions = ({
   isToggled,

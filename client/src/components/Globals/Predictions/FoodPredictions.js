@@ -2,8 +2,9 @@ import React from "react";
 import { Container } from "reactstrap";
 import Fade from "react-reveal/Fade";
 
-import FoodDictonary from "./FoodDictionary";
-import FoodPredictionsFound from "./FoodPredictionsFound";
+import AutoFillDictionary from "./AutoFillDictionary";
+import FoodList from "./FoodList";
+import NutritionalGraphs from "../D3Graphs/NutritionalGraphs";
 
 const FoodPredictions = ({
   idFromButtonClick,
@@ -21,7 +22,8 @@ const FoodPredictions = ({
   open,
   setOpen,
   options,
-  loading
+  loading,
+  nutrition
 }) => {
   return (
     <Container className="prediction-container">
@@ -29,7 +31,6 @@ const FoodPredictions = ({
         <Fade up>
           <h1>Food Prediction</h1>
           <h3>You are looking for food that similar to </h3>
-          {/*---------------GETTING THE NAME OF THE FOOD WHEN USER INPUTS AND CLICKS ON THE BUTTON ---------------*/}
           <h3 className="idFromButtonClick">
             {idFromButtonClick.toString().toLowerCase()}
           </h3>
@@ -41,7 +42,7 @@ const FoodPredictions = ({
               placeholder="Enter Your Food"
               className="input"
             /> */}
-            <FoodDictonary
+            <AutoFillDictionary
               open={open}
               setOpen={setOpen}
               options={options}
@@ -63,7 +64,7 @@ const FoodPredictions = ({
               {buttonClick ? (
                 <div className="foodie">
                   {findPrediction ? (
-                    <FoodPredictionsFound
+                    <FoodList
                       predictions={predictions}
                       handleToogle={handleToogle}
                       isToggled={isToggled}
@@ -86,6 +87,11 @@ const FoodPredictions = ({
           </div>
         </Fade>
       </div>
+
+      <NutritionalGraphs
+        /*----------NUTRITION PREDICTIONS VARIABLES----------*/
+        nutrition={nutrition}
+      />
     </Container>
   );
 };

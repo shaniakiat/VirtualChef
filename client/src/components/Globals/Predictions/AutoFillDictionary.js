@@ -4,7 +4,7 @@ import Autocomplete from "@material-ui/lab/Autocomplete";
 import CircularProgress from "@material-ui/core/CircularProgress";
 // import "../Styles/Predictions.css";
 
-const FoodDictionary = ({
+const AutoFillDictionary = ({
   open,
   setOpen,
   options,
@@ -52,4 +52,4 @@ const FoodDictionary = ({
     />
   );
 };
-export default FoodDictionary;
+export default AutoFillDictionary;

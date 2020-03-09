@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import AppNavbar from "./components/AppNavbar";
 import Footer from "./components/Footer";
 
-import DashBoard from "./components/Globals/Dashboard";
+import LandingPage from "./components/Globals/LandingPage";
 import store from "./store";
 
 import { Container } from "reactstrap";
@@ -12,7 +12,7 @@ import { loadUser } from "./actions/authActions";
 
 import "./components/Styles/App.css";
 
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 class App extends Component {
   componentDidMount() {
     store.dispatch(loadUser());
@@ -26,7 +26,7 @@ class App extends Component {
             <AppNavbar />
             <Container className="page-container">
               <Container className="content-wrap">
-                <DashBoard />
+                <LandingPage />
               </Container>
             </Container>
             <Footer />

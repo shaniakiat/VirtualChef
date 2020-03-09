@@ -2,7 +2,7 @@ import React, { useState, useEffect, useLayoutEffect } from "react";
 import axios from "axios";
 // import Loader from "react-loader-spinner";
 
-import "../Styles/Predictions.css";
+import "../../Styles/Predictions.css";
 
 import FoodPredictions from "./FoodPredictions";
 
@@ -166,7 +166,8 @@ const PredictionHooks = () => {
       setOpen={setOpen}
       options={options}
       loading={loading}
-      nutrition={nutrition}    />
+      nutrition={nutrition}
+    />
   );
 };
 

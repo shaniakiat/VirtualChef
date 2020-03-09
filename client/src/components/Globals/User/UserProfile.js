@@ -1,20 +1,14 @@
-import React, {
-  useState,
-  useEffect,
-  useCallback,
-  useRef,
-  useInput
-} from "react";
+import React, { useState, useEffect } from "react";
 
 import { TiDelete } from "react-icons/ti";
 
 import Restaurants from "../Restaurant/Restaurants";
-import NutritionalGraphs from "../Globals/D3Graphs/NutritionalGraphs";
+import NutritionalGraphs from "../D3Graphs/NutritionalGraphs";
 
 import { Link } from "react-router-dom";
 import { connect, useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import { addItem, deleteItem } from "../../actions/itemActions";
+import { addItem, deleteItem } from "../../../actions/itemActions";
 import IngredientsPredictions from "../Predictions/IngredientsPredictions";
 
 const UserProfile = props => {

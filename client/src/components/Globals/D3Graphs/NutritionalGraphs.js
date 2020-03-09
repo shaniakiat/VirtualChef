@@ -1,13 +1,7 @@
-import React, {
-  useState,
-  useEffect,
-  useCallback,
-  useRef,
-  useInput
-} from "react";
+import React, { useRef } from "react";
 import rd3 from "react-d3-library";
 import * as d3 from "d3";
-import PredictionHooks from "../../Predictions/PredictionHooks";
+import PredictionHooks from "../Predictions/PredictionHooks";
 import { map } from "d3";
 
 const NutritionalGraphs = ({ nutrition }) => {

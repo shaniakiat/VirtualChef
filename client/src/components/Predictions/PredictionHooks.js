@@ -166,8 +166,7 @@ const PredictionHooks = () => {
       setOpen={setOpen}
       options={options}
       loading={loading}
-      nutrition={nutrition}
-    />
+      nutrition={nutrition}    />
   );
 };
 

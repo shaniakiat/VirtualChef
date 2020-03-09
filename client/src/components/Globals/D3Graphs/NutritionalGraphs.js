@@ -50,7 +50,7 @@ const NutritionalGraphs = ({ nutrition }) => {
       .text(dataPoint => dataPoint);
   }; // ending bracket for function
   drawBarChart(yData);
-
+  console.log(nutrition);
   return (
     <div ref={refElement}>
       <div>{nutrition ? <div>empty</div> : <div>{nutrition}</div>}</div>

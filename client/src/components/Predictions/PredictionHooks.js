@@ -5,7 +5,6 @@ import axios from "axios";
 import "../Styles/Predictions.css";
 
 import FoodPredictions from "./FoodPredictions";
-import NutritionalGraphs from "../Globals/D3Graphs/NutritionalGraphs";
 
 const PredictionHooks = () => {
   //   const [hasError, setErrors] = useState(false);
@@ -121,9 +120,6 @@ const PredictionHooks = () => {
         handleToogle={handleToogle}
         isToggled={isToggled}
         idFromFoodButtonClick={idFromFoodButtonClick}
-      />
-      <NutritionalGraphs
-        /*----------NUTRITION PREDICTIONS VARIABLES----------*/
         nutrition={nutrition}
       />
     </div>

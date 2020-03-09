@@ -1,7 +1,9 @@
 import React from "react";
 import { Container } from "reactstrap";
 import Fade from "react-reveal/Fade";
+
 import FoodPredictionsFound from "./FoodPredictionsFound";
+import NutritionalGraphs from "../Globals/D3Graphs/NutritionalGraphs";
 
 const FoodPredictions = ({
   idFromButtonClick,
@@ -15,7 +17,8 @@ const FoodPredictions = ({
   handleToogle,
   isToggled,
   idFromFoodButtonClick,
-  isLoading
+  isLoading,
+  nutrition
 }) => {
   return (
     <Container className="prediction-container">
@@ -23,7 +26,6 @@ const FoodPredictions = ({
         <Fade up>
           <h1>Food Prediction</h1>
           <h3>You are looking for food that similar to </h3>
-          {/*---------------GETTING THE NAME OF THE FOOD WHEN USER INPUTS AND CLICKS ON THE BUTTON ---------------*/}
           <h3 className="idFromButtonClick">
             {idFromButtonClick
               .replace(/\s/g, "")
@@ -75,6 +77,11 @@ const FoodPredictions = ({
           </div>
         </Fade>
       </div>
+
+      <NutritionalGraphs
+        /*----------NUTRITION PREDICTIONS VARIABLES----------*/
+        nutrition={nutrition}
+      />
     </Container>
   );
 };

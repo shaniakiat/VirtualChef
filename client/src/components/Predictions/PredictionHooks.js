@@ -13,6 +13,7 @@ const PredictionHooks = () => {
   const [idFromButtonClick, setIdFromButtonClick] = useState("");
   const [buttonClick, setButtonClick] = useState(false);
   const [findPrediction, setFindPrediction] = useState(false);
+  const [nutrition, setNutrition] = useState();
 
   const [isLoading, setLoading] = useState(false);
   // const [loadingSpeed, setLoadingSpeed] = React.useState(1);
@@ -88,9 +89,13 @@ const PredictionHooks = () => {
           .toLocaleLowerCase()}&app_id=${YOUR_APP_ID}&app_key=${YOUR_APP_KEY}`
       )
       .then(res => {
-        // console.log(res.data);
-        // console.log(res.data.hits);
-        // console.log(1);
+        //getting rescipe nutrients note: there are ten elements inside the object. possibly just take one?
+        // console.log(
+        //   res.data.hits.map(i => {
+        //     return i.recipe.totalNutrients;
+        //   })
+        // );
+        setNutrition(res.data.hits[0].recipe.totalNutrients);
         setPredictionsRecipes(res.data.hits);
       })
       .catch(err => {
@@ -161,7 +166,7 @@ const PredictionHooks = () => {
       setOpen={setOpen}
       options={options}
       loading={loading}
-    />
+      nutrition={nutrition}    />
   );
 };
 

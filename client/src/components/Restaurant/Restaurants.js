@@ -53,7 +53,13 @@ const Restaurants = props => {
   return (
     <div>
       <input type="text" onChange={e => setUserZip(e.target.value)} />
-      <button onClick={findRestaurants}>click me</button>
+      <button
+        className="btnOutline-login"
+        type="button"
+        onClick={findRestaurants}
+      >
+        Find Restaurants
+      </button>
     </div>
   );
 };

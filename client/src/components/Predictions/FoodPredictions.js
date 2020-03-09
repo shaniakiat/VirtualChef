@@ -1,6 +1,8 @@
 import React from "react";
 import { Container } from "reactstrap";
 import Fade from "react-reveal/Fade";
+
+import FoodDictonary from "./FoodDictionary";
 import FoodPredictionsFound from "./FoodPredictionsFound";
 
 const FoodPredictions = ({
@@ -15,7 +17,11 @@ const FoodPredictions = ({
   handleToogle,
   isToggled,
   idFromFoodButtonClick,
-  isLoading
+  isLoading,
+  open,
+  setOpen,
+  options,
+  loading
 }) => {
   return (
     <Container className="prediction-container">
@@ -25,18 +31,23 @@ const FoodPredictions = ({
           <h3>You are looking for food that similar to </h3>
           {/*---------------GETTING THE NAME OF THE FOOD WHEN USER INPUTS AND CLICKS ON THE BUTTON ---------------*/}
           <h3 className="idFromButtonClick">
-            {idFromButtonClick
-              .replace(/\s/g, "")
-              .toString()
-              .toLowerCase()}
+            {idFromButtonClick.toString().toLowerCase()}
           </h3>
           <div>
-            <input
+            {/* <input
               type="text"
               value={userFood}
               onChange={e => setUserFood("" + e.target.value)}
               placeholder="Enter Your Food"
               className="input"
+            /> */}
+            <FoodDictonary
+              open={open}
+              setOpen={setOpen}
+              options={options}
+              loading={loading}
+              userFood={userFood}
+              setUserFood={setUserFood}
             />
 
             <br></br>

@@ -5,6 +5,7 @@ import axios from "axios";
 import "../Styles/Predictions.css";
 
 import FoodPredictions from "./FoodPredictions";
+import NutritionalGraphs from "../Globals/D3Graphs/NutritionalGraphs";
 
 const PredictionHooks = () => {
   //   const [hasError, setErrors] = useState(false);
@@ -104,24 +105,28 @@ const PredictionHooks = () => {
   }, [idFromFoodButtonClick]);
 
   return (
-    <FoodPredictions
-      /*----------FOOD PREDICTIONS VARIABLES----------*/
-      idFromButtonClick={idFromButtonClick}
-      userFood={userFood}
-      handleClickPrediction={handleClickPrediction}
-      setUserFood={setUserFood}
-      buttonClick={buttonClick}
-      findPrediction={findPrediction}
-      predictions={predictions}
-      isLoading={isLoading}
-      /*----------INGREDIENTS PREDICTIONS VARIABLES----------*/
-      predictionsRecipes={predictionsRecipes}
-      handleToogle={handleToogle}
-      isToggled={isToggled}
-      idFromFoodButtonClick={idFromFoodButtonClick}
-      /*----------NUTRITION PREDICTIONS VARIABLES----------*/
-      nutrition={nutrition}
-    />
+    <div>
+      <FoodPredictions
+        /*----------FOOD PREDICTIONS VARIABLES----------*/
+        idFromButtonClick={idFromButtonClick}
+        userFood={userFood}
+        handleClickPrediction={handleClickPrediction}
+        setUserFood={setUserFood}
+        buttonClick={buttonClick}
+        findPrediction={findPrediction}
+        predictions={predictions}
+        isLoading={isLoading}
+        /*----------INGREDIENTS PREDICTIONS VARIABLES----------*/
+        predictionsRecipes={predictionsRecipes}
+        handleToogle={handleToogle}
+        isToggled={isToggled}
+        idFromFoodButtonClick={idFromFoodButtonClick}
+      />
+      <NutritionalGraphs
+        /*----------NUTRITION PREDICTIONS VARIABLES----------*/
+        nutrition={nutrition}
+      />
+    </div>
   );
 };
 

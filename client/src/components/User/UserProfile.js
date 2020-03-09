@@ -9,6 +9,7 @@ import React, {
 import { TiDelete } from "react-icons/ti";
 
 import Restaurants from "../Restaurant/Restaurants";
+import NutritionalGraphs from "../Globals/D3Graphs/NutritionalGraphs";
 
 import { Link } from "react-router-dom";
 import { connect, useDispatch, useSelector } from "react-redux";
@@ -149,6 +150,7 @@ const UserProfile = props => {
           predictionsRecipes={predictionsRecipes}
         />
         <Restaurants />
+        <NutritionalGraphs />
       </div>
     </div>
   );

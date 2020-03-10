@@ -111,8 +111,8 @@ class LoginModal extends Component {
                   onChange={this.onChange}
                 />
                 <Button
-                  to="/user"
-                  renderas={Link}
+                  // to="/user"
+                  // renderas={Link}
                   color="dark"
                   style={{ marginTop: "2rem" }}
                   block

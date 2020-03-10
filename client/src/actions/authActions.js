@@ -89,6 +89,7 @@ export const login = ({ email, password }) => dispatch => {
 //logout users
 export const logout = () => {
   localStorage.removeItem("token");
+
   return {
     type: LOGOUT_SUCCESS
   };

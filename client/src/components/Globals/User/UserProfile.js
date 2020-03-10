@@ -11,7 +11,7 @@ import axios from "axios";
 import { addItem, deleteItem } from "../../../actions/itemActions";
 import IngredientsPredictions from "../Predictions/IngredientsPredictions";
 import { push } from "connected-react-router";
-import {} from "../../../actions/authActions";
+import { loadUser } from "../../../actions/authActions";
 // import { useDispatch } from "react-redux";
 
 const UserProfile = props => {
@@ -31,6 +31,7 @@ const UserProfile = props => {
   useEffect(() => {
     // if (loggedin === true || tokenRecognized != null) {
     // }
+    dispatch(loadUser(tokenRecognized));
 
     axios
       .get(`/api/items/item/${userID}`)

@@ -1,40 +1,36 @@
 import React, { useState, useEffect } from "react";
-
 import { TiDelete } from "react-icons/ti";
-
 import Restaurants from "../Restaurant/Restaurants";
 import NutritionalGraphs from "../D3Graphs/NutritionalGraphs";
-
-import { Link } from "react-router-dom";
 import { connect, useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { addItem, deleteItem } from "../../../actions/itemActions";
 import IngredientsPredictions from "../Predictions/IngredientsPredictions";
-import { push } from "connected-react-router";
 import { loadUser } from "../../../actions/authActions";
-// import { useDispatch } from "react-redux";
+
+import { createSelector } from "reselect";
 
 const UserProfile = props => {
   const [newUserFavorite, setNewUserFavorite] = useState("");
   const [favArray, setFavArray] = useState([]);
-  const [load, setLoad] = useState(false);
-  // const [userFavorite, setUserFavorite] = useInput({ type: "text" });
   const tokenRecognized = useSelector(state => state.auth.token);
-  const loggedin = useSelector(state => state.auth.isAuthenticated);
+
+  // const userID = useSelector(state => state.auth.user._id); keep this as syntax reference.
   const foodFavoritesArray = useSelector(state => state.item.items);
-  const name = useSelector(state => state.auth.user.name);
-  const userID = useSelector(state => state.auth.user._id);
+
+  const userStates = createSelector(
+    name => name.auth.user.name,
+    userID => userID.auth.user._id
+    // foodFavoritesArray => foodFavoritesArray.state.item.items
+  );
 
   const dispatch = useDispatch();
-  // const firstRender = useRef();
 
   useEffect(() => {
-    // if (loggedin === true || tokenRecognized != null) {
-    // }
     dispatch(loadUser(tokenRecognized));
 
     axios
-      .get(`/api/items/item/${userID}`)
+      .get(`/api/items/item/${userStates.userID}`)
       .then(res => {
         return res.data;
       })
@@ -42,14 +38,14 @@ const UserProfile = props => {
         setFavArray(json);
       })
       .catch(err => console.log(err));
-  }, [userID]);
+  }, [userStates.userID]);
   console.log(favArray);
 
   const submitFavorites = e => {
     e.preventDefault();
     const newFoodFavorite = {
       FoodFavorited: newUserFavorite,
-      userCode: userID
+      userCode: userStates.userID
     };
     console.log("adding the item");
     props.addItem(newFoodFavorite, foodFavoritesArray);
@@ -59,7 +55,7 @@ const UserProfile = props => {
 
   const fetchFavoriteFood = () => {
     axios
-      .get(`/api/items/item/${userID}`)
+      .get(`/api/items/item/${userStates.userID}`)
       .then(res => {
         return res.data;
       })
@@ -86,7 +82,6 @@ const UserProfile = props => {
   };
 
   useEffect(() => {
-    // console.log({ idFromFoodButtonClick });
     const base = "https://api.edamam.com/search";
     const YOUR_APP_ID = "b1de00a5";
     const YOUR_APP_KEY = "bfff8bc6c4056248b815aa647d415437";
@@ -98,9 +93,6 @@ const UserProfile = props => {
           .toLocaleLowerCase()}&app_id=${YOUR_APP_ID}&app_key=${YOUR_APP_KEY}`
       )
       .then(res => {
-        // console.log(res.data);
-        // console.log(res.data.hits);
-        // console.log(1);
         setPredictionsRecipes(res.data.hits);
       })
       .catch(err => {
@@ -110,9 +102,11 @@ const UserProfile = props => {
 
   return (
     <div className="login">
-      {/* <span>{setLoad(true</span> */}
       <h1>
-        Hello {name.charAt(0).toUpperCase() + name.slice(1).toLowerCase()}!
+        Hello{" "}
+        {userStates.name.charAt(0).toUpperCase() +
+          userStates.name.slice(1).toLowerCase()}
+        !
       </h1>
       <h3>What is your favorite food?</h3>
 

@@ -11,6 +11,7 @@ import axios from "axios";
 import { addItem, deleteItem } from "../../../actions/itemActions";
 import IngredientsPredictions from "../Predictions/IngredientsPredictions";
 import { push } from "connected-react-router";
+import {} from "../../../actions/authActions";
 // import { useDispatch } from "react-redux";
 
 const UserProfile = props => {
@@ -18,17 +19,18 @@ const UserProfile = props => {
   const [favArray, setFavArray] = useState([]);
   const [load, setLoad] = useState(false);
   // const [userFavorite, setUserFavorite] = useInput({ type: "text" });
+  const tokenRecognized = useSelector(state => state.auth.token);
+  const loggedin = useSelector(state => state.auth.isAuthenticated);
   const foodFavoritesArray = useSelector(state => state.item.items);
   const name = useSelector(state => state.auth.user.name);
   const userID = useSelector(state => state.auth.user._id);
-  const loggedin = useSelector(state => state.auth.isAuthenticated);
+
   const dispatch = useDispatch();
   // const firstRender = useRef();
 
   useEffect(() => {
-    if (loggedin) {
-      dispatch(push("/user"));
-    }
+    // if (loggedin === true || tokenRecognized != null) {
+    // }
 
     axios
       .get(`/api/items/item/${userID}`)

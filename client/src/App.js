@@ -14,6 +14,12 @@ import { loadUser } from "./actions/authActions";
 import "./components/Styles/App.css";
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
+const routes = [
+  { path: "/home", name: "home", Component: LandingPage },
+  { path: "/user", name: "user", Component: UserProfile }
+];
+
 class App extends Component {
   componentDidMount() {
     store.dispatch(loadUser());
@@ -22,21 +28,22 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <Router>
-          <div className="App">
-            <AppNavbar />
-            <Container className="page-container">
-              <Container className="content-wrap">
-                {/* <LandingPage /> */}
-                <Route exact path="/home" component={LandingPage} />
-                {/* <Switch> */}
-                <Route exact path="/user" component={UserProfile} />
-                {/* </Switch> */}
-              </Container>
+        <div className="App">
+          <AppNavbar />
+          <Container className="page-container">
+            <Container className="content-wrap">
+              {/* <LandingPage /> */}
+              <Router>
+                {routes.map(({ path, Component }) => (
+                  <Route key={path} exact path={path}>
+                    <Component />
+                  </Route>
+                ))}
+              </Router>
             </Container>
-            <Footer />
-          </div>
-        </Router>
+          </Container>
+          <Footer />
+        </div>
       </Provider>
     );
   }

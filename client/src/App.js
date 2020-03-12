@@ -16,12 +16,13 @@ import "./components/Styles/App.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 const routes = [
-  { path: "/home", name: "home", Component: LandingPage },
+  { path: "/", name: "home", Component: LandingPage },
   { path: "/user", name: "user", Component: UserProfile }
 ];
 
 class App extends Component {
   componentDidMount() {
+    // window.location.href = "./home";
     store.dispatch(loadUser());
   }
 

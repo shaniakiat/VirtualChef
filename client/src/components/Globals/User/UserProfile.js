@@ -4,7 +4,7 @@ import Restaurants from "../Restaurant/Restaurants";
 import NutritionalGraphs from "../D3Graphs/NutritionalGraphs";
 import { connect, useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import { addItem, deleteItem } from "../../../actions/itemActions";
+import { addItem, deleteItem, getItems } from "../../../actions/itemActions";
 import IngredientsPredictions from "../Predictions/IngredientsPredictions";
 import { loadUser } from "../../../actions/authActions";
 
@@ -13,41 +13,45 @@ import { createSelector } from "reselect";
 const UserProfile = props => {
   const [newUserFavorite, setNewUserFavorite] = useState("");
   const [favArray, setFavArray] = useState([]);
+  const [userID, setUserID] = useState();
   const tokenRecognized = useSelector(state => state.auth.token);
 
-  // const userID = useSelector(state => state.auth.user._id); keep this as syntax reference.
+  const auth = useSelector(state => state.auth);
   const foodFavoritesArray = useSelector(state => state.item.items);
-
-  const userStates = createSelector(
-    name => name.auth.user.name,
-    userID => userID.auth.user._id
-    // foodFavoritesArray => foodFavoritesArray.state.item.items
-  );
 
   const dispatch = useDispatch();
 
   useEffect(() => {
+    // fetch user data when component mounts
     dispatch(loadUser(tokenRecognized));
+  }, []);
 
-    axios
-      .get(`/api/items/item/${userStates.userID}`)
-      .then(res => {
-        return res.data;
-      })
-      .then(json => {
-        setFavArray(json);
-      })
-      .catch(err => console.log(err));
-  }, [userStates.userID]);
+  useEffect(() => {
+    console.log(auth.isAuthenicated);
+    if (auth.user) {
+      setUserID(auth.user._id);
+      axios
+        .get(`/api/items/item/${auth.user._id}`)
+        .then(res => {
+          return res.data;
+        })
+        .then(json => {
+          setFavArray(json);
+        })
+        .catch(err => console.log(err));
+    }
+  }, [auth.user]);
   console.log(favArray);
 
   const submitFavorites = e => {
     e.preventDefault();
     const newFoodFavorite = {
       FoodFavorited: newUserFavorite,
-      userCode: userStates.userID
+      userCode: userID
     };
     console.log("adding the item");
+
+    // foodItems
     props.addItem(newFoodFavorite, foodFavoritesArray);
     console.log(newFoodFavorite);
     fetchFavoriteFood();
@@ -55,7 +59,7 @@ const UserProfile = props => {
 
   const fetchFavoriteFood = () => {
     axios
-      .get(`/api/items/item/${userStates.userID}`)
+      .get(`/api/items/item/${auth.user._id}`)
       .then(res => {
         return res.data;
       })
@@ -103,10 +107,7 @@ const UserProfile = props => {
   return (
     <div className="login">
       <h1>
-        Hello{" "}
-        {userStates.name.charAt(0).toUpperCase() +
-          userStates.name.slice(1).toLowerCase()}
-        !
+        {/* Hello {auth.charAt(0).toUpperCase() + auth.slice(1).toLowerCase()}! */}
       </h1>
       <h3>What is your favorite food?</h3>
 
@@ -159,4 +160,6 @@ const mapStateToProps = state => ({
   errors: state.errors
 });
 
-export default connect(mapStateToProps, { addItem, deleteItem })(UserProfile);
+export default connect(mapStateToProps, { addItem, deleteItem, getItems })(
+  UserProfile
+);

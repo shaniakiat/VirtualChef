@@ -24,10 +24,14 @@
 .predictions .btnOutline:hover {
   text-decoration: none;
 }
-.idFromButtonClick {
+.idFood1 {
+  text-align: center;
+}
+.idFood2 {
   font-size: 30px;
   font-weight: 700 !important;
   color: var(--mainGreen);
+  text-align: center;
 }
 
 input {
@@ -91,6 +95,9 @@ button:focus {
 
 ul li .label {
   font-size: 1.6vw;
+  font-weight: 600;
+  text-decoration: none !important;
+  list-style-type: none;
   color: var(--mainGreen);
   background: none;
   background-size: 0px;
@@ -101,12 +108,25 @@ ul li .label:hover {
   background-size: 0px !important;
 }
 
+ul li .ingredients {
+  list-style-type: none;
+  text-align: left;
+  padding: 0 10px;
+}
+
+ul {
+  padding-bottom: 10px;
+}
+
 .grid-container {
   display: grid;
   grid-template-columns: auto auto auto;
+  /* grid-auto-rows: minmax(10px, auto); */
+  /* grid-auto-rows: max-content max-content max-content; */
   /* background-color: var(--mainDark); */
   padding: 10px;
   margin: 10px 0;
+  list-style-type: none;
 }
 
 .grid-item {
@@ -116,10 +136,9 @@ ul li .label:hover {
   background-color: var(--mainWhite);
   font-size: 1.1vw;
   font-family: "Poppins", sans-serif;
-  font-weight: 400;
   color: var(--mainOrange);
   text-align: center;
-  border-radius: 20%;
+  border-radius: 20px;
 }
 
 .loading {

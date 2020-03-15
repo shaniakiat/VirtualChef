@@ -4,10 +4,10 @@ import Restaurants from "../Restaurant/Restaurants";
 import { connect, useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { addItem, deleteItem, getItems } from "../../../actions/itemActions";
-import IngredientsPredictions from "../Predictions/IngredientsPredictions";
+// import IngredientsPredictions from "../Predictions/IngredientsPredictions";
 import { loadUser } from "../../../actions/authActions";
 
-import { createSelector } from "reselect";
+// import { createSelector } from "reselect";
 
 const UserProfile = props => {
   const [newUserFavorite, setNewUserFavorite] = useState("");
@@ -23,7 +23,7 @@ const UserProfile = props => {
   useEffect(() => {
     // fetch user data when component mounts
     dispatch(loadUser(tokenRecognized));
-  }, []);
+  }, [dispatch, tokenRecognized]);
 
   useEffect(() => {
     console.log(auth.isAuthenicated);
@@ -39,7 +39,7 @@ const UserProfile = props => {
         })
         .catch(err => console.log(err));
     }
-  }, [auth.user]);
+  }, [auth.isAuthenicated, auth.user]);
   console.log(favArray);
 
   const submitFavorites = e => {
@@ -86,8 +86,8 @@ const UserProfile = props => {
 
   useEffect(() => {
     const base = "https://api.edamam.com/search";
-    const YOUR_APP_ID = "b1de00a5";
-    const YOUR_APP_KEY = "bfff8bc6c4056248b815aa647d415437";
+    const YOUR_APP_ID = "d9383e24";
+    const YOUR_APP_KEY = "d76bf79039ba4df599b7902b99cb0630";
 
     axios
       .get(
@@ -142,11 +142,11 @@ const UserProfile = props => {
             </li>
           ))}
         </ul>
-        <IngredientsPredictions
+        {/* <IngredientsPredictions
           isToggled={isToggled}
           idFromFoodButtonClick={idFromFoodButtonClick}
           predictionsRecipes={predictionsRecipes}
-        />
+        /> */}
         <Restaurants />
       </div>
     </div>

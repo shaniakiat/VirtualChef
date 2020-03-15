@@ -29,17 +29,10 @@ const FoodPredictions = ({
         <Fade up>
           <h1>Food Prediction</h1>
           <h3>You are looking for food that similar to </h3>
-          <h3 className="idFromButtonClick">
+          <h3 className="idFood2">
             {idFromButtonClick.toString().toLowerCase()}
           </h3>
           <div>
-            {/* <input
-              type="text"
-              value={userFood}
-              onChange={e => setUserFood("" + e.target.value)}
-              placeholder="Enter Your Food"
-              className="input"
-            /> */}
             <AutoFillDictionary
               open={open}
               setOpen={setOpen}

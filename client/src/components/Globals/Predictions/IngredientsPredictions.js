@@ -1,6 +1,7 @@
 import React from "react";
 
 import "../../Styles/Predictions.css";
+import NutritionalGraphs from "../D3Graphs/NutritionalGraphs";
 
 const IngredientsPredictions = ({
   isToggled,
@@ -29,6 +30,7 @@ const IngredientsPredictions = ({
                   </li>
                 </div>
               ))}
+              <NutritionalGraphs />
             </div>
           </ul>
           {/* <div>{JSON.stringify(predictionsRecipes)}</div> */}

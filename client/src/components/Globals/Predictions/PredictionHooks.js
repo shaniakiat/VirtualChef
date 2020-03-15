@@ -156,7 +156,9 @@ const PredictionHooks = () => {
       }, {});
     keysAllowed.map(i => {
       nutritiontypearray.push(filteredNutritionObj[i].label);
-      quantityarr.push(filteredNutritionObj[i].quantity);
+      quantityarr.push(
+        Math.round(filteredNutritionObj[i].quantity * 100) / 100
+      );
       unitarr.push(filteredNutritionObj[i].unit);
     });
     setNutritionType(nutritiontypearray);

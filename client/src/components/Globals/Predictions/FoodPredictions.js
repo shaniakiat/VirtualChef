@@ -4,7 +4,6 @@ import Fade from "react-reveal/Fade";
 
 import AutoFillDictionary from "./AutoFillDictionary";
 import FoodList from "./FoodList";
-import NutritionalGraphs from "../D3Graphs/NutritionalGraphs";
 
 const FoodPredictions = ({
   idFromButtonClick,

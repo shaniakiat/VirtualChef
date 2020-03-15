@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { TiDelete } from "react-icons/ti";
 import Restaurants from "../Restaurant/Restaurants";
-import NutritionalGraphs from "../D3Graphs/NutritionalGraphs";
 import { connect, useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { addItem, deleteItem, getItems } from "../../../actions/itemActions";
@@ -149,7 +148,6 @@ const UserProfile = props => {
           predictionsRecipes={predictionsRecipes}
         />
         <Restaurants />
-        <NutritionalGraphs />
       </div>
     </div>
   );

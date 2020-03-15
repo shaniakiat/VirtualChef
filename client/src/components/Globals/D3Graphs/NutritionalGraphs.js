@@ -12,14 +12,11 @@ const NutritionalGraphs = ({
 }) => {
   // https://observablehq.com/@d3/sortable-bar-chart
   // https://www.freecodecamp.org/news/how-to-get-started-with-d3-and-react-c7da74a5bd9f/
+  // https://css-tricks.com/how-to-make-charts-with-svg/
   const xData = ["x", "y", "z"];
   const yData = [10, 2, 8];
 
   const refElement = useRef(null);
-
-  useEffect(() => {
-    drawBarChart(quantityData);
-  }, []);
 
   const drawBarChart = params => {
     const canvasHeight = 400;
@@ -53,9 +50,11 @@ const NutritionalGraphs = ({
       .text(dataPoint => dataPoint);
   }; // ending bracket for function
 
+  if (quantityData) drawBarChart(quantityData);
+
   return (
-    <div>
-      <svg ref={refElement}></svg>
+    <div ref={refElement}>
+      {/* <div>{quantityData ? <div>empty</div> : <div></div>}</div> */}
     </div>
   );
 };

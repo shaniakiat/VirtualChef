@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { addItem } from "../../actions/itemActions";
 import PropTypes from "prop-types";
 import PredictionHooks from "./Predictions/PredictionHooks";
+import NutritionalGraphs from "./D3Graphs/NutritionalGraphs";
 
 import UserProfile from "./User/UserProfile";
 import Header from "./Header";
@@ -25,6 +26,7 @@ class Dashboard extends Component {
           <div>
             <Header />
             <PredictionHooks />
+            <NutritionalGraphs />
             <About />
           </div>
         )}

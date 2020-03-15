@@ -5,6 +5,7 @@ import axios from "axios";
 import "../../Styles/Predictions.css";
 
 import FoodPredictions from "./FoodPredictions";
+import NutritionalGraphs from "../D3Graphs/NutritionalGraphs";
 
 const PredictionHooks = () => {
   //   const [hasError, setErrors] = useState(false);
@@ -13,10 +14,16 @@ const PredictionHooks = () => {
   const [idFromButtonClick, setIdFromButtonClick] = useState("");
   const [buttonClick, setButtonClick] = useState(false);
   const [findPrediction, setFindPrediction] = useState(false);
+
   const [nutrition, setNutrition] = useState();
 
   const [isLoading, setLoading] = useState(false);
   // const [loadingSpeed, setLoadingSpeed] = React.useState(1);
+
+  const keysAllowed = ["FAT", "SUGAR", "CHOCDF", "FIBTG", "PROCNT"];
+  const [nutritionType, setNutritionType] = useState([]);
+  const [quantityData, setQuanityData] = useState([]);
+  const [unit, setUnit] = useState([]);
 
   const handleClickPrediction = () => {
     setLoading(true);
@@ -35,7 +42,6 @@ const PredictionHooks = () => {
 
   /*-----------------------FETCH THE PYTHON API FOR THE FOOD PREDICTIONS-----------------------*/
   useEffect(() => {
-    // console.log("THIS HAS TO BE TRUE: " + loading);
     axios
       .get(
         `https://floating-plains-35923.herokuapp.com/prediction/${idFromButtonClick
@@ -44,16 +50,13 @@ const PredictionHooks = () => {
       )
       .then(res => {
         console.log("FETCHED");
-        // setLoading(false);
 
         if (
           res.data.toString() === "Sorry, we couldn't indentify this food yet."
         ) {
-          // setLoading(false);
           setFindPrediction(false);
           setPredictions([]);
         } else {
-          // setLoading(false);
           setFindPrediction(true);
           setPredictions(res.data);
         }
@@ -70,14 +73,13 @@ const PredictionHooks = () => {
   const [predictionsRecipes, setPredictionsRecipes] = useState([]);
 
   const handleToogle = e => {
-    console.log(e);
+    // console.log(e);
     setIdFromFoodButtonClick("" + e);
-    console.log(idFromFoodButtonClick.replace(/\s/g, "+").toLocaleLowerCase());
+    // console.log(idFromFoodButtonClick.replace(/\s/g, "+").toLocaleLowerCase());
     setToggled(true); //if this is true than open up the textbox with the list of ingredients
   };
 
   useEffect(() => {
-    // console.log({ idFromFoodButtonClick });
     const base = "https://api.edamam.com/search";
     const YOUR_APP_ID = "b1de00a5";
     const YOUR_APP_KEY = "bfff8bc6c4056248b815aa647d415437";
@@ -89,14 +91,10 @@ const PredictionHooks = () => {
           .toLocaleLowerCase()}&app_id=${YOUR_APP_ID}&app_key=${YOUR_APP_KEY}`
       )
       .then(res => {
-        //getting rescipe nutrients note: there are ten elements inside the object. possibly just take one?
-        // console.log(
-        //   res.data.hits.map(i => {
-        //     return i.recipe.totalNutrients;
-        //   })
-        // );
-        setNutrition(res.data.hits[0].recipe.totalNutrients);
+        let param = res.data.hits[0].recipe.totalNutrients;
         setPredictionsRecipes(res.data.hits);
+        setNutrition(res.data.hits[0].recipe.totalNutrients);
+        getNutritionData(param);
       })
       .catch(err => {
         console.log(err);
@@ -145,29 +143,59 @@ const PredictionHooks = () => {
     }
   }, [open]);
 
+  const getNutritionData = params => {
+    console.log("in the function");
+    let nutritiontypearray = [];
+    let quantityarr = [];
+    let unitarr = [];
+    const filteredNutritionObj = Object.keys(params)
+      .filter(key => keysAllowed.includes(key))
+      .reduce((obj, key) => {
+        obj[key] = params[key];
+        return obj;
+      }, {});
+    keysAllowed.map(i => {
+      nutritiontypearray.push(filteredNutritionObj[i].label);
+      quantityarr.push(
+        Math.round(filteredNutritionObj[i].quantity * 100) / 100
+      );
+      unitarr.push(filteredNutritionObj[i].unit);
+    });
+    setNutritionType(nutritiontypearray);
+    setQuanityData(quantityarr);
+    setUnit(unitarr);
+  };
+
   return (
-    <FoodPredictions
-      /*----------FOOD PREDICTIONS VARIABLES----------*/
-      idFromButtonClick={idFromButtonClick}
-      userFood={userFood}
-      handleClickPrediction={handleClickPrediction}
-      setUserFood={setUserFood}
-      buttonClick={buttonClick}
-      findPrediction={findPrediction}
-      predictions={predictions}
-      isLoading={isLoading}
-      /*----------INGREDIENTS PREDICTIONS VARIABLES----------*/
-      predictionsRecipes={predictionsRecipes}
-      handleToogle={handleToogle}
-      isToggled={isToggled}
-      idFromFoodButtonClick={idFromFoodButtonClick}
-      /*----------DICTIONARY----------*/
-      open={open}
-      setOpen={setOpen}
-      options={options}
-      loading={loading}
-      nutrition={nutrition}
-    />
+    <div>
+      <FoodPredictions
+        /*----------FOOD PREDICTIONS VARIABLES----------*/
+        idFromButtonClick={idFromButtonClick}
+        userFood={userFood}
+        handleClickPrediction={handleClickPrediction}
+        setUserFood={setUserFood}
+        buttonClick={buttonClick}
+        findPrediction={findPrediction}
+        predictions={predictions}
+        isLoading={isLoading}
+        /*----------INGREDIENTS PREDICTIONS VARIABLES----------*/
+        predictionsRecipes={predictionsRecipes}
+        handleToogle={handleToogle}
+        isToggled={isToggled}
+        idFromFoodButtonClick={idFromFoodButtonClick}
+        /*----------DICTIONARY----------*/
+        open={open}
+        setOpen={setOpen}
+        options={options}
+        loading={loading}
+      />
+      <NutritionalGraphs
+        nutrition={nutrition}
+        nutritionType={nutritionType}
+        quantityData={quantityData}
+        unit={unit}
+      />
+    </div>
   );
 };
 

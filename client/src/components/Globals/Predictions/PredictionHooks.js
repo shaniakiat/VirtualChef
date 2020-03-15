@@ -160,7 +160,7 @@ const PredictionHooks = () => {
       unitarr.push(filteredNutritionObj[i].unit);
     });
     setNutritionType(nutritiontypearray);
-    setQuanityData(quantityData);
+    setQuanityData(quantityarr);
     setUnit(unitarr);
   };
 

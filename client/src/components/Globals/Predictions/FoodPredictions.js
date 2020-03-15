@@ -22,8 +22,7 @@ const FoodPredictions = ({
   open,
   setOpen,
   options,
-  loading,
-  nutrition
+  loading
 }) => {
   return (
     <Container className="prediction-container">
@@ -87,26 +86,8 @@ const FoodPredictions = ({
           </div>
         </Fade>
       </div>
-
-      <NutritionalGraphs
-        /*----------NUTRITION PREDICTIONS VARIABLES----------*/
-        nutrition={nutrition}
-      />
     </Container>
   );
 };
 
 export default FoodPredictions;
-
-// onClick={handleClickIngredients(obj[0])}
-
-// foodButtonClick ? (
-//     <ul>
-//         <li>
-//             {JSON.stringify(predictionsIngredients)}
-//         </li>
-//     </ul>
-// ) : (
-//         <div></div>
-//     )
-// }

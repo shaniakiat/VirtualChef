@@ -94,6 +94,7 @@ const NutritionalGraphs = ({
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
   // Create a skeleton structure for a tooltip and append it to the page
+  //investigate in this bullshit
   const tip = d3
     .select("body")
     .append("div")
@@ -132,6 +133,7 @@ const NutritionalGraphs = ({
       .enter()
       .append("rect")
       .attr("class", "bar")
+      .attr("fill", "orange")
       .attr("x", d => {
         return x(d);
       })
@@ -149,7 +151,9 @@ const NutritionalGraphs = ({
           .style("top", `${d3.event.pageY + 20}px`)
           .style("display", "inline-block")
           .style("opacity", "0.9")
-          .html(`<div><strong>${d}</strong></div> <span>${d} votes</span>`);
+          .html(
+            `<div><strong>${d}${unit[0]}</strong></div> <span>${d} ${unit[0]}</span>`
+          );
       })
       .on("mouseout", () => tip.style("display", "none"));
 

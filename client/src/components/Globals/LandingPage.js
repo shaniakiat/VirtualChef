@@ -24,7 +24,7 @@ class Dashboard extends Component {
           <div>
             <Header />
             <PredictionHooks />
-            <NutritionalGraphs />
+            {/* <NutritionalGraphs /> */}
             <About />
           </div>
         )}

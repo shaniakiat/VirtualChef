@@ -55,6 +55,15 @@ const NutritionalGraphs = ({
 
   if (quantityData) drawBarChart(dummyData); */
 
+  useEffect(() => {
+    if (quantityData) {
+      drawSvg();
+      return;
+    } else {
+      // alert("no data");
+    }
+  }, [quantityData]);
+
   const margin = { top: 20, right: 20, bottom: 30, left: 40 };
   const width = 960 - margin.left - margin.right;
   const height = 500 - margin.top - margin.bottom;
@@ -72,7 +81,7 @@ const NutritionalGraphs = ({
     .append("div")
     .attr("class", "container");
 
-  container.append("h1").text("Nutritional Values for : (Food name)");
+  container.append("h1").text(`Nutritional Values for :${nutrition}`);
 
   // append the svg object to the body of the page
   // append a 'group' element to 'svg'
@@ -158,15 +167,10 @@ const NutritionalGraphs = ({
       .call(d3.axisLeft(y));
     update(quantityData);
   }
-  if (quantityData) {
-    drawSvg();
-    return;
-  } else {
-    alert("no data");
-  }
 
   return (
-    <div ref={refElement}>
+    //ref={refElement}
+    <div>
       {/* <div>{quantityData ? <div>empty</div> : <div></div>}</div> */}
     </div>
   );

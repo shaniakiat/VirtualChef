@@ -1,15 +1,15 @@
 import React from "react";
 import "../../Styles/App.css";
-import IngredientsPredictions from "./IngredientsPredictions";
 import Fade from "react-reveal/Fade";
+import { Link } from "react-router-dom";
 
 /* -----DIPSLAY THE LIST OF FOOD TO THE USER ------*/
 const FoodList = ({
   predictions,
-  handleToogle,
-  isToggled,
-  idFromFoodButtonClick,
-  predictionsRecipes,
+  // handleToogle,
+  // isToggled,
+  // idFromFoodButtonClick,
+  // predictionsRecipes,
   isLoading
 }) => {
   return (
@@ -28,20 +28,20 @@ const FoodList = ({
           <Fade up>
             <ul>
               {predictions.map((obj, i) => (
-                <li>
-                  <button type="button" onClick={() => handleToogle(obj[0])}>
-                    {obj[0]}
-                  </button>
+                <li key={obj[1]}>
+                  <Link to={`/food/${obj[0].replace(/\s/g, "-")}`}>
+                    <button type="button">{obj[0]}</button>
+                  </Link>
                 </li>
               ))}
             </ul>
           </Fade>
           {/*------------------------RECIPE---------------------------*/}
-          <IngredientsPredictions
+          {/* <IngredientsPredictions
             isToggled={isToggled}
             idFromFoodButtonClick={idFromFoodButtonClick}
             predictionsRecipes={predictionsRecipes}
-          />
+          /> */}
           {/*---------------------------------------------------------*/}
         </div>
       )}

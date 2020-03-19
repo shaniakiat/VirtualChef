@@ -4,7 +4,6 @@ import Fade from "react-reveal/Fade";
 
 import AutoFillDictionary from "./AutoFillDictionary";
 import FoodList from "./FoodList";
-import NutritionalGraphs from "../D3Graphs/NutritionalGraphs";
 
 const FoodPredictions = ({
   idFromButtonClick,
@@ -22,8 +21,7 @@ const FoodPredictions = ({
   open,
   setOpen,
   options,
-  loading,
-  nutrition
+  loading
 }) => {
   return (
     <Container className="prediction-container">
@@ -31,17 +29,10 @@ const FoodPredictions = ({
         <Fade up>
           <h1>Food Prediction</h1>
           <h3>You are looking for food that similar to </h3>
-          <h3 className="idFromButtonClick">
+          <h3 className="idFood2">
             {idFromButtonClick.toString().toLowerCase()}
           </h3>
           <div>
-            {/* <input
-              type="text"
-              value={userFood}
-              onChange={e => setUserFood("" + e.target.value)}
-              placeholder="Enter Your Food"
-              className="input"
-            /> */}
             <AutoFillDictionary
               open={open}
               setOpen={setOpen}
@@ -87,26 +78,8 @@ const FoodPredictions = ({
           </div>
         </Fade>
       </div>
-
-      <NutritionalGraphs
-        /*----------NUTRITION PREDICTIONS VARIABLES----------*/
-        nutrition={nutrition}
-      />
     </Container>
   );
 };
 
 export default FoodPredictions;
-
-// onClick={handleClickIngredients(obj[0])}
-
-// foodButtonClick ? (
-//     <ul>
-//         <li>
-//             {JSON.stringify(predictionsIngredients)}
-//         </li>
-//     </ul>
-// ) : (
-//         <div></div>
-//     )
-// }

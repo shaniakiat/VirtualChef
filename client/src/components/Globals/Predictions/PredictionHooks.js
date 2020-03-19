@@ -13,7 +13,6 @@ const PredictionHooks = () => {
   const [idFromButtonClick, setIdFromButtonClick] = useState("");
   const [buttonClick, setButtonClick] = useState(false);
   const [findPrediction, setFindPrediction] = useState(false);
-  const [nutrition, setNutrition] = useState();
 
   const [isLoading, setLoading] = useState(false);
   // const [loadingSpeed, setLoadingSpeed] = React.useState(1);
@@ -35,7 +34,6 @@ const PredictionHooks = () => {
 
   /*-----------------------FETCH THE PYTHON API FOR THE FOOD PREDICTIONS-----------------------*/
   useEffect(() => {
-    // console.log("THIS HAS TO BE TRUE: " + loading);
     axios
       .get(
         `https://floating-plains-35923.herokuapp.com/prediction/${idFromButtonClick
@@ -43,17 +41,14 @@ const PredictionHooks = () => {
           .toLowerCase()}`
       )
       .then(res => {
-        console.log("FETCHED");
-        // setLoading(false);
+        console.log(res.data);
 
         if (
           res.data.toString() === "Sorry, we couldn't indentify this food yet."
         ) {
-          // setLoading(false);
           setFindPrediction(false);
           setPredictions([]);
         } else {
-          // setLoading(false);
           setFindPrediction(true);
           setPredictions(res.data);
         }
@@ -65,43 +60,39 @@ const PredictionHooks = () => {
       });
   }, [idFromButtonClick]);
 
-  const [idFromFoodButtonClick, setIdFromFoodButtonClick] = useState("");
-  const [isToggled, setToggled] = useState(false);
-  const [predictionsRecipes, setPredictionsRecipes] = useState([]);
+  // const [idFromFoodButtonClick, setIdFromFoodButtonClick] = useState("");
+  // const [isToggled, setToggled] = useState(false);
+  // const [predictionsRecipes, setPredictionsRecipes] = useState([]);
 
-  const handleToogle = e => {
-    console.log(e);
-    setIdFromFoodButtonClick("" + e);
-    console.log(idFromFoodButtonClick.replace(/\s/g, "+").toLocaleLowerCase());
-    setToggled(true); //if this is true than open up the textbox with the list of ingredients
-  };
+  // const handleToogle = e => {
+  //   // console.log(e);
+  //   setIdFromFoodButtonClick("" + e);
+  //   // console.log(idFromFoodButtonClick.replace(/\s/g, "+").toLocaleLowerCase());
+  //   setToggled(true); //if this is true than open up the textbox with the list of ingredients
+  // };
 
-  useEffect(() => {
-    // console.log({ idFromFoodButtonClick });
-    const base = "https://api.edamam.com/search";
-    const YOUR_APP_ID = "b1de00a5";
-    const YOUR_APP_KEY = "bfff8bc6c4056248b815aa647d415437";
+  // useEffect(() => {
+  //   const base = "https://api.edamam.com/search";
+  //   const YOUR_APP_ID = "b1de00a5";
+  //   const YOUR_APP_KEY = "bfff8bc6c4056248b815aa647d415437";
 
-    axios
-      .get(
-        `${base}?q=${idFromFoodButtonClick
-          .replace(/\s/g, "+")
-          .toLocaleLowerCase()}&app_id=${YOUR_APP_ID}&app_key=${YOUR_APP_KEY}`
-      )
-      .then(res => {
-        //getting rescipe nutrients note: there are ten elements inside the object. possibly just take one?
-        // console.log(
-        //   res.data.hits.map(i => {
-        //     return i.recipe.totalNutrients;
-        //   })
-        // );
-        setNutrition(res.data.hits[0].recipe.totalNutrients);
-        setPredictionsRecipes(res.data.hits);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  }, [idFromFoodButtonClick]);
+  //   axios
+  //     .get(
+  //       `${base}?q=${idFromFoodButtonClick
+  //         .replace(/\s/g, "+")
+  //         .toLocaleLowerCase()}&app_id=${YOUR_APP_ID}&app_key=${YOUR_APP_KEY}`
+  //     )
+  //     .then(res => {
+  //       let param = res.data.hits[0].recipe.totalNutrients;
+  //       setPredictionsRecipes(res.data.hits);
+  //       setNutrition(res.data.hits[0].recipe.totalNutrients);
+  //       // getNutritionData(param);
+  //       console.log(res.data);
+  //     })
+  //     .catch(err => {
+  //       console.log(err);
+  //     });
+  // }, [idFromFoodButtonClick]);
 
   function sleep(delay = 0) {
     return new Promise(resolve => {
@@ -146,28 +137,24 @@ const PredictionHooks = () => {
   }, [open]);
 
   return (
-    <FoodPredictions
-      /*----------FOOD PREDICTIONS VARIABLES----------*/
-      idFromButtonClick={idFromButtonClick}
-      userFood={userFood}
-      handleClickPrediction={handleClickPrediction}
-      setUserFood={setUserFood}
-      buttonClick={buttonClick}
-      findPrediction={findPrediction}
-      predictions={predictions}
-      isLoading={isLoading}
-      /*----------INGREDIENTS PREDICTIONS VARIABLES----------*/
-      predictionsRecipes={predictionsRecipes}
-      handleToogle={handleToogle}
-      isToggled={isToggled}
-      idFromFoodButtonClick={idFromFoodButtonClick}
-      /*----------DICTIONARY----------*/
-      open={open}
-      setOpen={setOpen}
-      options={options}
-      loading={loading}
-      nutrition={nutrition}
-    />
+    <div>
+      <FoodPredictions
+        /*----------FOOD PREDICTIONS VARIABLES----------*/
+        idFromButtonClick={idFromButtonClick}
+        userFood={userFood}
+        handleClickPrediction={handleClickPrediction}
+        setUserFood={setUserFood}
+        buttonClick={buttonClick}
+        findPrediction={findPrediction}
+        predictions={predictions}
+        isLoading={isLoading}
+        /*----------DICTIONARY----------*/
+        open={open}
+        setOpen={setOpen}
+        options={options}
+        loading={loading}
+      />
+    </div>
   );
 };
 

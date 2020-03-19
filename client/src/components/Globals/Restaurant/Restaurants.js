@@ -1,12 +1,12 @@
 import React, {
   useState,
-  useEffect,
-  useCallback,
-  useRef,
+  // useEffect,
+  // useCallback,
+  // useRef,
   useInput
 } from "react";
-import { connect, useDispatch, useSelector } from "react-redux";
-import { addItem, deleteItem } from "../../../actions/itemActions";
+// import { connect, useDispatch, useSelector } from "react-redux";
+// import { addItem, deleteItem } from "../../../actions/itemActions";
 const axios = require("axios");
 const zipcodes = require("zipcodes");
 

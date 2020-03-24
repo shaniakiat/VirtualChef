@@ -24,61 +24,60 @@ const FoodPredictions = ({
   loading
 }) => {
   return (
-    <Container className="prediction-container">
+    <div className="prediction-container">
       <div className="predictions">
         <Fade up>
           <h1>Food Prediction</h1>
           <h3>You are looking for food that similar to </h3>
-          <h3 className="idFood2">
+          {/* <h3 className="idFood2">
             {idFromButtonClick.toString().toLowerCase()}
-          </h3>
-          <div>
-            <AutoFillDictionary
-              open={open}
-              setOpen={setOpen}
-              options={options}
-              loading={loading}
-              userFood={userFood}
-              setUserFood={setUserFood}
-            />
+          </h3> */}
 
-            <br></br>
-            <button
-              className="btnOutline"
-              type="button"
-              onClick={handleClickPrediction}
-            >
-              Make Prediction
-            </button>
-            {/*---------------DISPLAY THE FOOD FROM THE FLASK API ---------------*/}
-            <div>
-              {buttonClick ? (
-                <div className="foodie">
-                  {findPrediction ? (
-                    <FoodList
-                      predictions={predictions}
-                      handleToogle={handleToogle}
-                      isToggled={isToggled}
-                      idFromFoodButtonClick={idFromFoodButtonClick}
-                      predictionsRecipes={predictionsRecipes}
-                      isLoading={isLoading}
-                    />
-                  ) : (
-                    <div>
-                      <p>Sorry, we couldn't indentify this food yet.</p>
-                    </div>
-                  )}
-                </div>
-              ) : (
-                <div className="foodie">
-                  <p>Let us predict for you!</p>
-                </div>
-              )}
-            </div>
+          <AutoFillDictionary
+            open={open}
+            setOpen={setOpen}
+            options={options}
+            loading={loading}
+            userFood={userFood}
+            setUserFood={setUserFood}
+          />
+
+          <br></br>
+          <button
+            className="button"
+            type="button"
+            onClick={handleClickPrediction}
+          >
+            Make Prediction
+          </button>
+          {/*---------------DISPLAY THE FOOD FROM THE FLASK API ---------------*/}
+          <div>
+            {buttonClick ? (
+              <div className="foodie">
+                {findPrediction ? (
+                  <FoodList
+                    predictions={predictions}
+                    handleToogle={handleToogle}
+                    isToggled={isToggled}
+                    idFromFoodButtonClick={idFromFoodButtonClick}
+                    predictionsRecipes={predictionsRecipes}
+                    isLoading={isLoading}
+                  />
+                ) : (
+                  <div>
+                    <p>Sorry, we couldn't indentify this food yet.</p>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <div className="foodie">
+                <p>Let us predict for you!</p>
+              </div>
+            )}
           </div>
         </Fade>
       </div>
-    </Container>
+    </div>
   );
 };
 

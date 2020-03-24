@@ -4,30 +4,38 @@
 
 .prediction-container {
   /* height: 600px; */
-  min-height: 600px;
-  padding: 10% 0;
-  margin: 10% 0;
+  min-height: 700px;
+  padding: 20% 0;
+  /* margin: 10% 0; */
   text-align: center;
   overflow: hidden;
+  background-color: var(--mainYellow);
 }
 
 .predictions {
   text-align: center;
   display: inline;
 }
+
+.prediction-container h1 {
+  color: var(--mainDark);
+}
 .predictions .btnOutline {
+  background-color: var(--mainLight);
+  color: var(--mainDark);
   display: block;
   margin: auto;
   font-size: 17px;
 }
 
 .predictions .btnOutline:hover {
+  color: var(--mainGreen);
   text-decoration: none;
 }
-.idFood1 {
+.ingredient-h3 {
   text-align: center;
 }
-.idFood2 {
+.ingredient-h3-id {
   font-size: 30px;
   font-weight: 700 !important;
   color: var(--mainGreen);
@@ -48,6 +56,56 @@ input {
   display: block;
   margin: auto;
   font-size: 17px;
+}
+
+.predictions .button {
+  margin: 1rem;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  text-decoration: none;
+  background-color: var(--mainYellow);
+  color: var(--mainDark);
+  border: 2px solid var(--mainDark);
+  padding: 0.5rem 1rem;
+  font-size: 1.2rem;
+  position: relative;
+  transition: all 0.5s;
+}
+
+.predictions .button::before,
+.predictions .button::after {
+  content: "";
+  position: absolute;
+  width: 2.5rem;
+  height: 2rem;
+  border-style: solid;
+  border-color: var(--mainDark);
+  transition: all 0.5s;
+}
+
+.predictions .button::before {
+  top: -12px;
+  left: -12px;
+  border-width: 2px 0 0 2px;
+}
+
+.predictions .button::after {
+  bottom: -12px;
+  right: -12px;
+  border-width: 0 2px 2px 0;
+}
+
+.predictions .button:hover::before,
+.predictions .button:hover::after {
+  width: calc(100% + 24px);
+  height: calc(100% + 24px);
+  border-color: var(--mainDark);
+}
+
+.predictions .button:hover {
+  color: var(--mainWhite);
+  text-decoration: none;
+  background-color: var(--mainDark);
 }
 
 .foodie {
@@ -85,7 +143,7 @@ input {
 .foodie ul li button:hover {
   box-shadow: none;
   text-decoration: none;
-  color: var(--mainWhite);
+  color: var(--mainYellow);
   background-size: 4px 50px;
 }
 
@@ -94,7 +152,7 @@ button:focus {
 }
 
 ul li .label {
-  font-size: 1.6vw;
+  font-size: 1.7vw;
   font-weight: 600;
   text-decoration: none !important;
   list-style-type: none;
@@ -106,39 +164,6 @@ ul li .label {
 
 ul li .label:hover {
   background-size: 0px !important;
-}
-
-ul li .ingredients {
-  list-style-type: none;
-  text-align: left;
-  padding: 0 10px;
-}
-
-ul {
-  padding-bottom: 10px;
-}
-
-.grid-container {
-  display: grid;
-  grid-template-columns: auto auto auto;
-  /* grid-auto-rows: minmax(10px, auto); */
-  /* grid-auto-rows: max-content max-content max-content; */
-  /* background-color: var(--mainDark); */
-  padding: 10px;
-  margin: 10px 0;
-  list-style-type: none;
-}
-
-.grid-item {
-  padding: 10px;
-  border: 2px solid var(--mainDark);
-  margin: 10px;
-  background-color: var(--mainWhite);
-  font-size: 1.1vw;
-  font-family: "Poppins", sans-serif;
-  color: var(--mainOrange);
-  text-align: center;
-  border-radius: 20px;
 }
 
 .loading {

@@ -68,7 +68,7 @@ class AppNavbar extends Component {
         <Navbar color="faded" light expand="sm" className="mb-5 ">
           <Container>
             <Link to="/">
-              <NavbarBrand>VirtualChef</NavbarBrand>
+              <NavbarBrand>Virtual Chef</NavbarBrand>
             </Link>
 
             <NavbarToggler onClick={this.toggle} />

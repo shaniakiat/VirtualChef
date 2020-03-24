@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-import "../../Styles/App.css";
+import "../../Styles/Ingredients.css";
 import * as d3 from "d3";
 
 function IngredientList({ match }) {
@@ -151,7 +151,7 @@ function IngredientList({ match }) {
     const container = d3
       .select("body")
       .append("div")
-      .attr("class", "container");
+      .attr("class", "graph");
 
     container.append("h1").text(`Nutritional Values for :${id}`);
     // append the svg object to the body of the page
@@ -197,13 +197,14 @@ function IngredientList({ match }) {
   }
 
   return (
-    <div>
-      <h3 className="idFood1">You have clicked on </h3>
-      <h3 className="idFood2">{id}</h3>
+    <div className="ingredient-list">
+      <h3 className="ingredient-h3">You have clicked on </h3>
+      <h3 className="ingredient-h3-id">{id}</h3>
       <ul>
         <div class="grid-container">
           {ingredient.map(obj => (
             <div class="grid-item">
+              <img className="ingredient-img" src={obj.recipe.image}></img>
               <li>
                 <h3 className="label">{obj.recipe.label.toLowerCase()}</h3>
                 <ul>

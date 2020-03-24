@@ -8,7 +8,7 @@ import UserProfile from "./components/Globals/User/UserProfile";
 import IngredientList from "./components/Globals/Predictions/IngredientList";
 import store from "./store";
 
-import { Container } from "reactstrap";
+// import { Container } from "reactstrap";
 import { Provider } from "react-redux";
 import { loadUser } from "./actions/authActions";
 
@@ -33,35 +33,24 @@ class App extends Component {
         <Provider store={store}>
           <div className="App">
             <AppNavbar />
-            <Container className="page-container">
-              <Container className="content-wrap">
-                {/* <LandingPage /> */}
-
-                {/* {routes.map(({ path, Component }) => (
-                  <Route key={path} exact path={path}>
-                    <Component />
-                  </Route>
-                ))} */}
-                <Switch>
-                  <Route key="/" path="/" exact component={LandingPage} />
-                  <Route key="/" path="/user" exact component={UserProfile} />
-                  <Route
-                    key="/"
-                    path="/food/:id"
-                    exact
-                    component={IngredientList}
-                  />
-                  <Route
-                    key="/"
-                    path="/user/:id"
-                    exact
-                    component={IngredientList}
-                  />
-                </Switch>
-              </Container>
-            </Container>
-            <Footer />
+            <Switch>
+              <Route key="/" path="/" exact component={LandingPage} />
+              <Route key="/" path="/user" exact component={UserProfile} />
+              <Route
+                key="/"
+                path="/food/:id"
+                exact
+                component={IngredientList}
+              />
+              <Route
+                key="/"
+                path="/user/:id"
+                exact
+                component={IngredientList}
+              />
+            </Switch>
           </div>
+          <Footer />
         </Provider>
       </Router>
     );

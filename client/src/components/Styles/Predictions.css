@@ -145,7 +145,7 @@ input {
 .foodie ul li button:hover {
   box-shadow: none;
   text-decoration: none;
-  color: var(--mainYellow);
+  color: #dbe7c5;
   background-size: 4px 50px;
 }
 

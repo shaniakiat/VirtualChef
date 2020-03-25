@@ -69,20 +69,13 @@ function IngredientList({ match }) {
       let value = { labels: label, quantities: quantity };
       data.push(value);
     });
-    console.log(data);
-    // setNutritionType(nutritiontypearray);
-    // setQuanityData(quantityarr);
-    // setUnit(unitarr);
-    console.log(nutritiontypearray);
-    console.log(quantityarr);
-    console.log(unitarr);
     drawSvg(data, unitarr);
   };
 
   function drawSvg(data, unit) {
     //d3js
-    const margin = { top: 20, right: 20, bottom: 30, left: 40 };
-    const width = 960 - margin.left - margin.right;
+    const margin = { top: 40, right: 40, bottom: 40, left: 40 };
+    const width = 900 - margin.left - margin.right;
     const height = 500 - margin.top - margin.bottom;
     // set the ranges for the graph
     const x = d3
@@ -108,11 +101,14 @@ function IngredientList({ match }) {
     const y = d3.scaleLinear().range([height, 0]);
     // append the container for the graph to the page
     const container = d3
-      .select("body")
+      .select(".d3-bar-chart")
       .append("div")
       .attr("class", "graph");
 
-    container.append("h1").text(`Nutritional Values for :${match.params.id}`);
+    container
+      .append("h3")
+      .text(`Nutritional Values`)
+      .attr("class", "ingredient-h3-id");
     // append the svg object to the body of the page
     // append a 'group' element to 'svg'
     // moves the 'group' element to the top left margin
@@ -121,12 +117,15 @@ function IngredientList({ match }) {
       .attr("width", width + margin.left + margin.right)
       .attr("height", height + margin.top + margin.bottom)
       .append("g")
-      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+      .attr("class", "graph-svg");
+
+    // .attr("class", "ingredient-h3");
 
     // Create a skeleton structure for a tooltip and append it to the page
     //investigate in this bullshit
     const tip = d3
-      .select("body")
+      .select(".d3-bar-chart")
       .append("div")
       .attr("class", "tooltip");
 
@@ -135,7 +134,6 @@ function IngredientList({ match }) {
       .attr("transform", "translate(0," + height + ")")
       .attr("class", "x-axis")
       .call(d3.axisBottom(y));
-
     svg
       .append("g")
       .attr("class", "y-axis")
@@ -200,10 +198,11 @@ function IngredientList({ match }) {
           .style("display", "inline-block")
           .style("opacity", "0.9")
           .html(
-            `<div><strong>${d.labels}</strong></div> <span>${d.quantities} ${unit[0]}</span>`
+            `<h3><strong>${d.labels}</strong></h3> <div>${d.quantities} ${unit[0]}</div>`
           );
       })
       .on("mouseout", () => tip.style("display", "none"));
+
     // .attr("x", nutritiontypearray.map());
     //Create X axis label
     svg
@@ -234,6 +233,7 @@ function IngredientList({ match }) {
     <div className="ingredient-list">
       <h3 className="ingredient-h3">You have clicked on </h3>
       <h3 className="ingredient-h3-id">{id}</h3>
+      <div className="d3-bar-chart"></div>
       {/* <div>⬅️</div> */}
       <ul>
         <div class="grid-container">

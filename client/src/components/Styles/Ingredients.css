@@ -67,6 +67,10 @@ ul {
   }
 }
 
+.graph-svg {
+  width: 20px;
+}
+
 @media only screen and (max-width: 600px) {
   .ingredient-list {
     margin: 0 10%;

@@ -16,6 +16,8 @@ const PredictionHooks = () => {
 
   const [isLoading, setLoading] = useState(false);
   // const [loadingSpeed, setLoadingSpeed] = React.useState(1);
+  const key =
+    "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODUxMDQ1NDQsIm5iZiI6MTU4NTEwNDU0NCwianRpIjoiYjZjMmQ2MjQtMzI0Zi00NWExLWI5NDktN2I0NTUwYjY5OWIwIiwiaWRlbnRpdHkiOiJEYXZpZCIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.dJ9fA5dOjHYOv434xS03N0QQW0lspsKUGmEFcRbZW_s";
 
   const handleClickPrediction = () => {
     setLoading(true);
@@ -38,7 +40,12 @@ const PredictionHooks = () => {
       .get(
         `https://floating-plains-35923.herokuapp.com/prediction/${idFromButtonClick
           // .replace(/\s/g, " ")
-          .toLowerCase()}`
+          .toLowerCase()}`,
+        {
+          headers: {
+            Authorization: `Bearer ${key}`
+          }
+        }
       )
       .then(res => {
         console.log(res.data);

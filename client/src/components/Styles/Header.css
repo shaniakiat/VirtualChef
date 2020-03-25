@@ -3,7 +3,7 @@
 .home {
   height: 700px;
   min-height: 700px;
-  padding: 10% 0;
+  padding: 10% 15px;
   background-image: url(../../images/background_header.png);
   background-repeat: no-repeat;
   background-size: contain;

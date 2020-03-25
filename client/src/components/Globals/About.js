@@ -6,11 +6,13 @@ class Team extends Component {
     return (
       <section>
         <div id="about" className="about">
-          <Fade up>
-            <div className="left-content">
+          <div className="left-content">
+            <Fade right>
               <h1>Our Mission</h1>
-            </div>
-            <div className="right-content">
+            </Fade>
+          </div>
+          <div className="right-content">
+            <Fade left>
               <p>
                 We want to develop an app which helps to recommend foods based
                 on ingredients you have on hand and/or your tastes.
@@ -24,8 +26,8 @@ class Team extends Component {
                 you to make the most of what you have and give you new ideas you
                 might not have had before.
               </p>
-            </div>
-          </Fade>
+            </Fade>
+          </div>
         </div>
       </section>
     );

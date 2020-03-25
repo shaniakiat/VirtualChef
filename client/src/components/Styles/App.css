@@ -56,12 +56,12 @@ p {
   font-size: 15px;
 }
 .navbar-light .navbar-brand {
-  font-weight: 600;
+  font-weight: 400;
   color: var(--mainGreen) !important;
 }
 
 .navbar-light .navbar-nav .nav-link {
-  font-weight: 600;
+  font-weight: 400;
   color: var(--mainOrange) !important;
 }
 

@@ -3,16 +3,19 @@
 .ingredient-list {
   margin: 0 15%;
   padding: 0;
+  /* background-color: #98bb5c59; */
 }
 
 ul li .ingredients {
   list-style-type: none;
   text-align: left;
   padding: 0 10px;
+  list-style-type: none;
 }
 
 ul {
   padding-bottom: 10px;
+  list-style-type: none;
 }
 
 .grid-container {
@@ -22,43 +25,54 @@ ul {
   /* grid-auto-rows: max-content max-content max-content; */
   /* background-color: var(--mainDark); */
   padding: 10px;
-  margin: 10px 0;
+  margin: 0 10%;
   list-style-type: none;
 }
 
 .grid-item {
   /* padding: 10px; */
+
   border: 2px solid var(--mainDark);
   margin: 20px;
-  background-color: var(--mainWhite);
+  background-color: #98bb5c59;
   font-size: 1.3vw;
   font-family: "Poppins", sans-serif;
   color: var(--mainOrange);
   text-align: center;
+  transition: all 0.2s;
   transition: all 0.5s;
   /* border-radius: 20px; */
 }
 
 .grid-item:hover {
-  /* padding: 10px; */
+  background-color: var(--mainWhite);
 }
 
 .ingredient-img {
-  width: 32vw;
+  width: 100%;
   border-bottom: 2px solid var(--mainDark);
-  transition: all 0.5s;
 }
 
 /* .grid-item .ingredient-img:hover {
   opacity: 100%;
 } */
 @media only screen and (max-width: 1024px) {
+  .ingredient-list {
+    margin: 0 10%;
+    padding: 0;
+    /* background-color: #98bb5c59; */
+  }
   .ingredient-img {
-    width: 30vw;
+    /* width: 30vw; */
   }
 }
 
 @media only screen and (max-width: 600px) {
+  .ingredient-list {
+    margin: 0 10%;
+    padding: 0;
+    /* background-color: #98bb5c59; */
+  }
   ul li .label {
     font-size: 12px;
     font-weight: 600;
@@ -77,6 +91,7 @@ ul {
   .grid-container {
     display: flex;
     flex-direction: column;
+    text-decoration: none !important;
   }
   .grid-item {
     font-size: 12px;

@@ -21,8 +21,8 @@
   padding: 10%;
   background-color: var(--mainLight);
   background-color: var(--mainWhite);
-  border-top: 2px dashed var(--mainDark);
-  border-bottom: 2px dashed var(--mainDark);
+  border-top: 3px solid var(--mainDark);
+  border-bottom: 3px solid var(--mainDark);
 }
 
 .about .right-content {

@@ -9,7 +9,9 @@
   /* margin: 10% 0; */
   text-align: center;
   overflow: hidden;
-  background-color: var(--mainYellow);
+  background-color: #98bb5c59;
+
+  /* border-top: 2px dashed var(--mainDark); */
 }
 
 .predictions {
@@ -18,9 +20,9 @@
 }
 
 .prediction-container h1 {
-  color: var(--mainDark);
+  color: var(--mainGreen);
 }
-.predictions .btnOutline {
+/* .predictions .btnOutline {
   background-color: var(--mainLight);
   color: var(--mainDark);
   display: block;
@@ -31,7 +33,7 @@
 .predictions .btnOutline:hover {
   color: var(--mainGreen);
   text-decoration: none;
-}
+} */
 .ingredient-h3 {
   text-align: center;
 }
@@ -63,7 +65,7 @@ input {
   font-family: "Poppins", sans-serif;
   font-weight: 400;
   text-decoration: none;
-  background-color: var(--mainYellow);
+  background-color: #dbe7c5;
   color: var(--mainDark);
   border: 2px solid var(--mainDark);
   padding: 0.5rem 1rem;

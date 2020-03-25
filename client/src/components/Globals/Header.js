@@ -12,23 +12,27 @@ class Header extends Component {
   };
   render() {
     return (
-      <header id="home" className="home">
-        <Fade left>
-          <h1>Explore Delicious Food & The World's Cuisines</h1>
-        </Fade>
-        <Fade right>
-          <h3>
-            virtualchef uses <span className="ml">machine learning</span> to
-            help you discover broad ranges of food with the best taste and the
-            most delicious experience
-          </h3>
-        </Fade>
-        <Fade left>
-          <a href="#about" className="btnOutline">
-            Learn More
-          </a>
-        </Fade>
-      </header>
+      <section>
+        <div id="home" className="home">
+          <Fade left>
+            <h1>Explore Delicious Food & The World's Cuisines</h1>
+          </Fade>
+          <Fade right>
+            <h3>
+              virtualchef uses <span className="ml">machine learning</span> to
+              help you discover broad ranges of food with the best taste and the
+              most delicious experience
+            </h3>
+          </Fade>
+          <Fade left>
+            <div className="div-button">
+              <a href="#about" className="button">
+                Learn More
+              </a>
+            </div>
+          </Fade>
+        </div>
+      </section>
     );
   }
 }

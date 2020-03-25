@@ -11,8 +11,9 @@
 :root {
   --mainDark: #0f2d2f;
   --mainGreen: #196d4c;
-  --mainLight: #7ed49a;
-  --mainOrange: #a64b2d;
+  --mainLight: #98bb5c;
+  --mainOrange: #993d1f;
+  --mainYellow: #f0d74b;
   --mainWhite: #ffffff;
   --mainBlack: #000000;
 }
@@ -23,6 +24,7 @@
   border: 0;
   outline: 0;
   font-size: 100%;
+  font-family: "Poppins", sans-serif;
   /* vertical-align: baseline; */
   /* font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif; */
 }
@@ -54,12 +56,12 @@ p {
   font-size: 15px;
 }
 .navbar-light .navbar-brand {
-  font-weight: 600;
+  font-weight: 400;
   color: var(--mainGreen) !important;
 }
 
 .navbar-light .navbar-nav .nav-link {
-  font-weight: 600;
+  font-weight: 400;
   color: var(--mainOrange) !important;
 }
 

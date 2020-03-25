@@ -6,6 +6,7 @@ import axios from "axios";
 import { addItem, deleteItem, getItems } from "../../../actions/itemActions";
 // import IngredientsPredictions from "../Predictions/IngredientsPredictions";
 import { loadUser } from "../../../actions/authActions";
+import { Link } from "react-router-dom";
 
 // import { createSelector } from "reselect";
 
@@ -106,6 +107,7 @@ const UserProfile = props => {
   return (
     <div className="login">
       <h1>
+        Hi!👋
         {/* Hello {auth.charAt(0).toUpperCase() + auth.slice(1).toLowerCase()}! */}
       </h1>
       <h3>What is your favorite food?</h3>
@@ -116,11 +118,7 @@ const UserProfile = props => {
         onChange={e => setNewUserFavorite(e.target.value)}
         className="input"
       ></input>
-      <button
-        className="btnOutline-login"
-        type="button"
-        onClick={submitFavorites}
-      >
+      <button className="button-login" type="button" onClick={submitFavorites}>
         Submit your favorite
       </button>
       <div className="favFoodList">
@@ -128,12 +126,14 @@ const UserProfile = props => {
         <ul>
           {favArray.map(obj => (
             <li>
-              <button
-                type="button"
-                onClick={() => handleToogle(obj.FoodFavorited)}
-              >
-                {obj.FoodFavorited}
-              </button>
+              <Link to={`/user/${obj.FoodFavorited.replace(/\s/g, "-")}`}>
+                <button
+                  type="button"
+                  onClick={() => handleToogle(obj.FoodFavorited)}
+                >
+                  {obj.FoodFavorited}
+                </button>
+              </Link>
               {/* <button>Delete button</button> */}
               <TiDelete
                 className="tiDelete"

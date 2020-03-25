@@ -38,12 +38,12 @@ class AppNavbar extends Component {
       <Fragment>
         <NavItem>
           <span className="navbar-text mr-3">
-            <strong>
-              {user
-                ? `Welcome ${user.name.charAt(0).toUpperCase() +
-                    user.name.slice(1).toLowerCase()}`
-                : ""}
-            </strong>
+            {/* <strong> */}
+            {user
+              ? `Welcome ${user.name.charAt(0).toUpperCase() +
+                  user.name.slice(1).toLowerCase()}`
+              : ""}
+            {/* </strong> */}
           </span>
         </NavItem>
         <NavItem>
@@ -68,7 +68,7 @@ class AppNavbar extends Component {
         <Navbar color="faded" light expand="sm" className="mb-5 ">
           <Container>
             <Link to="/">
-              <NavbarBrand>VirtualChef</NavbarBrand>
+              <NavbarBrand>Virtual Chef</NavbarBrand>
             </Link>
 
             <NavbarToggler onClick={this.toggle} />

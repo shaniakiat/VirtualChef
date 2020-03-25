@@ -1,11 +1,12 @@
 @import url("App.css");
 
 .login {
-  /* height: 100vh; */
+  min-height: 90vh;
   overflow: hidden;
+  margin: 0 15%;
 }
 
-.btnOutline-login {
+/* .btnOutline-login {
   display: block;
   text-decoration: none;
   color: white;
@@ -28,6 +29,57 @@
 .btnOutline-login:hover {
   text-decoration: none;
   color: var(--mainLight);
+} */
+
+.button-login {
+  display: block;
+  /* margin: 0.8rem; */
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  text-decoration: none;
+  background-color: var(--mainWhite);
+  color: var(--mainDark);
+  border: 2px solid var(--mainDark);
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  position: relative;
+  transition: all 0.5s;
+}
+
+/* .button-login::before,
+.button-login::after {
+  content: "";
+  position: absolute;
+  width: 2.5rem;
+  height: 2rem;
+  border-style: solid;
+  border-color: var(--mainDark);
+  transition: all 0.5s;
+}
+
+.button-login::before {
+  top: -12px;
+  left: -12px;
+  border-width: 2px 0 0 2px;
+}
+
+.button-login::after {
+  bottom: -12px;
+  right: -12px;
+  border-width: 0 2px 2px 0;
+}
+
+.button-login:hover::before,
+.button-login:hover::after {
+  width: calc(100% + 24px);
+  height: calc(100% + 24px);
+  border-color: var(--mainDark);
+} */
+
+.button-login:hover {
+  color: var(--mainWhite);
+  text-decoration: none;
+  background-color: var(--mainDark);
 }
 
 .favFoodList {

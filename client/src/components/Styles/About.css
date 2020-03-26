@@ -2,17 +2,13 @@
 
 /* ABOUT */
 .about {
-  overflow: hidden;
+  min-height: 600px;
+  padding: 10%;
+  margin: 10%;
   text-align: center;
-  /* margin: 10% 15%;
-  padding: 10% 0; */
-  display: grid;
-  grid-template-columns: 40% 60%;
-}
-.about h1 {
-  color: var(--mainDark);
-  margin: 50% 0;
-  /* margin-bottom: 30px; */
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .about .left-content {

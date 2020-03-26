@@ -27,13 +27,17 @@ const FoodList = ({
         <div>
           <Fade up>
             <ul>
-              {predictions.map((obj, i) => (
-                <li key={obj[1]}>
-                  <Link to={`/food/${obj[0].replace(/\s/g, "-")}`}>
-                    <button type="button">{obj[0]}</button>
-                  </Link>
-                </li>
-              ))}
+              <div className="container-food">
+                {predictions.map((obj, i) => (
+                  <div className="grid-food">
+                    <li key={obj[1]}>
+                      <Link to={`/food/${obj[0].replace(/\s/g, "-")}`}>
+                        <button type="button">{obj[0]}</button>
+                      </Link>
+                    </li>
+                  </div>
+                ))}
+              </div>
             </ul>
           </Fade>
           {/*------------------------RECIPE---------------------------*/}

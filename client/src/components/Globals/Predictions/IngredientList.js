@@ -108,7 +108,7 @@ function IngredientList({ match }) {
     container
       .append("h3")
       .text(`Nutritional Values`)
-      .attr("class", "ingredient-h3-id");
+      .attr("class", "ingredient-h3");
     // append the svg object to the body of the page
     // append a 'group' element to 'svg'
     // moves the 'group' element to the top left margin
@@ -231,8 +231,8 @@ function IngredientList({ match }) {
 
   return (
     <div className="ingredient-list">
-      <h3 className="ingredient-h3">You have clicked on </h3>
-      <h3 className="ingredient-h3-id">{id}</h3>
+      {/* <h3 className="ingredient-h3">You have clicked on </h3> */}
+      <h3 className="ingredient-h3-id">{id.toLocaleUpperCase()}</h3>
       <div className="d3-bar-chart"></div>
       {/* <div>⬅️</div> */}
       <ul className="recipes">

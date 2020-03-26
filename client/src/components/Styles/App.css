@@ -1,13 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Poppins:400,600,700&display=swap");
 
-/* :root {
-  --mainGreen: #196d4c;
-  --mainGreen: #7ed49a;
-  --mainOrange: #a08a6c;
-  --mainBlack: #000000;
-  --mainWhite: #ffffff;
-} */
-
 :root {
   --mainDark: #0f2d2f;
   --mainGreen: #196d4c;
@@ -25,8 +17,6 @@
   outline: 0;
   font-size: 100%;
   font-family: "Poppins", sans-serif;
-  /* vertical-align: baseline; */
-  /* font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif; */
 }
 
 h1 {
@@ -47,8 +37,7 @@ p {
   font-weight: 400;
   font-size: 20px;
   color: var(--mainOrange);
-  padding: 0 10%;
-  /* padding-bottom: 20%; */
+  /* padding: 0 10%; */
 }
 
 /* NAVBAR */
@@ -75,7 +64,7 @@ p {
 }
 
 .content-wrap {
-  padding-bottom: 2.5rem; /* Footer height */
+  padding-bottom: 2.5rem;
 }
 /* RESPONSIVE */
 
@@ -93,6 +82,5 @@ p {
     font-size: 15px;
     color: var(--mainOrange);
     padding: 0 10%;
-    /* padding-bottom: 20%; */
   }
 }

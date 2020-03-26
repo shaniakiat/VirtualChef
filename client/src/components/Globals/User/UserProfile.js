@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useReducer, useCallback } from "react";
 import { TiDelete } from "react-icons/ti";
 import Restaurants from "../Restaurant/Restaurants";
 import { connect, useDispatch, useSelector } from "react-redux";
@@ -17,7 +17,7 @@ const UserProfile = props => {
   const tokenRecognized = useSelector(state => state.auth.token);
 
   const auth = useSelector(state => state.auth);
-  const foodFavoritesArray = useSelector(state => state.item.items);
+  const foodFavoritesArray = useSelector(state => state.item);
 
   const dispatch = useDispatch();
 
@@ -25,7 +25,6 @@ const UserProfile = props => {
     // fetch user data when component mounts
     dispatch(loadUser(tokenRecognized));
   }, [dispatch, tokenRecognized]);
-
   useEffect(() => {
     console.log(auth.isAuthenicated);
     if (auth.user) {
@@ -40,8 +39,7 @@ const UserProfile = props => {
         })
         .catch(err => console.log(err));
     }
-  }, [auth.isAuthenicated, auth.user]);
-  console.log(favArray);
+  }, [auth.isAuthenicated, auth.user, foodFavoritesArray]);
 
   const submitFavorites = e => {
     e.preventDefault();
@@ -54,24 +52,13 @@ const UserProfile = props => {
     // foodItems
     props.addItem(newFoodFavorite, foodFavoritesArray);
     console.log(newFoodFavorite);
-    fetchFavoriteFood();
+    // fetchFavoriteFood();
   };
 
-  const fetchFavoriteFood = () => {
-    axios
-      .get(`/api/items/item/${auth.user._id}`)
-      .then(res => {
-        return res.data;
-      })
-      .then(json => {
-        setFavArray(json);
-      })
-      .catch(err => console.log(err));
-  };
   const deleteFav = id => {
     props.deleteItem(id);
-    fetchFavoriteFood();
   };
+  console.log(favArray);
 
   // GETTING INGREDIENTS
   const [idFromFoodButtonClick, setIdFromFoodButtonClick] = useState("");
@@ -155,7 +142,8 @@ const UserProfile = props => {
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  errors: state.errors
+  errors: state.errors,
+  item: state.item
 });
 
 export default connect(mapStateToProps, { addItem, deleteItem, getItems })(

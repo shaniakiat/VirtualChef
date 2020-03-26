@@ -36,6 +36,11 @@ const PredictionHooks = () => {
 
   /*-----------------------FETCH THE PYTHON API FOR THE FOOD PREDICTIONS-----------------------*/
   useEffect(() => {
+    //check
+    if (idFromButtonClick === "") {
+      console.log("it's empty");
+      // return;
+    }
     axios
       .get(
         `https://floating-plains-35923.herokuapp.com/prediction/${idFromButtonClick

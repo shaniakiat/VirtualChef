@@ -46,40 +46,18 @@
   transition: all 0.5s;
 }
 
-/* .button-login::before,
-.button-login::after {
-  content: "";
-  position: absolute;
-  width: 2.5rem;
-  height: 2rem;
-  border-style: solid;
-  border-color: var(--mainDark);
-  transition: all 0.5s;
-}
-
-.button-login::before {
-  top: -12px;
-  left: -12px;
-  border-width: 2px 0 0 2px;
-}
-
-.button-login::after {
-  bottom: -12px;
-  right: -12px;
-  border-width: 0 2px 2px 0;
-}
-
-.button-login:hover::before,
-.button-login:hover::after {
-  width: calc(100% + 24px);
-  height: calc(100% + 24px);
-  border-color: var(--mainDark);
-} */
-
 .button-login:hover {
   color: var(--mainWhite);
   text-decoration: none;
   background-color: var(--mainDark);
+}
+
+input {
+  text-align: center;
+  height: 50px;
+  width: 55%;
+  border: 1px solid var(--mainDark);
+  margin: 10px 0;
 }
 
 .favFoodList {
@@ -137,4 +115,10 @@ button:focus {
 
 .tiDelete:hover {
   color: var(--mainDark);
+}
+
+@media only screen and (max-width: 600px) {
+  input {
+    width: 80%;
+  }
 }

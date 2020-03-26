@@ -38,38 +38,41 @@ const PredictionHooks = () => {
   useEffect(() => {
     //check
     if (idFromButtonClick === "") {
-      console.log("it's empty");
+      setFindPrediction(false);
+      setPredictions([]);
       // return;
-    }
-    axios
-      .get(
-        `https://floating-plains-35923.herokuapp.com/prediction/${idFromButtonClick
-          // .replace(/\s/g, " ")
-          .toLowerCase()}`,
-        {
-          headers: {
-            Authorization: `Bearer ${key}`
+    } else {
+      axios
+        .get(
+          `https://floating-plains-35923.herokuapp.com/prediction/${idFromButtonClick
+            // .replace(/\s/g, " ")
+            .toLowerCase()}`,
+          {
+            headers: {
+              Authorization: `Bearer ${key}`
+            }
           }
-        }
-      )
-      .then(res => {
-        console.log(res.data);
+        )
+        .then(res => {
+          console.log(res.data);
 
-        if (
-          res.data.toString() === "Sorry, we couldn't indentify this food yet."
-        ) {
+          if (
+            res.data.toString() ===
+            "Sorry, we couldn't indentify this food yet."
+          ) {
+            setFindPrediction(false);
+            setPredictions([]);
+          } else {
+            setFindPrediction(true);
+            setPredictions(res.data);
+          }
+        })
+        .catch(err => {
+          console.log(err);
           setFindPrediction(false);
           setPredictions([]);
-        } else {
-          setFindPrediction(true);
-          setPredictions(res.data);
-        }
-      })
-      .catch(err => {
-        console.log(err);
-        setFindPrediction(false);
-        setPredictions([]);
-      });
+        });
+    }
   }, [idFromButtonClick]);
 
   // const [idFromFoodButtonClick, setIdFromFoodButtonClick] = useState("");

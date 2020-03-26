@@ -6,6 +6,18 @@
   /* background-color: #98bb5c59; */
 }
 
+.graph {
+  display: grid;
+  justify-content: center;
+}
+
+h3.nutrition-label {
+  font-size: 30px;
+  font-weight: 700 !important;
+  color: var(--mainGreen);
+  text-align: center;
+}
+
 ul li .ingredients {
   list-style-type: none;
   text-align: left;
@@ -13,29 +25,30 @@ ul li .ingredients {
   list-style-type: none;
 }
 
-ul {
+ul.recipes {
   padding-bottom: 10px;
   list-style-type: none;
+  justify-content: center;
 }
 
 .grid-container {
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: 50% 50%;
   /* grid-auto-rows: minmax(10px, auto); */
   /* grid-auto-rows: max-content max-content max-content; */
   /* background-color: var(--mainDark); */
-  padding: 10px;
-  margin: 0 10%;
+  /* padding: 10px; */
+  /* margin: 0 10%; */
   list-style-type: none;
 }
 
 .grid-item {
-  /* padding: 10px; */
+  padding-bottom: 10px;
 
   border: 2px solid var(--mainDark);
   margin: 20px;
   background-color: #98bb5c59;
-  font-size: 1.3vw;
+  font-size: 1.2vw;
   font-family: "Poppins", sans-serif;
   color: var(--mainOrange);
   text-align: center;
@@ -67,10 +80,6 @@ ul {
   }
 }
 
-.graph-svg {
-  width: 20px;
-}
-
 @media only screen and (max-width: 600px) {
   .ingredient-list {
     margin: 0 10%;
@@ -88,7 +97,7 @@ ul {
     padding: 5px;
   }
 
-  ul li .label:hover {
+  ul.rec ul li .label:hover {
     background-size: 0px !important;
   }
 

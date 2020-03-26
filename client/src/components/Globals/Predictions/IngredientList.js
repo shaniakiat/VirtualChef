@@ -74,9 +74,9 @@ function IngredientList({ match }) {
 
   function drawSvg(data, unit) {
     //d3js
-    const margin = { top: 40, right: 40, bottom: 40, left: 40 };
-    const width = 900 - margin.left - margin.right;
-    const height = 500 - margin.top - margin.bottom;
+    const margin = { top: 40, right: 40, bottom: 40, left: 50 };
+    const width = 380 - margin.left - margin.right;
+    const height = 300 - margin.top - margin.bottom;
     // set the ranges for the graph
     const x = d3
       .scaleBand()
@@ -115,7 +115,7 @@ function IngredientList({ match }) {
     const svg = container
       .append("svg")
       .attr("width", width + margin.left + margin.right)
-      .attr("height", height + margin.top + margin.bottom)
+      .attr("height", height + margin.top + margin.bottom + 40)
       .append("g")
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
       .attr("class", "graph-svg");
@@ -179,7 +179,7 @@ function IngredientList({ match }) {
       .enter()
       .append("rect")
       .attr("class", "bar")
-      .attr("fill", "green")
+      .attr("fill", "#196d4c")
       .attr("x", d => {
         return x(d.labels);
       })
@@ -196,7 +196,7 @@ function IngredientList({ match }) {
           .style("left", `${d3.event.pageX + 10}px`)
           .style("top", `${d3.event.pageY + 20}px`)
           .style("display", "inline-block")
-          .style("opacity", "0.9")
+          .style("opacity", "1")
           .html(
             `<h3><strong>${d.labels}</strong></h3> <div>${d.quantities} ${unit[0]}</div>`
           );
@@ -220,7 +220,7 @@ function IngredientList({ match }) {
       .attr("x", 0 - height / 2)
       .attr("dy", "1em")
       .style("text-anchor", "middle")
-      .text("Grams(g)");
+      .text("Grams (g)");
 
     // update the x-axis
     svg.select(".x-axis").call(d3.axisBottom(x));
@@ -235,10 +235,10 @@ function IngredientList({ match }) {
       <h3 className="ingredient-h3-id">{id}</h3>
       <div className="d3-bar-chart"></div>
       {/* <div>⬅️</div> */}
-      <ul>
-        <div class="grid-container">
+      <ul className="recipes">
+        <div className="grid-container">
           {ingredient.map(obj => (
-            <div class="grid-item">
+            <div className="grid-item">
               <img className="ingredient-img" src={obj.recipe.image}></img>
               <li>
                 <h3 className="label">{obj.recipe.label.toLowerCase()}</h3>

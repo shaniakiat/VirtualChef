@@ -4,19 +4,31 @@
 
 .prediction-container {
   /* height: 600px; */
-  min-height: 700px;
-  padding: 20% 0;
+  min-height: 600px;
+  /* padding: 10% 0; */
   /* margin: 10% 0; */
+  padding: 10%;
   text-align: center;
   overflow: hidden;
-  background-color: #98bb5c59;
+  background-color: #dbe7c5;
 
   /* border-top: 2px dashed var(--mainDark); */
 }
 
 .predictions {
   text-align: center;
-  display: inline;
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+.predictions .left-content img {
+  margin: 15% 0;
+  padding: 12% 0;
+  width: 100%;
+}
+
+.predictions .right-content {
+  margin: 15% 0;
+  padding-top: 10%;
 }
 
 .prediction-container h1 {
@@ -60,8 +72,13 @@ input {
   font-size: 17px;
 }
 
+.container-food {
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+
 .predictions .button {
-  margin: 1rem;
+  /* margin: 1rem; */
   font-family: "Poppins", sans-serif;
   font-weight: 400;
   text-decoration: none;
@@ -69,12 +86,12 @@ input {
   color: var(--mainDark);
   border: 2px solid var(--mainDark);
   padding: 0.5rem 1rem;
-  font-size: 1.2rem;
+  font-size: 15px;
   position: relative;
   transition: all 0.5s;
 }
 
-.predictions .button::before,
+/* .predictions .button::before,
 .predictions .button::after {
   content: "";
   position: absolute;
@@ -102,7 +119,7 @@ input {
   width: calc(100% + 24px);
   height: calc(100% + 24px);
   border-color: var(--mainDark);
-}
+} */
 
 .predictions .button:hover {
   color: var(--mainWhite);
@@ -112,23 +129,29 @@ input {
 
 .foodie {
   padding: 30px;
-  display: inline;
+  /* display: inline; */
 }
 .foodie ul li {
   list-style: none;
-  padding: 5px;
+  /* padding: 5px; */
+  margin: 5px;
+  /* border: 1.5px solid var(--mainDark); */
+  /* transition: all 0.5s; */
 }
+
 .foodie ul li button {
+  padding: 5%;
+  width: 100%;
   font-family: "Poppins", sans-serif;
   font-weight: 200;
-  font-size: 20px;
-  color: var(--mainGreen);
-  background-color: var(--mainDark);
+  font-size: 15px;
+  color: var(--mainOrange);
+  background-color: var(--mainOrange);
   font-weight: 400;
   background: linear-gradient(
     to bottom,
-    var(--mainDark) 0%,
-    var(--mainDark) 100%
+    var(--mainOrange) 0%,
+    var(--mainOrange) 100%
   );
   background-position: 0 100%;
   background-repeat: repeat-x;
@@ -142,10 +165,15 @@ input {
   margin: 0;
 }
 
+.MuiInputBase-root {
+  font-family: "Poppins", sans-serif !important;
+  color: var(--mainGreen) !important;
+}
+
 .foodie ul li button:hover {
   box-shadow: none;
   text-decoration: none;
-  color: #dbe7c5;
+  color: var(--mainWhite);
   background-size: 4px 50px;
 }
 
@@ -237,5 +265,16 @@ ul li .label:hover {
   }
   100% {
     transform: translate(24px, 0);
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .predictions {
+    display: flex;
+    flex-direction: row;
+    /* flex */
+  }
+  .container-food {
+    grid-template-columns: 100%;
   }
 }

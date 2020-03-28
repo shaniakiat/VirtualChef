@@ -5,7 +5,7 @@ import axios from "axios";
 import "../../Styles/Predictions.css";
 
 import FoodPredictions from "./FoodPredictions";
-
+let validate = require("../Functions/validation");
 const PredictionHooks = () => {
   //   const [hasError, setErrors] = useState(false);
   const [userFood, setUserFood] = useState("");
@@ -37,7 +37,7 @@ const PredictionHooks = () => {
   /*-----------------------FETCH THE PYTHON API FOR THE FOOD PREDICTIONS-----------------------*/
   useEffect(() => {
     //check
-    if (idFromButtonClick === "") {
+    if (validate.isEmpty(idFromButtonClick)) {
       setFindPrediction(false);
       setPredictions([]);
       // return;
@@ -74,40 +74,6 @@ const PredictionHooks = () => {
         });
     }
   }, [idFromButtonClick]);
-
-  // const [idFromFoodButtonClick, setIdFromFoodButtonClick] = useState("");
-  // const [isToggled, setToggled] = useState(false);
-  // const [predictionsRecipes, setPredictionsRecipes] = useState([]);
-
-  // const handleToogle = e => {
-  //   // console.log(e);
-  //   setIdFromFoodButtonClick("" + e);
-  //   // console.log(idFromFoodButtonClick.replace(/\s/g, "+").toLocaleLowerCase());
-  //   setToggled(true); //if this is true than open up the textbox with the list of ingredients
-  // };
-
-  // useEffect(() => {
-  //   const base = "https://api.edamam.com/search";
-  //   const YOUR_APP_ID = "b1de00a5";
-  //   const YOUR_APP_KEY = "bfff8bc6c4056248b815aa647d415437";
-
-  //   axios
-  //     .get(
-  //       `${base}?q=${idFromFoodButtonClick
-  //         .replace(/\s/g, "+")
-  //         .toLocaleLowerCase()}&app_id=${YOUR_APP_ID}&app_key=${YOUR_APP_KEY}`
-  //     )
-  //     .then(res => {
-  //       let param = res.data.hits[0].recipe.totalNutrients;
-  //       setPredictionsRecipes(res.data.hits);
-  //       setNutrition(res.data.hits[0].recipe.totalNutrients);
-  //       // getNutritionData(param);
-  //       console.log(res.data);
-  //     })
-  //     .catch(err => {
-  //       console.log(err);
-  //     });
-  // }, [idFromFoodButtonClick]);
 
   function sleep(delay = 0) {
     return new Promise(resolve => {

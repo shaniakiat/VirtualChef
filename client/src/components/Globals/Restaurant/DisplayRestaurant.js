@@ -15,22 +15,19 @@ const DisplayRestaurant = ({ restaurantData }) => {
             <th className="column100 column5">Address</th>
           </tr>
         </thead>
-        <tbody>
-          {restaurantData.map((obj, i) => (
-            <div>
-              {/* <li key={obj[1]}>{obj.name}</li> */}
 
-              <td className="row100">{obj.name}</td>
-              <td className="row100">{obj.rating}</td>
-              <td className="row100">{obj.price}</td>
-              <td className="row100">{obj.display_phone}</td>
-              <td className="row100">
-                {obj.location.display_address[0] +
-                  obj.location.display_address[1]}
-              </td>
-            </div>
-          ))}
-        </tbody>
+        {restaurantData.map((obj, i) => (
+          <tbody>
+            <td className="row100">{obj.name}</td>
+            <td className="row100">{obj.rating}</td>
+            <td className="row100">{obj.price}</td>
+            <td className="row100">{obj.display_phone}</td>
+            <td className="row100">
+              {obj.location.display_address[0] +
+                obj.location.display_address[1]}
+            </td>
+          </tbody>
+        ))}
       </table>
     </div>
   );

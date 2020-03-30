@@ -41,6 +41,7 @@ const Restaurants = props => {
           .then(res => {
             if (res) {
               setRestaurantData(res.data.businesses);
+              console.log(restaurantData);
               setFindRestaurants(true);
             }
           })

@@ -24,6 +24,7 @@ const DisplayRestaurant = ({ restaurantData }) => {
             <td className="row100">{obj.display_phone}</td>
             <td className="row100">
               {obj.location.display_address[0] +
+                ", " +
                 obj.location.display_address[1]}
             </td>
           </tbody>

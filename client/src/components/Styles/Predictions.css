@@ -271,8 +271,11 @@ ul li .label:hover {
 @media only screen and (max-width: 600px) {
   .predictions {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     /* flex */
+  }
+  .left-content {
+    display: none;
   }
   .container-food {
     grid-template-columns: 100%;

@@ -27,28 +27,7 @@
   font-weight: 600;
   color: var(--mainGreen);
 }
-/* .btnOutline {
-  display: block;
-  text-decoration: none;
-  color: white;
-  border: 2px solid var(--mainGreen);
-  background-color: var(--mainGreen);
-  border-radius: 50px;
-  width: 175px;
-  height: 40px;
-  line-height: 35px;
-  font-size: 20px;
-  text-align: center;
-  padding: 0 10px;
-  margin: 10px 0;
-  font-family: "Poppins", sans-serif;
-  font-weight: 400;
-} */
 
-/* .btnOutline:hover {
-  text-decoration: none;
-  color: var(--mainLight);
-} */
 .div-button {
   margin-top: 2.5rem;
 }
@@ -64,36 +43,6 @@
   position: relative;
   transition: all 0.5s;
 }
-
-/* .button::before,
-.button::after {
-  content: "";
-  position: absolute;
-  width: 2.5rem;
-  height: 2rem;
-  border-style: solid;
-  border-color: var(--mainDark);
-  transition: all 0.5s;
-}
-
-.button::before {
-  top: -12px;
-  left: -12px;
-  border-width: 2px 0 0 2px;
-}
-
-.button::after {
-  bottom: -12px;
-  right: -12px;
-  border-width: 0 2px 2px 0;
-}
-
-.button:hover::before,
-.button:hover::after {
-  width: calc(100% + 24px);
-  height: calc(100% + 24px);
-  border-color: var(--mainDark);
-} */
 
 .button:hover {
   color: var(--mainWhite);

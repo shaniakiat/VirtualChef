@@ -74,9 +74,6 @@ ul.recipes {
     padding: 0;
     /* background-color: #98bb5c59; */
   }
-  .ingredient-img {
-    /* width: 30vw; */
-  }
 }
 
 @media only screen and (max-width: 600px) {

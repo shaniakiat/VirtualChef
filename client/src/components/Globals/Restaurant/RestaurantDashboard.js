@@ -12,30 +12,24 @@ const RestaurantDashBoard = ({
     }
   }, [restaurantData]);
   return (
-    // <div>
-    //   {findRestaurantsBtn ? (
-    //     <DisplayRestaurant restaurantData={restaurantData} />
-    //   ) : (
-    //     <div>
-    //       <p>Something went wrong</p>
-    //     </div>
-    //   )}
-    // </div>
     <div>
       {buttonClick ? (
         <div>
           {findRestaurantsBtn ? (
             <DisplayRestaurant restaurantData={restaurantData} />
           ) : (
-            <div>
-              <p>Sorry, we couldn't indentify this food yet.</p>
+            <div className="loading">
+              <div className="lds-ellipsis">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
             </div>
           )}
         </div>
       ) : (
-        <div>
-          <p>Enter in a Food and a valid zipcode</p>
-        </div>
+        <div></div>
       )}
     </div>
   );

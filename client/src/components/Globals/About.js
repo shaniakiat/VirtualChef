@@ -29,7 +29,6 @@ class Team extends Component {
           </Fade>
           {/* {/* </div> */}
         </div>
-        */}
       </section>
     );
   }

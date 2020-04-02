@@ -109,31 +109,36 @@ const UserProfile = props => {
         Submit your favorite
       </button>
       <div className="favFoodList">
-        <h3>Your Favorite Food:</h3>
+        <h3>Your favorite food:</h3>
+        {/* <div>{console.log(favArray.)}</div> */}
         <ul>
-          {favArray.map(obj => (
-            <li>
-              <Link to={`/user/${obj.FoodFavorited.replace(/\s/g, "-")}`}>
-                <button
-                  type="button"
-                  onClick={() => handleToogle(obj.FoodFavorited)}
-                >
-                  {obj.FoodFavorited}
-                </button>
-              </Link>
-              {/* <button>Delete button</button> */}
-              <TiDelete
-                className="tiDelete"
-                onClick={() => deleteFav(obj._id)}
-              />
-            </li>
-          ))}
+          {favArray.length === 0 ? (
+            <div>
+              <p className="fav-food-empty">
+                It's empty. Please add your favorite food!
+              </p>
+            </div>
+          ) : (
+            favArray.map(obj => (
+              <li>
+                <Link to={`/user/${obj.FoodFavorited.replace(/\s/g, "-")}`}>
+                  <button
+                    type="button"
+                    onClick={() => handleToogle(obj.FoodFavorited)}
+                  >
+                    {obj.FoodFavorited}
+                  </button>
+                </Link>
+                {/* <button>Delete button</button> */}
+                <TiDelete
+                  className="tiDelete"
+                  onClick={() => deleteFav(obj._id)}
+                />
+              </li>
+            ))
+          )}
         </ul>
-        {/* <IngredientsPredictions
-          isToggled={isToggled}
-          idFromFoodButtonClick={idFromFoodButtonClick}
-          predictionsRecipes={predictionsRecipes}
-        /> */}
+
         <Restaurants />
       </div>
     </div>

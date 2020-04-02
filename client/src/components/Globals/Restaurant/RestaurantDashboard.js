@@ -9,23 +9,20 @@ const RestaurantDashBoard = ({
   useEffect(() => {
     if (restaurantData) {
       console.log(restaurantData);
+      setOriginalRestaurantData(restaurantData);
     }
   }, [restaurantData]);
+  const [originalRestaurantData, setOriginalRestaurantData] = useState();
+
+
+  };
   return (
-    // <div>
-    //   {findRestaurantsBtn ? (
-    //     <DisplayRestaurant restaurantData={restaurantData} />
-    //   ) : (
-    //     <div>
-    //       <p>Something went wrong</p>
-    //     </div>
-    //   )}
-    // </div>
     <div>
       {buttonClick ? (
         <div>
           {findRestaurantsBtn ? (
-            <DisplayRestaurant restaurantData={restaurantData} />
+              
+              <DisplayRestaurant restaurantData={restaurantData} originalRestaurantData={originalRestaurantData}/>
           ) : (
             <div>
               <p>Sorry, we couldn't indentify this food yet.</p>

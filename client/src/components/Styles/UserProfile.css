@@ -6,31 +6,6 @@
   margin: 0 15%;
 }
 
-/* .btnOutline-login {
-  display: block;
-  text-decoration: none;
-  color: white;
-  border: 2px solid var(--mainGreen);
-  background-color: var(--mainGreen);
-  border-radius: 50px;
-
-  height: 40px;
-  line-height: 35px;
-
-  text-align: center;
-  margin: 10px 0;
-  font-family: "Poppins", sans-serif;
-  font-weight: 400;
-  width: auto;
-  font-size: 15px;
-  padding: 0 15px;
-}
-
-.btnOutline-login:hover {
-  text-decoration: none;
-  color: var(--mainLight);
-} */
-
 .button-login {
   display: block;
   /* margin: 0.8rem; */
@@ -53,7 +28,8 @@
 }
 
 input {
-  text-align: center;
+  padding-left: 15px;
+  text-align: left;
   height: 50px;
   width: 55%;
   border: 1px solid var(--mainDark);
@@ -70,7 +46,7 @@ input {
 .favFoodList ul li button {
   font-family: "Poppins", sans-serif;
   font-weight: 200;
-  font-size: 20px;
+  font-size: 1rem;
   color: var(--mainGreen);
   background-color: var(--mainDark);
   font-weight: 400;
@@ -97,6 +73,16 @@ input {
   background-size: 4px 50px;
 }
 
+.fav-food-empty {
+  font-size: 1rem;
+  color: var(--mainDark);
+  padding: 0;
+  margin: 10px 0;
+}
+p:first-child {
+  margin: 10px 0;
+}
+
 button:focus {
   outline: 0;
 }
@@ -108,8 +94,9 @@ button:focus {
 .tiDelete {
   margin: 2px;
   margin-left: 5px;
-  width: 25px;
-  height: 25px;
+  padding-bottom: 1px;
+  width: 30px;
+  height: 30px;
   color: var(--mainGreen);
 }
 

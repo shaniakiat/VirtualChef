@@ -27,7 +27,7 @@ h1 {
 }
 h3 {
   font-family: "Poppins", sans-serif;
-  font-weight: 400;
+  font-weight: 600;
   font-size: 20px;
   color: var(--mainOrange);
 }
@@ -43,18 +43,20 @@ p {
 /* NAVBAR */
 .navbar-light {
   font-size: 15px;
+  font-weight: 600;
 }
 .navbar-light .navbar-brand {
-  font-weight: 400;
+  font-weight: 600;
   color: var(--mainGreen) !important;
 }
 
 .navbar-light .navbar-nav .nav-link {
-  font-weight: 400;
+  font-weight: 600;
   color: var(--mainOrange) !important;
 }
 
 .navbar-light .navbar-text {
+  font-weight: 600;
   color: var(--mainGreen);
 }
 
@@ -66,12 +68,21 @@ p {
 .content-wrap {
   padding-bottom: 2.5rem;
 }
+
+.btn {
+  border-color: 1px solid var(--mainDark) !important;
+  border-radius: 0 !important;
+}
+
+.btn-dark {
+  background-color: var(--mainDark) !important;
+}
 /* RESPONSIVE */
 
 @media only screen and (max-width: 600px) {
   h3 {
     font-family: "Poppins", sans-serif;
-    font-weight: 400;
+    font-weight: 600;
     font-size: 15px;
     color: var(--mainOrange);
   }

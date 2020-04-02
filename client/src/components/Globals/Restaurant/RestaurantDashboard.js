@@ -24,15 +24,18 @@ const RestaurantDashBoard = ({
               
               <DisplayRestaurant restaurantData={restaurantData} originalRestaurantData={originalRestaurantData}/>
           ) : (
-            <div>
-              <p>Sorry, we couldn't indentify this food yet.</p>
+            <div className="loading">
+              <div className="lds-ellipsis">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
             </div>
           )}
         </div>
       ) : (
-        <div>
-          <p>Enter in a Food and a valid zipcode</p>
-        </div>
+        <div></div>
       )}
     </div>
   );

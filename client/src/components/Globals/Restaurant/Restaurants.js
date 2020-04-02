@@ -50,7 +50,7 @@ const Restaurants = props => {
             setFindRestaurants(false);
           });
       } else {
-        alert("Please enter in a valid zipcode");
+        alert("Please enter in a valid zip code");
         setFindRestaurants(false);
       }
     } else {
@@ -59,14 +59,15 @@ const Restaurants = props => {
   };
   return (
     <div>
+      <h3>Find restaurants near you! </h3>
       <input
         type="text"
-        placeholder="Enter the food you would like to search"
+        placeholder="Enter the food"
         onChange={e => setUserYelpQuery(e.target.value)}
       />
       <input
         type="text"
-        placeholder="Enter your zipcode"
+        placeholder="Enter a valid zip code"
         onChange={e => setUserZip(e.target.value)}
       />
       <button className="button-login" type="button" onClick={findRestaurants}>

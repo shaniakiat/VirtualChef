@@ -9,20 +9,14 @@ const RestaurantDashBoard = ({
   useEffect(() => {
     if (restaurantData) {
       console.log(restaurantData);
-      setOriginalRestaurantData(restaurantData);
     }
   }, [restaurantData]);
-  const [originalRestaurantData, setOriginalRestaurantData] = useState();
-
-
-  };
   return (
     <div>
       {buttonClick ? (
         <div>
           {findRestaurantsBtn ? (
-              
-              <DisplayRestaurant restaurantData={restaurantData} originalRestaurantData={originalRestaurantData}/>
+            <DisplayRestaurant restaurantData={restaurantData} />
           ) : (
             <div className="loading">
               <div className="lds-ellipsis">

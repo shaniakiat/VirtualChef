@@ -2,7 +2,7 @@ import React, { useState, useInput, useEffect } from "react";
 import { Route, Redirect } from "react-router-dom";
 import "../../Styles/Table.css";
 
-const DisplayRestaurant = ({ restaurantData, originalRestaurantData }) => {
+const DisplayRestaurant = ({ restaurantData }) => {
   //sort by rating
   //sort by price
   //closest
@@ -38,7 +38,7 @@ const DisplayRestaurant = ({ restaurantData, originalRestaurantData }) => {
     console.log(w);
   };
   const resetFilters = () => {
-    restaurantData = originalRestaurantData;
+    // restaurantData = originalRestaurantData;
     return restaurantData;
   };
   return (

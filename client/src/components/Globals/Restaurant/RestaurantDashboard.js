@@ -3,20 +3,28 @@ import DisplayRestaurant from "./DisplayRestaurant";
 
 const RestaurantDashBoard = ({
   restaurantData,
+  setRestaurantData,
   findRestaurantsBtn,
   buttonClick
 }) => {
+  const [finalData, setFinalData] = useState([]);
   useEffect(() => {
     if (restaurantData) {
-      console.log(restaurantData);
+      console.log("LINE 13: " + restaurantData);
+      setRestaurantData(restaurantData);
     }
-  }, [restaurantData]);
+  }, [restaurantData, setRestaurantData]);
   return (
     <div>
       {buttonClick ? (
         <div>
           {findRestaurantsBtn ? (
-            <DisplayRestaurant restaurantData={restaurantData} />
+            <DisplayRestaurant
+              restaurantData={restaurantData}
+              setRestaurantData={setRestaurantData}
+              finalData={finalData}
+              setFinalData={setFinalData}
+            />
           ) : (
             <div className="loading">
               <div className="lds-ellipsis">

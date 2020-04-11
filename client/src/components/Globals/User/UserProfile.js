@@ -4,20 +4,17 @@ import Restaurants from "../Restaurant/Restaurants";
 import { connect, useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { addItem, deleteItem, getItems } from "../../../actions/itemActions";
-// import IngredientsPredictions from "../Predictions/IngredientsPredictions";
 import { loadUser } from "../../../actions/authActions";
 import { Link } from "react-router-dom";
 
-// import { createSelector } from "reselect";
-
-const UserProfile = props => {
+const UserProfile = (props) => {
   const [newUserFavorite, setNewUserFavorite] = useState("");
   const [favArray, setFavArray] = useState([]);
   const [userID, setUserID] = useState();
-  const tokenRecognized = useSelector(state => state.auth.token);
+  const tokenRecognized = useSelector((state) => state.auth.token);
 
-  const auth = useSelector(state => state.auth);
-  const foodFavoritesArray = useSelector(state => state.item);
+  const auth = useSelector((state) => state.auth);
+  const foodFavoritesArray = useSelector((state) => state.item);
 
   const dispatch = useDispatch();
 
@@ -31,31 +28,28 @@ const UserProfile = props => {
       setUserID(auth.user._id);
       axios
         .get(`/api/items/item/${auth.user._id}`)
-        .then(res => {
+        .then((res) => {
           return res.data;
         })
-        .then(json => {
+        .then((json) => {
           setFavArray(json);
         })
-        .catch(err => console.log(err));
+        .catch((err) => console.log(err));
     }
   }, [auth.isAuthenicated, auth.user, foodFavoritesArray]);
 
-  const submitFavorites = e => {
+  const submitFavorites = (e) => {
     e.preventDefault();
     const newFoodFavorite = {
       FoodFavorited: newUserFavorite,
-      userCode: userID
+      userCode: userID,
     };
-    console.log("adding the item");
 
-    // foodItems
     props.addItem(newFoodFavorite, foodFavoritesArray);
     console.log(newFoodFavorite);
-    // fetchFavoriteFood();
   };
 
-  const deleteFav = id => {
+  const deleteFav = (id) => {
     props.deleteItem(id);
   };
   console.log(favArray);
@@ -65,7 +59,7 @@ const UserProfile = props => {
   const [isToggled, setToggled] = useState(false);
   const [predictionsRecipes, setPredictionsRecipes] = useState([]);
 
-  const handleToogle = e => {
+  const handleToogle = (e) => {
     console.log(e);
     setIdFromFoodButtonClick("" + e);
     console.log(idFromFoodButtonClick.replace(/\s/g, "+").toLocaleLowerCase());
@@ -83,10 +77,10 @@ const UserProfile = props => {
           .replace(/\s/g, "+")
           .toLocaleLowerCase()}&app_id=${YOUR_APP_ID}&app_key=${YOUR_APP_KEY}`
       )
-      .then(res => {
+      .then((res) => {
         setPredictionsRecipes(res.data.hits);
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   }, [idFromFoodButtonClick]);
@@ -102,7 +96,7 @@ const UserProfile = props => {
       <input
         type="text"
         placeholder="Enter Your Favorite Food"
-        onChange={e => setNewUserFavorite(e.target.value)}
+        onChange={(e) => setNewUserFavorite(e.target.value)}
         className="input"
       ></input>
       <button className="button-login" type="button" onClick={submitFavorites}>
@@ -119,7 +113,7 @@ const UserProfile = props => {
               </p>
             </div>
           ) : (
-            favArray.map(obj => (
+            favArray.map((obj) => (
               <li>
                 <Link to={`/user/${obj.FoodFavorited.replace(/\s/g, "-")}`}>
                   <button
@@ -145,10 +139,11 @@ const UserProfile = props => {
   );
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   auth: state.auth,
   errors: state.errors,
-  item: state.item
+  item: state.item,
+  restaurants: state.restaurant,
 });
 
 export default connect(mapStateToProps, { addItem, deleteItem, getItems })(

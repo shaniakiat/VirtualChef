@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const path = require("path");
 
 const items = require("./routes/api/items");
+const restaurants = require("./routes/api/restaurants");
 const users = require("./routes/api/users");
 const auth = require("./routes/api/auth");
 
@@ -20,12 +21,13 @@ mongoose
   .connect(db, {
     useUnifiedTopology: true,
     useNewUrlParser: true,
-    useCreateIndex: true
+    useCreateIndex: true,
   })
   .then(() => console.log("mongodb connected"))
-  .catch(err => console.log(err));
+  .catch((err) => console.log(err));
 
 //use routes
+app.use("/api/restaurants", restaurants);
 app.use("/api/items", items);
 app.use("/api/users", users);
 app.use("/api/auth", auth);

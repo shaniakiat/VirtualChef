@@ -15,7 +15,6 @@ const RestaurantDashBoard = ({
   const [finalData, setFinalData] = useState([]);
   useEffect(() => {
     if (restaurantData) {
-      console.log("LINE 13: " + restaurantData);
       setRestaurantData(restaurantData);
     }
   }, [restaurantData, setRestaurantData]);

@@ -17,9 +17,6 @@ const DisplayRestaurant = ({
   const dispatch = useDispatch();
   const tokenRecognized = useSelector((state) => state.auth.token);
 
-  const [newUserRestaurantFavorite, setNewUserRestaurantFavorite] = useState(
-    ""
-  );
   const restaurantFavoritesArray = useSelector((state) => state.restaurant);
 
   useEffect(() => {
@@ -43,19 +40,11 @@ const DisplayRestaurant = ({
   }, [auth.isAuthenicated, auth.user, setFavRestaurantsArray, setUserID]);
 
   const submitRestaurantFavorites = (myObj) => {
-    // e.preventDefault();
     const newRestaurantFavorite = {
       RestaurantFavorited: myObj,
       userCode: userID,
     };
-
     props.addRestaurant(newRestaurantFavorite, restaurantFavoritesArray);
-    console.log(newRestaurantFavorite);
-
-    console.log("adding the item");
-    console.log(newRestaurantFavorite);
-    // props.addItem(newFavoriteRestaurant, favoriteRestaurantObj);
-    console.log("adding finished");
   };
 
   //sort by rating
@@ -137,10 +126,4 @@ const DisplayRestaurant = ({
     </div>
   );
 };
-// const mapStateToProps = (state) => ({
-//   auth: state.auth,
-//   errors: state.errors,
-//   item: state.item,
-//   restaurant: state.restaurantData,
-// });
 export default DisplayRestaurant;

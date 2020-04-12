@@ -1,9 +1,4 @@
 import React, { useState, useEffect } from "react";
-// import {
-//   addItem,
-//   deleteItem,
-//   getItems,
-// } from "../../../actions/restaurantActions";
 import axios from "axios";
 import { connect, useDispatch, useSelector } from "react-redux";
 import { loadUser } from "../../../actions/authActions";
@@ -16,24 +11,10 @@ const DisplayRestaurant = ({
   setFavRestaurantsArray,
   props,
 }) => {
-  // const [userID, setUserID] = useState();
   const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const tokenRecognized = useSelector((state) => state.auth.token);
 
-  // useEffect(() => {
-  //   dispatch(loadUser(tokenRecognized));
-  // }, [dispatch, tokenRecognized]);
-  // useEffect(() => {
-  //   console.log(auth.isAuthenicated);
-  //   if (auth.user) {
-  //     setUserID(auth.user._id);
-  //   }
-  // }, [auth.isAuthenicated, auth.user]);
-
-  const [newUserRestaurantFavorite, setNewUserRestaurantFavorite] = useState(
-    ""
-  );
   const restaurantFavoritesArray = useSelector((state) => state.restaurant);
 
   useEffect(() => {
@@ -56,20 +37,6 @@ const DisplayRestaurant = ({
     }
   }, [auth.isAuthenicated, auth.user, setFavRestaurantsArray, setUserID]);
 
-  // const addFavorites = (params) => {
-  //   // params.preventDefault();
-  //   //add favorites function does not work
-  //   // console.log("printing out props");
-  //   // console.log(props);
-  //   // console.log("done printing props");
-
-  //   const newFavoriteRestaurant = {
-  //     RestaurantFavorite: params,
-  //     userCode: userID,
-  //   };
-
-  // };
-
   const submitRestaurantFavorites = (myObj) => {
     // e.preventDefault();
     const newRestaurantFavorite = {
@@ -77,13 +44,8 @@ const DisplayRestaurant = ({
       userCode: userID,
     };
 
-    props.addRestaurant(myObj, restaurantFavoritesArray);
+    props.addRestaurant(newRestaurantFavorite, restaurantFavoritesArray);
     console.log(newRestaurantFavorite);
-
-    console.log("adding the item");
-    console.log(newRestaurantFavorite);
-    // props.addItem(newFavoriteRestaurant, favoriteRestaurantObj);
-    console.log("adding finished");
   };
 
   //sort by rating
@@ -163,10 +125,5 @@ const DisplayRestaurant = ({
     </div>
   );
 };
-// const mapStateToProps = (state) => ({
-//   auth: state.auth,
-//   errors: state.errors,
-//   item: state.item,
-//   restaurant: state.restaurantData,
-// });
+
 export default DisplayRestaurant;

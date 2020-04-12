@@ -25,11 +25,6 @@ const Restaurants = (props) => {
     "lpT67Un7k91TqxKzp71z9e4DuS4PEt6_6qqXB16AqBI5zjOWultwA7R_XWAoMFhit3fhubCkFoCzccIwTc1bEqNgujNlzMniwqwQztNv905c9hsxkquvYmmzX5BUXnYx";
 
   const findRestaurants = () => {
-    // const handleFilter = () => {
-    //   setFilter(true);
-
-    // };
-
     setButtonClick(true);
     if (!validate.isEmpty(userYelpQuery)) {
       if (zipcodes.lookup(parseInt(userZip))) {

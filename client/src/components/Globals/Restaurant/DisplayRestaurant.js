@@ -1,29 +1,90 @@
 import React, { useState, useEffect } from "react";
-import {
-  addItem,
-  deleteItem,
-  getItems,
-} from "../../../actions/restaurantActions";
+// import {
+//   addItem,
+//   deleteItem,
+//   getItems,
+// } from "../../../actions/restaurantActions";
+import axios from "axios";
 import { connect, useDispatch, useSelector } from "react-redux";
 import { loadUser } from "../../../actions/authActions";
 import "../../Styles/Table.css";
 
-const DisplayRestaurant = ({ restaurantData }, props) => {
-  const [userID, setUserID] = useState();
+const DisplayRestaurant = ({
+  restaurantData,
+  userID,
+  setUserID,
+  setFavRestaurantsArray,
+  props,
+}) => {
+  // const [userID, setUserID] = useState();
   const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const tokenRecognized = useSelector((state) => state.auth.token);
-  const favoriteRestaurantObj = useSelector((state) => state.restaurant);
+
+  // useEffect(() => {
+  //   dispatch(loadUser(tokenRecognized));
+  // }, [dispatch, tokenRecognized]);
+  // useEffect(() => {
+  //   console.log(auth.isAuthenicated);
+  //   if (auth.user) {
+  //     setUserID(auth.user._id);
+  //   }
+  // }, [auth.isAuthenicated, auth.user]);
+
+  const [newUserRestaurantFavorite, setNewUserRestaurantFavorite] = useState(
+    ""
+  );
+  const restaurantFavoritesArray = useSelector((state) => state.restaurant);
 
   useEffect(() => {
+    // fetch user data when component mounts
     dispatch(loadUser(tokenRecognized));
   }, [dispatch, tokenRecognized]);
   useEffect(() => {
     console.log(auth.isAuthenicated);
     if (auth.user) {
       setUserID(auth.user._id);
+      axios
+        .get(`/api/restaurants/restaurant/${auth.user._id}`)
+        .then((res) => {
+          return res.data;
+        })
+        .then((json) => {
+          setFavRestaurantsArray(json);
+        })
+        .catch((err) => console.log(err));
     }
-  }, [auth.isAuthenicated, auth.user]);
+  }, [auth.isAuthenicated, auth.user, setFavRestaurantsArray, setUserID]);
+
+  // const addFavorites = (params) => {
+  //   // params.preventDefault();
+  //   //add favorites function does not work
+  //   // console.log("printing out props");
+  //   // console.log(props);
+  //   // console.log("done printing props");
+
+  //   const newFavoriteRestaurant = {
+  //     RestaurantFavorite: params,
+  //     userCode: userID,
+  //   };
+
+  // };
+
+  const submitRestaurantFavorites = (myObj) => {
+    // e.preventDefault();
+    const newRestaurantFavorite = {
+      RestaurantFavorited: newUserRestaurantFavorite,
+      userCode: userID,
+    };
+
+    props.addRestaurant(newRestaurantFavorite, restaurantFavoritesArray);
+    console.log(newRestaurantFavorite);
+
+    console.log("adding the item");
+    console.log(newRestaurantFavorite);
+    // props.addItem(newFavoriteRestaurant, favoriteRestaurantObj);
+    console.log("adding finished");
+  };
 
   //sort by rating
   //sort by price
@@ -39,22 +100,6 @@ const DisplayRestaurant = ({ restaurantData }, props) => {
   };
   const sortByPriceAscending = (myObj) => {};
 
-  const addFavorites = (params) => {
-    // params.preventDefault();
-    //add favorites function does not work
-    console.log("printing out props");
-    console.log(props);
-    console.log("done printing props");
-
-    const newFavoriteRestaurant = {
-      RestaurantFavorite: params,
-      userCode: userID,
-    };
-    console.log("adding the item");
-    console.log(newFavoriteRestaurant);
-    props.addItem(newFavoriteRestaurant, favoriteRestaurantObj);
-    console.log("adding finished");
-  };
   return (
     <div>
       <button
@@ -108,7 +153,7 @@ const DisplayRestaurant = ({ restaurantData }, props) => {
                 obj.location.display_address[1]}
             </td>
             <td className="row100">
-              <button onClick={() => addFavorites(obj.name)}>
+              <button onClick={() => submitRestaurantFavorites(obj.name)}>
                 Add to fave
               </button>
             </td>
@@ -118,13 +163,10 @@ const DisplayRestaurant = ({ restaurantData }, props) => {
     </div>
   );
 };
-const mapStateToProps = (state) => ({
-  auth: state.auth,
-  errors: state.errors,
-  item: state.item,
-  restaurant: state.restaurantData,
-});
-
-export default connect(mapStateToProps, { addItem, deleteItem, getItems })(
-  DisplayRestaurant
-);
+// const mapStateToProps = (state) => ({
+//   auth: state.auth,
+//   errors: state.errors,
+//   item: state.item,
+//   restaurant: state.restaurantData,
+// });
+export default DisplayRestaurant;

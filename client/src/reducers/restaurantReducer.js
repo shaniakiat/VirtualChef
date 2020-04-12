@@ -1,8 +1,8 @@
 import {
-  GET_ITEMS,
-  ADD_ITEM,
-  DELETE_ITEM,
-  ITEMS_LOADING,
+  GET_RESTAURANTS,
+  ADD_RESTAURANT,
+  DELETE_RESTAURANT,
+  RESTAURANTS_LOADING,
 } from "../actions/types";
 const initialState = {
   restaurants: [],
@@ -11,25 +11,25 @@ const initialState = {
 
 export default function (state = initialState, action) {
   switch (action.type) {
-    case GET_ITEMS:
+    case GET_RESTAURANTS:
       return {
         ...state,
         restaurants: action.payload,
         loading: false,
       };
-    case DELETE_ITEM:
+    case DELETE_RESTAURANT:
       return {
         ...state,
-        items: state.items.filter(
+        restaurants: state.restaurants.filter(
           (restaurants) => restaurants._id !== action.payload
         ),
       };
-    case ADD_ITEM:
+    case ADD_RESTAURANT:
       return {
         ...state,
-        items: [action.payload, ...state.restaurants],
+        restaurants: [action.payload, ...state.restaurants],
       };
-    case ITEMS_LOADING:
+    case RESTAURANTS_LOADING:
       return {
         ...state,
         loading: true,

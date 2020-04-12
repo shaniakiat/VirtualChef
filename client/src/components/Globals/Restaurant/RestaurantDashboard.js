@@ -5,7 +5,12 @@ const RestaurantDashBoard = ({
   restaurantData,
   setRestaurantData,
   findRestaurantsBtn,
-  buttonClick
+  buttonClick,
+  userID,
+  setUserID,
+  setFavRestaurantsArray,
+  favRestaurantsArray,
+  props,
 }) => {
   const [finalData, setFinalData] = useState([]);
   useEffect(() => {
@@ -24,6 +29,11 @@ const RestaurantDashBoard = ({
               setRestaurantData={setRestaurantData}
               finalData={finalData}
               setFinalData={setFinalData}
+              userID={userID}
+              setUserID={setUserID}
+              setFavRestaurantsArray={setFavRestaurantsArray}
+              favRestaurantsArray={favRestaurantsArray}
+              props={props}
             />
           ) : (
             <div className="loading">

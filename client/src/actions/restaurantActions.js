@@ -1,15 +1,20 @@
 import axios from "axios";
-import { GET_ITEMS, ADD_ITEM, DELETE_ITEM, ITEMS_LOADING } from "./types";
+import {
+  GET_RESTAURANTS,
+  ADD_RESTAURANT,
+  DELETE_RESTAURANT,
+  RESTAURANTS_LOADING,
+} from "./types";
 import { tokenConfig } from "./authActions";
 import { returnErrors } from "./errorActions";
 
-export const getItems = () => (dispatch) => {
-  dispatch(setItemsLoading());
+export const getRestaurants = () => (dispatch) => {
+  dispatch(setRestaurantsLoading());
   axios
     .get("/api/restaurants")
     .then((res) =>
       dispatch({
-        type: GET_ITEMS,
+        type: GET_RESTAURANTS,
         payload: res.data,
       })
     )
@@ -18,12 +23,12 @@ export const getItems = () => (dispatch) => {
     );
 };
 
-export const addItem = (restaurant) => (dispatch, getState) => {
+export const addRestaurant = (restaurant) => (dispatch, getState) => {
   axios
     .post("/api/restaurants", restaurant, tokenConfig(getState))
     .then((res) =>
       dispatch({
-        type: ADD_ITEM,
+        type: ADD_RESTAURANT,
         payload: res.data,
       })
     )
@@ -32,12 +37,12 @@ export const addItem = (restaurant) => (dispatch, getState) => {
     );
 };
 
-export const deleteItem = (id) => (dispatch, getState) => {
+export const deleteRestaurant = (id) => (dispatch, getState) => {
   axios
     .delete(`/api/restaurants/${id}`, tokenConfig(getState))
     .then((res) =>
       dispatch({
-        type: DELETE_ITEM,
+        type: DELETE_RESTAURANT,
         payload: id,
       })
     )
@@ -46,8 +51,8 @@ export const deleteItem = (id) => (dispatch, getState) => {
     );
 };
 
-export const setItemsLoading = () => {
+export const setRestaurantsLoading = () => {
   return {
-    type: ITEMS_LOADING,
+    type: RESTAURANTS_LOADING,
   };
 };

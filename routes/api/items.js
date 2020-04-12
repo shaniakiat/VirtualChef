@@ -10,7 +10,7 @@ const Item = require("../../models/Item");
 //@route GET request to API/items
 //@desc Get all items
 router.get("/", (req, res) => {
-  Item.find().then(items => res.json(items));
+  Item.find().then((items) => res.json(items));
 });
 
 //@route POST request to API/items
@@ -18,25 +18,25 @@ router.get("/", (req, res) => {
 router.post("/", auth, (req, res) => {
   const newItem = new Item({
     FoodFavorited: req.body.FoodFavorited,
-    userCode: req.body.userCode
+    userCode: req.body.userCode,
   });
   newItem
     .save()
-    .then(item => res.json(item))
-    .catch(err => console.log(err));
+    .then((item) => res.json(item))
+    .catch((err) => console.log(err));
 });
 
 //@route DELETE request to API/items
 //@desc delete an item
 router.delete("/:id", auth, (req, res) => {
   Item.findById(req.params.id)
-    .then(item => item.remove().then(() => res.json({ success: true })))
-    .catch(err => res.status(404).json({ success: false }));
+    .then((item) => item.remove().then(() => res.json({ success: true })))
+    .catch((err) => res.status(404).json({ success: false }));
 });
 
 router.get("/item/:userCode", (req, res) => {
   Item.find({ userCode: req.params.userCode })
-    .then(userFoodFavs => {
+    .then((userFoodFavs) => {
       if (!userFoodFavs) {
         console.log("This user has no food");
         return res.status(404).json.err;
@@ -45,7 +45,7 @@ router.get("/item/:userCode", (req, res) => {
         return res.json(userFoodFavs);
       }
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err);
       return res.status(500).json(err);
     });

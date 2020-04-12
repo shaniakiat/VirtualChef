@@ -1,20 +1,24 @@
-import React, {
-  useState,
-  // useEffect,
-  // useCallback,
-  // useRef,
-  useInput
-} from "react";
+import React, { useState, useEffect, useReducer, useCallback } from "react";
 import RestaurantDashBoard from "./RestaurantDashboard";
-
+import {
+  addRestaurant,
+  deleteRestaurant,
+  getRestaurants,
+} from "../../../actions/restaurantActions";
+import { connect, useDispatch, useSelector } from "react-redux";
+import { loadUser } from "../../../actions/authActions";
 let validate = require("../Functions/validation");
 const axios = require("axios");
 const zipcodes = require("zipcodes");
 
-const Restaurants = props => {
+const Restaurants = (props) => {
+  const [userID, setUserID] = useState();
   const [userYelpQuery, setUserYelpQuery] = useState();
   const [userZip, setUserZip] = useState();
   const [restaurantData, setRestaurantData] = useState([]);
+
+  const [favRestaurantsArray, setFavRestaurantsArray] = useState([]);
+
   const [findRestaurantsBtn, setFindRestaurants] = useState(false);
   const [buttonClick, setButtonClick] = useState(false);
   const key =
@@ -30,22 +34,22 @@ const Restaurants = props => {
             `${"https://cors-anywhere.herokuapp.com/"}https://api.yelp.com/v3/businesses/search?term=${userYelpQuery}`,
             {
               headers: {
-                Authorization: `Bearer ${key}`
+                Authorization: `Bearer ${key}`,
               },
               params: {
                 latitude: zipInfo.latitude,
-                longitude: zipInfo.longitude
-              }
+                longitude: zipInfo.longitude,
+              },
             }
           )
-          .then(res => {
+          .then((res) => {
             if (res) {
               setRestaurantData(res.data.businesses);
               console.log(restaurantData);
               setFindRestaurants(true);
             }
           })
-          .catch(err => {
+          .catch((err) => {
             console.log(err);
             setFindRestaurants(false);
           });
@@ -57,18 +61,32 @@ const Restaurants = props => {
       console.log("it's empty");
     }
   };
+
+  const auth = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+  const tokenRecognized = useSelector((state) => state.auth.token);
+  useEffect(() => {
+    dispatch(loadUser(tokenRecognized));
+  }, [dispatch, tokenRecognized]);
+  useEffect(() => {
+    console.log(auth.isAuthenicated);
+    if (auth.user) {
+      setUserID(auth.user._id);
+    }
+  }, [auth.isAuthenicated, auth.user]);
+
   return (
     <div>
       <h3>Find restaurants near you! </h3>
       <input
         type="text"
         placeholder="Enter the food"
-        onChange={e => setUserYelpQuery(e.target.value)}
+        onChange={(e) => setUserYelpQuery(e.target.value)}
       />
       <input
         type="text"
         placeholder="Enter a valid zip code"
-        onChange={e => setUserZip(e.target.value)}
+        onChange={(e) => setUserZip(e.target.value)}
       />
       <button className="button-login" type="button" onClick={findRestaurants}>
         Find Restaurants
@@ -76,10 +94,27 @@ const Restaurants = props => {
 
       <RestaurantDashBoard
         restaurantData={restaurantData}
+        setRestaurantData={setRestaurantData}
         findRestaurantsBtn={findRestaurantsBtn}
         buttonClick={buttonClick}
+        userID={userID}
+        setUserID={setUserID}
+        setFavRestaurantsArray={setFavRestaurantsArray}
+        favRestaurantsArray={favRestaurantsArray}
+        props={props}
       />
     </div>
   );
 };
-export default Restaurants;
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+  errors: state.errors,
+  item: state.item,
+  restaurants: state.restaurant,
+});
+
+export default connect(mapStateToProps, {
+  addRestaurant,
+  deleteRestaurant,
+  getRestaurants,
+})(Restaurants);

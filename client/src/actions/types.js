@@ -3,6 +3,11 @@ export const ADD_ITEM = "ADD_ITEM";
 export const DELETE_ITEM = "DELETE_ITEM";
 export const ITEMS_LOADING = "ITEMS_LOADING";
 
+export const GET_RESTAURANTS = "GET_RESTAURANTS";
+export const ADD_RESTAURANT = "ADD_RESTAURANT";
+export const DELETE_RESTAURANT = "DELETE_RESTAURANT";
+export const RESTAURANTS_LOADING = "RESTAURANTS_LOADING";
+
 export const USER_LOADING = "USER_LOADING";
 export const USER_LOADED = "USER_LOADED";
 export const AUTH_ERROR = "AUTH_ERROR";

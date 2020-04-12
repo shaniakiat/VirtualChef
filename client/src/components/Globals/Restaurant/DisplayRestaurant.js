@@ -73,11 +73,11 @@ const DisplayRestaurant = ({
   const submitRestaurantFavorites = (myObj) => {
     // e.preventDefault();
     const newRestaurantFavorite = {
-      RestaurantFavorited: newUserRestaurantFavorite,
+      RestaurantFavorited: myObj,
       userCode: userID,
     };
 
-    props.addRestaurant(newRestaurantFavorite, restaurantFavoritesArray);
+    props.addRestaurant(myObj, restaurantFavoritesArray);
     console.log(newRestaurantFavorite);
 
     console.log("adding the item");

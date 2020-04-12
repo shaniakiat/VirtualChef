@@ -2,15 +2,15 @@ const express = require("express");
 const router = express.Router();
 const auth = require("../../middleware/auth");
 
-//Item model
+//restaurant model
 //need this to do queries, find,save etc
 //capital letters for models
 const Restaurant = require("../../models/Restaurant");
 
 //@route GET request to API/restaurant
-//@desc Get all items
+//@desc Get all restaurants
 router.get("/", (req, res) => {
-  Restaurant.find().then((items) => res.json(items));
+  Restaurant.find().then((restaurants) => res.json(restaurants));
 });
 
 //@route POST request to API/restaurants
@@ -27,10 +27,12 @@ router.post("/", auth, (req, res) => {
 });
 
 //@route DELETE request to API/restaurants
-//@desc delete an item
+//@desc delete an restaurant
 router.delete("/:id", auth, (req, res) => {
   Restaurant.findById(req.params.id)
-    .then((item) => item.remove().then(() => res.json({ success: true })))
+    .then((restaurant) =>
+      restaurant.remove().then(() => res.json({ success: true }))
+    )
     .catch((err) => res.status(404).json({ success: false }));
 });
 

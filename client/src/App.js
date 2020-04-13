@@ -7,6 +7,8 @@ import LandingPage from "./components/Globals/LandingPage";
 import UserProfile from "./components/Globals/User/UserProfile";
 import IngredientList from "./components/Globals/Predictions/IngredientList";
 import Restaurant from "./components/Globals/Restaurant/Restaurants";
+import Documentation from "./components/Globals/Documentation";
+
 import store from "./store";
 
 // import { Container } from "reactstrap";
@@ -55,6 +57,12 @@ class App extends Component {
                 path="/user/restaurant"
                 exact
                 component={Restaurant}
+              />
+              <Route
+                key="/"
+                path="/user/documentation"
+                exact
+                component={Documentation}
               />
             </Switch>
           </div>

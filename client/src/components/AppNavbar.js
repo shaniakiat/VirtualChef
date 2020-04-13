@@ -53,6 +53,9 @@ class AppNavbar extends Component {
         <NavLink onClick={this.toggle} href="/user/restaurant">
           Restaurant
         </NavLink>
+        <NavLink onClick={this.toggle} href="/user/documentation">
+          Documentation
+        </NavLink>
         <NavItem>
           <Logout />
         </NavItem>

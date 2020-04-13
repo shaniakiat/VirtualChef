@@ -1,0 +1,24 @@
+@import url("App.css");
+
+.restaurants-page {
+  min-height: 90vh;
+  overflow: hidden;
+  margin: 0 15%;
+}
+
+.alert {
+  padding: 0.5rem 1.25rem;
+  color: var(--mainWhite);
+  text-align: center;
+  /* text-transform: capitalize; */
+  width: 100%;
+  margin: 2rem auto 0 auto;
+  border-radius: 2px;
+}
+.alert-danger {
+  background: var(--mainOrange);
+}
+
+.alert-success {
+  background: var(--mainGreen);
+}

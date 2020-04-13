@@ -11,6 +11,7 @@ const RestaurantDashBoard = ({
   setFavRestaurantsArray,
   favRestaurantsArray,
   props,
+  handleAlert,
 }) => {
   const [finalData, setFinalData] = useState([]);
   useEffect(() => {
@@ -33,6 +34,7 @@ const RestaurantDashBoard = ({
               setFavRestaurantsArray={setFavRestaurantsArray}
               favRestaurantsArray={favRestaurantsArray}
               props={props}
+              handleAlert={handleAlert}
             />
           ) : (
             <div className="loading">

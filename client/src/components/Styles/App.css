@@ -40,6 +40,12 @@ p {
   /* padding: 0 10%; */
 }
 
+input[type="text"],
+input[type="button"] {
+  -webkit-appearance: none !important;
+  -webkit-border-radius: 0 !important;
+}
+
 /* NAVBAR */
 .navbar-light {
   font-size: 15px;

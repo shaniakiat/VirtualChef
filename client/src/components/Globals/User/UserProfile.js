@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useReducer, useCallback } from "react";
 import { TiDelete } from "react-icons/ti";
-import Restaurants from "../Restaurant/Restaurants";
 import { connect, useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { addItem, deleteItem, getItems } from "../../../actions/itemActions";
@@ -141,7 +140,9 @@ const UserProfile = (props) => {
           ) : (
             favArray.map((obj) => (
               <li>
-                <Link to={`/user/${obj.FoodFavorited.replace(/\s/g, "-")}`}>
+                <Link
+                  to={`/user/food/${obj.FoodFavorited.replace(/\s/g, "-")}`}
+                >
                   <button
                     type="button"
                     onClick={() => handleToogle(obj.FoodFavorited)}
@@ -163,11 +164,17 @@ const UserProfile = (props) => {
         <ul>
           {restaurantFavorites.length === 0 ? (
             <div>
-              <p className="fav-food-empty">No restaurants saved!</p>
+              <p className="fav-food-empty">
+                It's empty. Go to the{" "}
+                <Link className="link-p" to="/user/restaurant">
+                  Restaurant page
+                </Link>{" "}
+                and add your favorite restaurant!😊
+              </p>
             </div>
           ) : (
             restaurantFavorites.map((obj) => (
-              <li>
+              <li className="restaurants-list">
                 {obj.RestaurantFavorited}
 
                 <TiDelete
@@ -179,7 +186,7 @@ const UserProfile = (props) => {
           )}
         </ul>
 
-        <Restaurants />
+        {/* <Restaurants /> */}
       </div>
     </div>
   );

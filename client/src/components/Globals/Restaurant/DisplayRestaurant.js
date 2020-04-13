@@ -11,6 +11,7 @@ const DisplayRestaurant = ({
   setUserID,
   setFavRestaurantsArray,
   props,
+  handleAlert,
 }) => {
   // const [userID, setUserID] = useState();
   const auth = useSelector((state) => state.auth);
@@ -24,7 +25,7 @@ const DisplayRestaurant = ({
     dispatch(loadUser(tokenRecognized));
   }, [dispatch, tokenRecognized]);
   useEffect(() => {
-    console.log(auth.isAuthenicated);
+    console.log("LINE 27: " + auth.isAuthenicated);
     if (auth.user) {
       setUserID(auth.user._id);
       axios
@@ -40,11 +41,22 @@ const DisplayRestaurant = ({
   }, [auth.isAuthenicated, auth.user, setFavRestaurantsArray, setUserID]);
 
   const submitRestaurantFavorites = (myObj) => {
-    const newRestaurantFavorite = {
-      RestaurantFavorited: myObj,
-      userCode: userID,
-    };
-    props.addRestaurant(newRestaurantFavorite, restaurantFavoritesArray);
+    if (Boolean(userID)) {
+      const newRestaurantFavorite = {
+        RestaurantFavorited: myObj,
+        userCode: userID,
+      };
+      props.addRestaurant(newRestaurantFavorite, restaurantFavoritesArray);
+      handleAlert({
+        type: "success",
+        text: `restaurant added`,
+      });
+    } else {
+      handleAlert({
+        type: "danger",
+        text: `please login to add restaurant to favorite list`,
+      });
+    }
   };
 
   //sort by rating
@@ -82,23 +94,31 @@ const DisplayRestaurant = ({
         <thead>
           <tr className="row100   head">
             <th className="column100 column1">
-              <button className="sorting-button">Restaurant Name</button>
+              <button type="button" className="sorting-button">
+                Restaurant Name
+              </button>
             </th>
             <th className="column100 column2">
-              <button className="sorting-button">Rating</button>
+              <button type="button" className="sorting-button">
+                Rating
+              </button>
             </th>
             <th className="column100 column3">
-              <button className="sorting-button">Price ($)</button>
+              <button type="button" className="sorting-button">
+                Price ($)
+              </button>
             </th>
             <th className="column100 column4">
-              <button className="sorting-button">Phone Number</button>
+              <button type="button" className="sorting-button">
+                Phone Number
+              </button>
             </th>
             <th className="column100 column5">
-              <button className="sorting-button">Address</button>
+              <button type="button" className="sorting-button">
+                Address
+              </button>
             </th>
-            <th className="column100 column6">
-              <button className="sorting-button"></button>
-            </th>
+            <th className="column100 column6"></th>
           </tr>
         </thead>
 
@@ -115,7 +135,10 @@ const DisplayRestaurant = ({
                   obj.location.display_address[1]}
               </td>
               <td className="favorite-res">
-                <button onClick={() => submitRestaurantFavorites(obj.name)}>
+                <button
+                  type="button"
+                  onClick={() => submitRestaurantFavorites(obj.name)}
+                >
                   <FaStar className="faStar" />
                 </button>
               </td>

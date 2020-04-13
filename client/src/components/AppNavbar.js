@@ -6,7 +6,8 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  Container
+  NavLink,
+  Container,
 } from "reactstrap";
 
 import { connect } from "react-redux";
@@ -14,20 +15,21 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import RegisterModal from "./auth/RegisterModal";
 import LoginModal from "./auth/LoginModal";
+import Restaurant from "./Globals/Restaurant/Restaurants";
 import Logout from "./auth/Logout";
 
 class AppNavbar extends Component {
   state = {
-    isOpen: false
+    isOpen: false,
   };
 
   static propTypes = {
-    auth: PropTypes.object.isRequired
+    auth: PropTypes.object.isRequired,
   };
 
   toggle = () => {
     this.setState({
-      isOpen: !this.state.isOpen
+      isOpen: !this.state.isOpen,
     });
   };
 
@@ -40,12 +42,17 @@ class AppNavbar extends Component {
           <span className="navbar-text mr-3">
             {/* <strong> */}
             {user
-              ? `Welcome ${user.name.charAt(0).toUpperCase() +
-                  user.name.slice(1).toLowerCase()}`
+              ? `Welcome ${
+                  user.name.charAt(0).toUpperCase() +
+                  user.name.slice(1).toLowerCase()
+                }`
               : ""}
             {/* </strong> */}
           </span>
         </NavItem>
+        <NavLink onClick={this.toggle} href="/user/restaurant">
+          Restaurant
+        </NavLink>
         <NavItem>
           <Logout />
         </NavItem>
@@ -54,6 +61,13 @@ class AppNavbar extends Component {
 
     const guestLinks = (
       <Fragment>
+        {/* <Link to="/restaurant">
+        <NavItem href="/restaurant">Restaurant</NavItem>
+        </Link> */}
+        <NavLink onClick={this.toggle} href="/restaurant">
+          Restaurant
+        </NavLink>
+
         <NavItem>
           <RegisterModal />
         </NavItem>
@@ -84,8 +98,8 @@ class AppNavbar extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  auth: state.auth
+const mapStateToProps = (state) => ({
+  auth: state.auth,
 });
 
 export default connect(mapStateToProps, null)(AppNavbar);

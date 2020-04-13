@@ -78,6 +78,7 @@ input {
   color: var(--mainDark);
   padding: 0;
   margin: 10px 0;
+  line-height: 1.8em;
 }
 p:first-child {
   margin: 10px 0;
@@ -102,6 +103,42 @@ button:focus {
 
 .tiDelete:hover {
   color: var(--mainDark);
+}
+
+.link-p {
+  font-size: 1rem;
+  color: var(--mainOrange);
+  padding: 0;
+  margin: 10px 0;
+  background: linear-gradient(
+    to bottom,
+    var(--mainOrange) 0%,
+    var(--mainOrange) 100%
+  );
+  background-position: 0 100%;
+  background-repeat: repeat-x;
+  background-size: 2px 2px;
+  transition: background-size 0.2s;
+  box-shadow: none;
+  border-image: none;
+  border-radius: 0;
+  padding: 5px;
+  text-decoration: none;
+  margin: 0;
+}
+
+.link-p:hover {
+  box-shadow: none;
+  text-decoration: none;
+  color: var(--mainWhite);
+  background-size: 4px 50px;
+}
+
+.restaurants-list {
+  font-family: "Poppins", sans-serif;
+  font-weight: 200;
+  font-size: 1rem;
+  color: var(--mainGreen);
 }
 
 @media only screen and (max-width: 600px) {

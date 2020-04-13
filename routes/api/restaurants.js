@@ -16,14 +16,20 @@ router.get("/", (req, res) => {
 //@route POST request to API/restaurants
 //@desc create a post
 router.post("/", auth, (req, res) => {
-  const newRestaurant = new Restaurant({
-    RestaurantFavorited: req.body.RestaurantFavorited,
-    userCode: req.body.userCode,
+  const { RestaurantFavorited, userCode } = req.body;
+
+  Restaurant.findOne({ RestaurantFavorited }).then((found) => {
+    if (found)
+      return res.status(400).json({ msg: "That's already in your list" });
+    const newRestaurant = new Restaurant({
+      RestaurantFavorited: req.body.RestaurantFavorited,
+      userCode: req.body.userCode,
+    });
+    newRestaurant
+      .save()
+      .then((restaurant) => res.json(restaurant))
+      .catch((err) => console.log(err));
   });
-  newRestaurant
-    .save()
-    .then((restaurant) => res.json(restaurant))
-    .catch((err) => console.log(err));
 });
 
 //@route DELETE request to API/restaurants

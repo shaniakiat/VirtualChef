@@ -21,7 +21,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
         restaurants: state.restaurants.filter(
-          (restaurants) => restaurants._id !== action.payload
+          (restaurant) => restaurant._id !== action.payload
         ),
       };
     case ADD_RESTAURANT:

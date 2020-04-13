@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { FaStar } from "react-icons/fa";
 import axios from "axios";
 import { connect, useDispatch, useSelector } from "react-redux";
 import { loadUser } from "../../../actions/authActions";
@@ -10,7 +11,9 @@ const DisplayRestaurant = ({
   setUserID,
   setFavRestaurantsArray,
   props,
+  handleAlert,
 }) => {
+  // const [userID, setUserID] = useState();
   const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const tokenRecognized = useSelector((state) => state.auth.token);
@@ -22,7 +25,7 @@ const DisplayRestaurant = ({
     dispatch(loadUser(tokenRecognized));
   }, [dispatch, tokenRecognized]);
   useEffect(() => {
-    console.log(auth.isAuthenicated);
+    console.log("LINE 27: " + auth.isAuthenicated);
     if (auth.user) {
       setUserID(auth.user._id);
       axios
@@ -38,14 +41,22 @@ const DisplayRestaurant = ({
   }, [auth.isAuthenicated, auth.user, setFavRestaurantsArray, setUserID]);
 
   const submitRestaurantFavorites = (myObj) => {
-    // e.preventDefault();
-    const newRestaurantFavorite = {
-      RestaurantFavorited: myObj,
-      userCode: userID,
-    };
-
-    props.addRestaurant(newRestaurantFavorite, restaurantFavoritesArray);
-    console.log(newRestaurantFavorite);
+    if (Boolean(userID)) {
+      const newRestaurantFavorite = {
+        RestaurantFavorited: myObj,
+        userCode: userID,
+      };
+      props.addRestaurant(newRestaurantFavorite, restaurantFavoritesArray);
+      handleAlert({
+        type: "success",
+        text: `restaurant added`,
+      });
+    } else {
+      handleAlert({
+        type: "danger",
+        text: `please login to add restaurant to favorite list`,
+      });
+    }
   };
 
   //sort by rating
@@ -64,66 +75,78 @@ const DisplayRestaurant = ({
 
   return (
     <div>
-      <button
+      {/* <button
         type="button"
-        className="div-button"
+        className="sorting-button"
         onClick={() => sortByRatingDescending(restaurantData)}
       >
         Sort Rating
       </button>
       <button
         type="button"
-        className="div-button"
+        className="sorting-button"
         onClick={() => sortByPriceAscending(restaurantData)}
       >
         Sort Price Ascending
-      </button>
+      </button> */}
 
       <table className="table">
         <thead>
           <tr className="row100   head">
             <th className="column100 column1">
-              <button>Restaurant Name</button>
+              <button type="button" className="sorting-button">
+                Restaurant Name
+              </button>
             </th>
             <th className="column100 column2">
-              <button>Rating</button>
+              <button type="button" className="sorting-button">
+                Rating
+              </button>
             </th>
-            <th className="column100 column3">Price ($)</th>
-            <th className="column100 column4">Phone Number</th>
-            <th className="column100 column5">Address</th>
-            <th className="column100 column6">Add to Favorites</th>
+            <th className="column100 column3">
+              <button type="button" className="sorting-button">
+                Price ($)
+              </button>
+            </th>
+            <th className="column100 column4">
+              <button type="button" className="sorting-button">
+                Phone Number
+              </button>
+            </th>
+            <th className="column100 column5">
+              <button type="button" className="sorting-button">
+                Address
+              </button>
+            </th>
+            <th className="column100 column6"></th>
           </tr>
         </thead>
 
         {restaurantData.map((obj) => (
-          <tbody>
-            <td key={obj.name} className="row100">
-              {obj.name}
-            </td>
-            <td key={obj.rating} className="row100">
-              {obj.rating}
-            </td>
-            <td key={obj.price} className="row100">
-              {obj.price}
-            </td>
-            <td key={obj.display_phone} className="row100">
-              {obj.display_phone}
-            </td>
-            <td key={obj.location.display_address} className="row100">
-              {obj.location.display_address[0] +
-                ", " +
-                obj.location.display_address[1]}
-            </td>
-            <td className="row100">
-              <button onClick={() => submitRestaurantFavorites(obj.name)}>
-                Add to fave
-              </button>
-            </td>
+          <tbody key={obj.name}>
+            <tr>
+              <td className="row100">{obj.name}</td>
+              <td className="row100">{obj.rating}</td>
+              <td className="row100">{obj.price}</td>
+              <td className="row100">{obj.display_phone}</td>
+              <td className="row100">
+                {obj.location.display_address[0] +
+                  ", " +
+                  obj.location.display_address[1]}
+              </td>
+              <td className="favorite-res">
+                <button
+                  type="button"
+                  onClick={() => submitRestaurantFavorites(obj.name)}
+                >
+                  <FaStar className="faStar" />
+                </button>
+              </td>
+            </tr>
           </tbody>
         ))}
       </table>
     </div>
   );
 };
-
 export default DisplayRestaurant;

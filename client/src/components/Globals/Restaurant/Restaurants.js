@@ -7,6 +7,11 @@ import {
 } from "../../../actions/restaurantActions";
 import { connect, useDispatch, useSelector } from "react-redux";
 import { loadUser } from "../../../actions/authActions";
+
+import Alert from "../../Alert";
+
+import "../../Styles/Restaurants.css";
+
 let validate = require("../Functions/validation");
 const axios = require("axios");
 const zipcodes = require("zipcodes");
@@ -16,6 +21,16 @@ const Restaurants = (props) => {
   const [userYelpQuery, setUserYelpQuery] = useState();
   const [userZip, setUserZip] = useState();
   const [restaurantData, setRestaurantData] = useState([]);
+  // alert
+  const [alert, setAlert] = useState({ show: false });
+
+  // handle alert
+  const handleAlert = ({ type, text }) => {
+    setAlert({ show: true, type, text });
+    setTimeout(() => {
+      setAlert({ show: false });
+    }, 3000);
+  };
 
   const [favRestaurantsArray, setFavRestaurantsArray] = useState([]);
 
@@ -76,7 +91,10 @@ const Restaurants = (props) => {
   }, [auth.isAuthenicated, auth.user]);
 
   return (
-    <div>
+    <div className="restaurants-page">
+      {alert.show && <Alert type={alert.type} text={alert.text} />}
+      <Alert />
+      <h1>Hi!👋</h1>
       <h3>Find restaurants near you! </h3>
       <input
         type="text"
@@ -102,6 +120,7 @@ const Restaurants = (props) => {
         setFavRestaurantsArray={setFavRestaurantsArray}
         favRestaurantsArray={favRestaurantsArray}
         props={props}
+        handleAlert={handleAlert}
       />
     </div>
   );

@@ -1,20 +1,26 @@
 import React, { useState, useEffect, useReducer, useCallback } from "react";
 import { TiDelete } from "react-icons/ti";
-import Restaurants from "../Restaurant/Restaurants";
 import { connect, useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { addItem, deleteItem, getItems } from "../../../actions/itemActions";
+import {
+  addRestaurant,
+  deleteRestaurant,
+  getRestaurants,
+} from "../../../actions/restaurantActions";
 import { loadUser } from "../../../actions/authActions";
 import { Link } from "react-router-dom";
 
 const UserProfile = (props) => {
   const [newUserFavorite, setNewUserFavorite] = useState("");
   const [favArray, setFavArray] = useState([]);
+  const [restaurantFavorites, setRestaurantFavorites] = useState([]);
   const [userID, setUserID] = useState();
   const tokenRecognized = useSelector((state) => state.auth.token);
 
   const auth = useSelector((state) => state.auth);
   const foodFavoritesArray = useSelector((state) => state.item);
+  const favoriteRestaurantArraay = useSelector((state) => state.restaurant);
 
   const dispatch = useDispatch();
 
@@ -35,8 +41,23 @@ const UserProfile = (props) => {
           setFavArray(json);
         })
         .catch((err) => console.log(err));
+      axios
+        .get(`/api/restaurants/restaurant/${auth.user._id}`)
+        .then((res) => {
+          console.log(res.data);
+          return res.data;
+        })
+        .then((json) => {
+          setRestaurantFavorites(json);
+        })
+        .catch((err) => console.log(err));
     }
-  }, [auth.isAuthenicated, auth.user, foodFavoritesArray]);
+  }, [
+    auth.isAuthenicated,
+    auth.user,
+    foodFavoritesArray,
+    favoriteRestaurantArraay,
+  ]);
 
   const submitFavorites = (e) => {
     e.preventDefault();
@@ -49,10 +70,15 @@ const UserProfile = (props) => {
     console.log(newFoodFavorite);
   };
 
+  //delete favorite food
   const deleteFav = (id) => {
     props.deleteItem(id);
   };
-  console.log(favArray);
+
+  //delete favorite restaurant
+  const deleteFavoriteRes = (id) => {
+    props.deleteRestaurant(id);
+  };
 
   // GETTING INGREDIENTS
   const [idFromFoodButtonClick, setIdFromFoodButtonClick] = useState("");
@@ -103,8 +129,7 @@ const UserProfile = (props) => {
         Submit your favorite
       </button>
       <div className="favFoodList">
-        <h3>Your favorite food:</h3>
-        {/* <div>{console.log(favArray.)}</div> */}
+        <h3>Your favorite foods:</h3>
         <ul>
           {favArray.length === 0 ? (
             <div>
@@ -115,7 +140,9 @@ const UserProfile = (props) => {
           ) : (
             favArray.map((obj) => (
               <li>
-                <Link to={`/user/${obj.FoodFavorited.replace(/\s/g, "-")}`}>
+                <Link
+                  to={`/user/food/${obj.FoodFavorited.replace(/\s/g, "-")}`}
+                >
                   <button
                     type="button"
                     onClick={() => handleToogle(obj.FoodFavorited)}
@@ -133,7 +160,33 @@ const UserProfile = (props) => {
           )}
         </ul>
 
-        <Restaurants />
+        <h3>Your favorite Restaurants:</h3>
+        <ul>
+          {restaurantFavorites.length === 0 ? (
+            <div>
+              <p className="fav-food-empty">
+                It's empty. Go to the{" "}
+                <Link className="link-p" to="/user/restaurant">
+                  Restaurant page
+                </Link>{" "}
+                and add your favorite restaurant!😊
+              </p>
+            </div>
+          ) : (
+            restaurantFavorites.map((obj) => (
+              <li className="restaurants-list">
+                {obj.RestaurantFavorited}
+
+                <TiDelete
+                  className="tiDelete"
+                  onClick={() => deleteFavoriteRes(obj._id)}
+                />
+              </li>
+            ))
+          )}
+        </ul>
+
+        {/* <Restaurants /> */}
       </div>
     </div>
   );
@@ -146,6 +199,11 @@ const mapStateToProps = (state) => ({
   restaurants: state.restaurant,
 });
 
-export default connect(mapStateToProps, { addItem, deleteItem, getItems })(
-  UserProfile
-);
+export default connect(mapStateToProps, {
+  addItem,
+  deleteItem,
+  getItems,
+  addRestaurant,
+  deleteRestaurant,
+  getRestaurants,
+})(UserProfile);

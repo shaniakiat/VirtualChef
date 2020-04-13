@@ -6,6 +6,7 @@ import Footer from "./components/Footer";
 import LandingPage from "./components/Globals/LandingPage";
 import UserProfile from "./components/Globals/User/UserProfile";
 import IngredientList from "./components/Globals/Predictions/IngredientList";
+import Restaurant from "./components/Globals/Restaurant/Restaurants";
 import store from "./store";
 
 // import { Container } from "reactstrap";
@@ -44,9 +45,16 @@ class App extends Component {
               />
               <Route
                 key="/"
-                path="/user/:id"
+                path="/user/food/:id"
                 exact
                 component={IngredientList}
+              />
+              <Route key="/" path="/restaurant" exact component={Restaurant} />
+              <Route
+                key="/"
+                path="/user/restaurant"
+                exact
+                component={Restaurant}
               />
             </Switch>
           </div>

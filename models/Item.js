@@ -7,13 +7,13 @@ const Schema = mongoose.Schema;
 const ItemSchema = new Schema({
   FoodFavorited: {
     type: String,
-    required: true
+    required: true,
   },
   //this is the user's object. we will map the food favorites to the user object ID
   userCode: {
     type: Schema.Types.ObjectId,
     ref: "item", // come back
-    required: true
-  }
+    required: true,
+  },
 });
 module.exports = Item = mongoose.model("item", ItemSchema);

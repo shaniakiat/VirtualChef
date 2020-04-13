@@ -1,0 +1,7 @@
+@import url("App.css");
+
+.documentation-page {
+  min-height: 90vh;
+  overflow: hidden;
+  margin: 0 15%;
+}

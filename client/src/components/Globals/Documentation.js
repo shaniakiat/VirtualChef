@@ -2,10 +2,13 @@ import React from "react";
 import "./../Styles/Documentation.css";
 
 const Documentation = () => {
+  // const generateKey = =>{
+
+  // }
+
   return (
     <div className="documentation-page">
-      <h1>Hi David 😊</h1>
-      <h3>I hope you have a good day!</h3>
+      <button>Get your API key</button>
     </div>
   );
 };

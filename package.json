@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/DavidLuong98/VirtualChef#readme",
   "dependencies": {
+    "axios": "^0.19.2",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "concurrently": "^5.0.2",
@@ -36,6 +37,7 @@
     "jsonwebtoken": "^8.5.1",
     "mdbreact": "^4.24.0",
     "mongoose": "^5.8.3",
+    "node-fetch": "^2.6.0",
     "react-d3-library": "^1.1.8",
     "react-icons": "^3.9.0",
     "react-loader-spinner": "^3.1.5",

@@ -7,6 +7,8 @@ const mongo = require("mongodb");
 
 router.get("/create-key/:id", (req, res) => {
   //add query parameters **
+  console.log(req.params.id);
+
   var o_id = new mongo.ObjectID(req.params.id);
   User.findOne({
     $and: [{ _id: o_id }, { "apikey.access_token": { $exists: false } }],

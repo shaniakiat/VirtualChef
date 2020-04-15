@@ -15,6 +15,7 @@ export default function (state = initialState, action) {
     case PREDICT:
       return {
         ...state,
+        loading: false,
       };
 
     default:

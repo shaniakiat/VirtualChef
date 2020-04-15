@@ -41,5 +41,11 @@ const Documentation = (props) => {
     </div>
   );
 };
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+  errors: state.errors,
+});
 
-export default Documentation;
+export default connect(mapStateToProps, {
+  genkey,
+})(Documentation);

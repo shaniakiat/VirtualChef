@@ -1,15 +1,16 @@
 import axios from "axios";
 import { CREATEKEY, PREDICT } from "./types";
+import { tokenConfig } from "./authActions";
 import { returnErrors } from "./errorActions";
+import { create } from "d3";
 
-export const genkey = (id) => (dispatch) => {
-  //https://redux.js.org/advanced/async-actions
+export const genkey = (id) => (dispatch, getState) => {
   axios
-    .post(`/api/virtualchef/create-key/${id}`)
+    .post(`/api/virtualchef/create-key/${id}`, id, tokenConfig(getState))
     .then((res) => {
       dispatch({
         type: CREATEKEY,
-        id,
+        payload: res.data,
       });
     })
     .catch((err) => {

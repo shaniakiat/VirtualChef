@@ -4,6 +4,8 @@ import DisplayRestaurant from "./DisplayRestaurant";
 const RestaurantDashBoard = ({
   restaurantData,
   setRestaurantData,
+  originalRestaurantData,
+  setOriginalRestaurantData,
   findRestaurantsBtn,
   buttonClick,
   userID,
@@ -27,6 +29,8 @@ const RestaurantDashBoard = ({
             <DisplayRestaurant
               restaurantData={restaurantData}
               setRestaurantData={setRestaurantData}
+              originalRestaurantData={originalRestaurantData}
+              setOriginalRestaurantData={setOriginalRestaurantData}
               finalData={finalData}
               setFinalData={setFinalData}
               userID={userID}

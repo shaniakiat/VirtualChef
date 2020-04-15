@@ -21,6 +21,7 @@ const Restaurants = (props) => {
   const [userYelpQuery, setUserYelpQuery] = useState();
   const [userZip, setUserZip] = useState();
   const [restaurantData, setRestaurantData] = useState([]);
+  const [originalRestaurantData, setOriginalRestaurantData] = useState([]);
   // alert
   const [alert, setAlert] = useState({ show: false });
 
@@ -60,7 +61,8 @@ const Restaurants = (props) => {
           .then((res) => {
             if (res) {
               setRestaurantData(res.data.businesses);
-              console.log(restaurantData);
+              setOriginalRestaurantData(res.data.businesses);
+              // console.log(restaurantData);
               setFindRestaurants(true);
             }
           })
@@ -113,6 +115,8 @@ const Restaurants = (props) => {
       <RestaurantDashBoard
         restaurantData={restaurantData}
         setRestaurantData={setRestaurantData}
+        originalRestaurantData={originalRestaurantData}
+        setOriginalRestaurantData={setOriginalRestaurantData}
         findRestaurantsBtn={findRestaurantsBtn}
         buttonClick={buttonClick}
         userID={userID}

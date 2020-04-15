@@ -1,9 +1,18 @@
+.hscroll {
+  overflow-x: auto; /* Horizontal */
+}
+
 table {
   width: 100%;
   background-color: #fff;
   margin: 1rem 0;
   font-size: 1rem;
   text-align: center;
+}
+
+.sort-message {
+  margin: 20px 0;
+  font-size: 1rem;
 }
 
 th,
@@ -22,7 +31,7 @@ td {
   padding-bottom: 20px;
   font-size: 15px;
   font-weight: 600;
-  color: var(--mainGreen);
+  color: var(--mainDark);
 }
 
 .row100 td {
@@ -62,7 +71,9 @@ td {
 } */
 
 .sorting-button {
+  background-color: var(--mainWhite);
   font-size: 1rem;
+  font-weight: 600;
   color: var(--mainDark);
   padding: 0.5rem 1rem;
   transition: all 0.5s;
@@ -77,6 +88,7 @@ td {
   padding: 5px;
   text-decoration: none;
   margin: 0;
+  transition: all 0.2s;
 }
 
 .sorting-button:hover {
@@ -89,6 +101,10 @@ td {
 td.favorite-res {
   text-align-last: center;
   vertical-align: middle;
+}
+
+.button-fav {
+  background-color: var(--mainWhite);
 }
 
 .faStar {

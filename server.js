@@ -6,6 +6,7 @@ const items = require("./routes/api/items");
 const restaurants = require("./routes/api/restaurants");
 const users = require("./routes/api/users");
 const auth = require("./routes/api/auth");
+const virtualchef = require("./routes/api/virtualchef");
 
 const app = express();
 
@@ -31,6 +32,7 @@ app.use("/api/restaurants", restaurants);
 app.use("/api/items", items);
 app.use("/api/users", users);
 app.use("/api/auth", auth);
+app.use("/api/virtualchef", virtualchef);
 
 //serve static assests
 if (process.env.NODE_ENV === "production") {

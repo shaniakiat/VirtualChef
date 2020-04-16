@@ -1,15 +1,9 @@
 import React, { useState, useEffect, useReducer, useCallback } from "react";
 import { loadUser } from "../../actions/authActions";
 import { connect, useDispatch, useSelector } from "react-redux";
-import axios from "axios";
-
 import "./../Styles/Documentation.css";
-
-// import generateKey from "./Functions/virtualchef";
 import { genkey } from "../../actions/virtualchefActions";
-
-//need to fetch the user and it's props
-//get if the user has a key~~
+import axios from "axios";
 
 const Documentation = (props) => {
   const auth = useSelector((state) => state.auth);
@@ -28,14 +22,17 @@ const Documentation = (props) => {
   }, [auth.isAuthenicated, auth.user]);
 
   const createNewKey = () => {
-    console.log(userID);
-    props.genkey(userID);
-    console.log(auth.user);
-    console.log("finished");
+    if (auth.user.apikey.access_token) {
+      return alert("you already have an api key!");
+    } else {
+      props.genkey(userID);
+      console.log("creatnewkey function finished");
+    }
   };
 
   return (
     <div className="documentation-page">
+      {/* if auth.user has apikey, then show your api key, else, show the button */}
       <h1>Hello</h1>
       <button onClick={createNewKey}>Get your API key</button>
     </div>

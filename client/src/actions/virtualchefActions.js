@@ -7,7 +7,7 @@ import { JsonWebTokenError } from "jsonwebtoken";
 
 export const genkey = (id) => (dispatch, getState) => {
   axios
-    .post(`/api/virtualchef/create-key/${id}`, id, tokenConfig(getState))
+    .get(`/api/virtualchef/create-key/${id}`, id, tokenConfig(getState))
     .then((res) => {
       res.json();
       dispatch({

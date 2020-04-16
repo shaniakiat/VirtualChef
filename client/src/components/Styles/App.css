@@ -25,6 +25,13 @@ h1 {
   font-size: 65px;
   color: var(--mainGreen);
 }
+
+h2 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-size: 35px;
+  color: var(--mainGreen);
+}
 h3 {
   font-family: "Poppins", sans-serif;
   font-weight: 600;

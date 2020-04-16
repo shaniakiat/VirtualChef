@@ -17,7 +17,7 @@ const UserProfile = (props) => {
   const [restaurantFavorites, setRestaurantFavorites] = useState([]);
   const [userID, setUserID] = useState();
   const tokenRecognized = useSelector((state) => state.auth.token);
-
+  const name = useSelector((state) => state.auth.user.name);
   const auth = useSelector((state) => state.auth);
   const foodFavoritesArray = useSelector((state) => state.item);
   const favoriteRestaurantArraay = useSelector((state) => state.restaurant);
@@ -113,10 +113,7 @@ const UserProfile = (props) => {
 
   return (
     <div className="login">
-      <h1>
-        Hi!👋
-        {/* Hello {auth.charAt(0).toUpperCase() + auth.slice(1).toLowerCase()}! */}
-      </h1>
+      <h1>Hello {name}</h1>
       <h3>What is your favorite food?</h3>
 
       <input

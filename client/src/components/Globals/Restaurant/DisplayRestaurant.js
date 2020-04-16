@@ -103,11 +103,11 @@ const DisplayRestaurant = ({
           //     return b.rating - a.rating;
           //   });{
           // equal items sort equally
-          // if (a.price === b.price) {
-          //   return 0;
-          // }
+          if (a.price === b.price) {
+            return 0;
+          }
           // nulls sort after anything else
-          if (a.price === null) {
+          else if (a.price === null) {
             return 1;
           } else if (b.price === null) {
             return -1;
@@ -125,11 +125,11 @@ const DisplayRestaurant = ({
           //     return b.rating - a.rating;
           //   });{
           // equal items sort equally
-          // if (a.price === b.price) {
-          //   return 0;
-          // }
+          if (a.price === b.price) {
+            return 0;
+          }
           // nulls sort after anything else
-          if (a.price === null) {
+          else if (a.price === null) {
             return 1;
           } else if (b.price === null) {
             return -1;
@@ -205,8 +205,8 @@ const DisplayRestaurant = ({
           </tr>
         </thead>
 
-        {restaurantData.map((obj) => (
-          <tbody key={obj.display_phone}>
+        {restaurantData.map((obj, i) => (
+          <tbody key={obj.display_phone + i}>
             <tr>
               <td className="row100">{obj.name}</td>
               <td className="row100">{obj.rating}</td>

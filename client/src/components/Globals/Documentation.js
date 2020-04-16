@@ -22,12 +22,8 @@ const Documentation = (props) => {
   }, [auth.isAuthenicated, auth.user]);
 
   const createNewKey = () => {
-    if (auth.user.apikey.access_token) {
-      return alert("you already have an api key!");
-    } else {
-      props.genkey(userID);
-      console.log("creatnewkey function finished");
-    }
+    props.genkey(userID);
+    console.log("creatnewkey function finished");
   };
 
   return (

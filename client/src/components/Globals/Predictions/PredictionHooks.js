@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useLayoutEffect } from "react";
 import axios from "axios";
-import { predictFood } from "../../../actions/virtualchefActions";
 import { connect, useDispatch, useSelector } from "react-redux";
 import FoodPredictions from "./FoodPredictions";
 
@@ -8,7 +7,6 @@ import "../../Styles/Predictions.css";
 let validate = require("../Functions/validation");
 
 const PredictionHooks = (props) => {
-  //   const [hasError, setErrors] = useState(false);
   const [userFood, setUserFood] = useState("");
   const [predictions, setPredictions] = useState([]);
   const [idFromButtonClick, setIdFromButtonClick] = useState("");
@@ -32,9 +30,7 @@ const PredictionHooks = (props) => {
     }
   });
 
-  /*-----------------------FETCH THE PYTHON API FOR THE FOOD PREDICTIONS-----------------------*/
   useEffect(() => {
-    //check
     if (validate.isEmpty(idFromButtonClick)) {
       setFindPrediction(false);
       setPredictions([]);
@@ -81,13 +77,11 @@ const PredictionHooks = (props) => {
       const response = await fetch(
         "https://floating-plains-35923.herokuapp.com/dictionary"
       );
-      await sleep(1e3); // For demo purposes.
+      await sleep(1e3);
       const food = await response.json();
 
       if (active) {
-        // console.log(Object.keys(food).map(key => food[key]));
         setOptions(Object.keys(food).map((key) => food[key]));
-        // setOptions(Object.keys(countries).map(key => countries[key].item[0]));
       }
     })();
 
@@ -102,14 +96,9 @@ const PredictionHooks = (props) => {
     }
   }, [open]);
 
-  // const getPredict = () =>{
-
-  // }
-
   return (
     <div>
       <FoodPredictions
-        /*----------FOOD PREDICTIONS VARIABLES----------*/
         idFromButtonClick={idFromButtonClick}
         userFood={userFood}
         handleClickPrediction={handleClickPrediction}
@@ -128,13 +117,4 @@ const PredictionHooks = (props) => {
   );
 };
 
-// export default PredictionHooks;
-const mapStateToProps = (state) => ({
-  auth: state.auth,
-  errors: state.errors,
-  virtualchef: state.virtualchef,
-});
-
-export default connect(mapStateToProps, {
-  predictFood,
-})(PredictionHooks);
+export default PredictionHooks;

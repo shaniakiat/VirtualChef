@@ -1,8 +1,7 @@
-import { CREATEKEY, PREDICT } from "../actions/types";
+import { CREATEKEY } from "../actions/types";
 
 const initialState = {
   keys: [],
-  data: [],
   loading: false,
 };
 export default function (state = initialState, action) {
@@ -13,13 +12,6 @@ export default function (state = initialState, action) {
         keys: action.payload,
         loading: false,
       };
-    case PREDICT:
-      return {
-        ...state,
-        data: action.payload,
-        loading: false,
-      };
-
     default:
       return state;
   }

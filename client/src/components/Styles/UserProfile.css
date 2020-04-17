@@ -39,7 +39,6 @@
 }
 
 input {
-  padding-left: 15px;
   text-align: center;
   height: 50px;
   width: 55%;
@@ -175,5 +174,40 @@ button:focus {
 @media only screen and (max-width: 600px) {
   input {
     width: 80%;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .login {
+    font-size: 12px !important;
+  }
+
+  .user-hello {
+    padding: 15px;
+  }
+
+  .user-hello h2 {
+    font-size: 20px;
+    margin: 10px;
+  }
+  .user-container {
+    grid-template-columns: 100%;
+  }
+
+  .fav-food,
+  .fav-restaurant {
+    padding: 15px;
+    margin: 15px 5px;
+  }
+
+  .tiDelete {
+    width: 20px;
+    height: 20px;
+    margin: none;
+  }
+
+  .fav-restaurant ul li {
+    font-size: 12px !important;
+    padding: 0 !important;
   }
 }

@@ -8,6 +8,9 @@ import UserProfile from "./components/Globals/User/UserProfile";
 import IngredientList from "./components/Globals/Predictions/IngredientList";
 import Restaurant from "./components/Globals/Restaurant/Restaurants";
 import Documentation from "./components/Globals/Documentation";
+import NoMatchPage from "./components/Globals/NoMatchPage";
+
+import Fade from "react-reveal/Fade";
 
 import store from "./store";
 
@@ -35,10 +38,15 @@ class App extends Component {
       <Router>
         <Provider store={store}>
           <div className="App">
-            <AppNavbar />
+            <Fade down>
+              <AppNavbar />
+            </Fade>
             <Switch>
               <Route key="/" path="/" exact component={LandingPage} />
+              <Route key="/" path="/home" exact component={LandingPage} />
+              <Route key="/" path="/home/user" exact component={LandingPage} />
               <Route key="/" path="/user" exact component={UserProfile} />
+
               <Route
                 key="/"
                 path="/food/:id"
@@ -64,6 +72,7 @@ class App extends Component {
                 exact
                 component={Documentation}
               />
+              <Route component={NoMatchPage} />
             </Switch>
           </div>
           <Footer />

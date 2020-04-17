@@ -8,6 +8,8 @@ import {
 import { connect, useDispatch, useSelector } from "react-redux";
 import { loadUser } from "../../../actions/authActions";
 
+import Fade from "react-reveal/Fade";
+
 import Alert from "../../Alert";
 
 import "../../Styles/Restaurants.css";
@@ -95,24 +97,32 @@ const Restaurants = (props) => {
   return (
     <div className="restaurants-page">
       <div className="restaurant-container">
-        <h2>Find Restaurants Near Me</h2>
-        <input
-          type="text"
-          placeholder="Enter the food"
-          onChange={(e) => setUserYelpQuery(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Enter a valid zip code"
-          onChange={(e) => setUserZip(e.target.value)}
-        />
-        <button
-          className="button-login"
-          type="button"
-          onClick={findRestaurants}
-        >
-          Find Restaurants
-        </button>
+        <Fade up delay={50}>
+          <h2>Find Restaurants Near Me</h2>
+        </Fade>
+        <Fade up delay={200}>
+          <input
+            type="text"
+            placeholder="Enter the food"
+            onChange={(e) => setUserYelpQuery(e.target.value)}
+          />
+        </Fade>
+        <Fade up delay={350}>
+          <input
+            type="text"
+            placeholder="Enter a valid zip code"
+            onChange={(e) => setUserZip(e.target.value)}
+          />
+        </Fade>
+        <Fade up delay={500}>
+          <button
+            className="button-login"
+            type="button"
+            onClick={findRestaurants}
+          >
+            Find Restaurants
+          </button>
+        </Fade>
       </div>
       {alert.show && <Alert type={alert.type} text={alert.text} />}
       <Alert />

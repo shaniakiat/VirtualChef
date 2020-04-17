@@ -11,13 +11,16 @@ import {
 import { loadUser } from "../../../actions/authActions";
 import { Link } from "react-router-dom";
 
+import Fade from "react-reveal/Fade";
+
 const UserProfile = (props) => {
   const [newUserFavorite, setNewUserFavorite] = useState("");
+  const [name, setName] = useState("");
   const [favArray, setFavArray] = useState([]);
   const [restaurantFavorites, setRestaurantFavorites] = useState([]);
   const [userID, setUserID] = useState();
   const tokenRecognized = useSelector((state) => state.auth.token);
-
+  // const name = useSelector((state) => state.auth.user.name);
   const auth = useSelector((state) => state.auth);
   const foodFavoritesArray = useSelector((state) => state.item);
   const favoriteRestaurantArraay = useSelector((state) => state.restaurant);
@@ -32,6 +35,7 @@ const UserProfile = (props) => {
     console.log(auth.isAuthenicated);
     if (auth.user) {
       setUserID(auth.user._id);
+      setName(auth.user.name);
       axios
         .get(`/api/items/item/${auth.user._id}`)
         .then((res) => {
@@ -113,80 +117,104 @@ const UserProfile = (props) => {
 
   return (
     <div className="login">
-      <h1>
-        Hi!👋
-        {/* Hello {auth.charAt(0).toUpperCase() + auth.slice(1).toLowerCase()}! */}
-      </h1>
-      <h3>What is your favorite food?</h3>
-
-      <input
-        type="text"
-        placeholder="Enter Your Favorite Food"
-        onChange={(e) => setNewUserFavorite(e.target.value)}
-        className="input"
-      ></input>
-      <button className="button-login" type="button" onClick={submitFavorites}>
-        Submit your favorite
-      </button>
-      <div className="favFoodList">
-        <h3>Your favorite foods:</h3>
-        <ul>
-          {favArray.length === 0 ? (
-            <div>
-              <p className="fav-food-empty">
-                It's empty. Please add your favorite food!
-              </p>
+      <div className="user-hello">
+        <Fade up delay={50}>
+          <h2>Hello {name}</h2>
+        </Fade>
+        <Fade up delay={200}>
+          <h3>What is your favorite food?</h3>
+        </Fade>
+        <Fade up delay={350}>
+          <input
+            type="text"
+            placeholder="Enter Your Favorite Food"
+            onChange={(e) => setNewUserFavorite(e.target.value)}
+            className="input"
+          ></input>
+        </Fade>
+        <Fade up delay={500}>
+          <button
+            className="button-login"
+            type="button"
+            onClick={submitFavorites}
+          >
+            Submit your favorite
+          </button>
+        </Fade>
+      </div>
+      <div className="user-container">
+        <div>
+          <Fade up delay={650}>
+            <div className="fav-food">
+              <h3>Your favorite foods:</h3>
+              <ul>
+                {favArray.length === 0 ? (
+                  <div>
+                    <p className="fav-food-empty">
+                      It's empty. Please add your favorite food!
+                    </p>
+                  </div>
+                ) : (
+                  favArray.map((obj) => (
+                    <li>
+                      <Link
+                        to={`/user/food/${obj.FoodFavorited.replace(
+                          /\s/g,
+                          "-"
+                        )}`}
+                      >
+                        <button
+                          type="button"
+                          onClick={() => handleToogle(obj.FoodFavorited)}
+                        >
+                          {obj.FoodFavorited}
+                        </button>
+                      </Link>
+                      {/* <button>Delete button</button> */}
+                      <TiDelete
+                        className="tiDelete"
+                        onClick={() => deleteFav(obj._id)}
+                      />
+                    </li>
+                  ))
+                )}
+              </ul>
             </div>
-          ) : (
-            favArray.map((obj) => (
-              <li>
-                <Link
-                  to={`/user/food/${obj.FoodFavorited.replace(/\s/g, "-")}`}
-                >
-                  <button
-                    type="button"
-                    onClick={() => handleToogle(obj.FoodFavorited)}
-                  >
-                    {obj.FoodFavorited}
-                  </button>
-                </Link>
-                {/* <button>Delete button</button> */}
-                <TiDelete
-                  className="tiDelete"
-                  onClick={() => deleteFav(obj._id)}
-                />
-              </li>
-            ))
-          )}
-        </ul>
+          </Fade>
+        </div>
+        <div>
+          <Fade up delay={650}>
+            <div className="fav-restaurant">
+              <h3>Your favorite Restaurants:</h3>
+              <ul>
+                {restaurantFavorites.length === 0 ? (
+                  <div>
+                    <p className="fav-food-empty">
+                      It's empty. Go to the{" "}
+                      <Link className="link-p" to="/user/restaurant">
+                        Restaurant page
+                      </Link>{" "}
+                      and add your favorite restaurant!😊
+                    </p>
+                  </div>
+                ) : (
+                  restaurantFavorites.map((obj) => (
+                    <li className="restaurants-list">
+                      {obj.RestaurantFavorited}
 
-        <h3>Your favorite Restaurants:</h3>
-        <ul>
-          {restaurantFavorites.length === 0 ? (
-            <div>
-              <p className="fav-food-empty">
-                It's empty. Go to the{" "}
-                <Link className="link-p" to="/user/restaurant">
-                  Restaurant page
-                </Link>{" "}
-                and add your favorite restaurant!😊
-              </p>
+                      <TiDelete
+                        className="tiDelete"
+                        onClick={() => deleteFavoriteRes(obj._id)}
+                      />
+                    </li>
+                  ))
+                )}
+              </ul>
+
+              {/* <Restaurants /> */}
             </div>
-          ) : (
-            restaurantFavorites.map((obj) => (
-              <li className="restaurants-list">
-                {obj.RestaurantFavorited}
-
-                <TiDelete
-                  className="tiDelete"
-                  onClick={() => deleteFavoriteRes(obj._id)}
-                />
-              </li>
-            ))
-          )}
-        </ul>
-
-        {/* <Restaurants /> */}
+          </Fade>
+        </div>
       </div>
     </div>
   );

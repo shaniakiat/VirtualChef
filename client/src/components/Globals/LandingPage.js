@@ -17,23 +17,22 @@ class Dashboard extends Component {
   render() {
     return (
       <div>
-        {this.props.isAuthenticated ? (
-          <Redirect to="/user" />
-        ) : (
-          <div>
-            <Header />
-            <PredictionHooks />
-            <About />
-          </div>
-        )}
+        {/* {this.props.isAuthenticated ? (
+          <Redirect to="/home/user" />
+        ) : ( */}
+        <div>
+          <Header />
+          <PredictionHooks />
+          <About />
+        </div>
       </div>
     );
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   item: state.item,
-  isAuthenticated: state.auth.isAuthenticated
+  isAuthenticated: state.auth.isAuthenticated,
 });
 
 export default connect(mapStateToProps, { addItem })(Dashboard);

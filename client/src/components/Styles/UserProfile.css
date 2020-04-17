@@ -6,9 +6,20 @@
   margin: 0 15%;
 }
 
+.user-hello {
+  /* background-color: #dbe7c5; */
+  /* border-radius: 20px; */
+  text-align: -webkit-center;
+  padding: 2rem;
+}
+
+.user-hello h2 {
+  margin-bottom: 40px;
+}
+
 .button-login {
   display: block;
-  /* margin: 0.8rem; */
+  margin: 10px;
   font-family: "Poppins", sans-serif;
   font-weight: 400;
   text-decoration: none;
@@ -29,21 +40,39 @@
 
 input {
   padding-left: 15px;
-  text-align: left;
+  text-align: center;
   height: 50px;
   width: 55%;
   border: 1px solid var(--mainDark);
   margin: 10px 0;
 }
 
-.favFoodList {
-  margin-top: 50px;
+.user-container {
+  display: grid;
+  grid-template-columns: 50% 50%;
 }
-.favFoodList ul li {
+
+.fav-food {
+  margin: 50px 10px;
+  padding: 17px;
+  background-color: white;
+  border: solid 3px #dbe7c5;
+  border-radius: 20px;
+}
+
+.fav-restaurant {
+  margin: 50px 10px;
+  padding: 20px;
+  background-color: #dbe7c5;
+  border-radius: 20px;
+}
+.fav-food ul li,
+.fav-restaurant ul li {
   list-style: none;
   padding: 5px;
 }
-.favFoodList ul li button {
+.fav-food ul li button,
+.fav-restaurant ul li button {
   font-family: "Poppins", sans-serif;
   font-weight: 200;
   font-size: 1rem;
@@ -66,7 +95,8 @@ input {
   text-decoration: none;
   margin: 0;
 }
-.favFoodList ul li button:hover {
+.fav-food ul li button:hover,
+.fav-restaurant ul li button:hover {
   box-shadow: none;
   text-decoration: none;
   color: var(--mainWhite);
@@ -88,7 +118,8 @@ button:focus {
   outline: 0;
 }
 
-.favFoodList ul {
+.fav-food ul,
+.fav-restaurant ul {
   margin-bottom: 50px;
 }
 

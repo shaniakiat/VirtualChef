@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { loadUser } from "../../../actions/authActions";
 import "../../Styles/Table.css";
 import { Icon } from "semantic-ui-react";
+import Fade from "react-reveal/Fade";
 
 const DisplayRestaurant = ({
   restaurantData,
@@ -103,11 +104,11 @@ const DisplayRestaurant = ({
           //     return b.rating - a.rating;
           //   });{
           // equal items sort equally
-          // if (a.price === b.price) {
-          //   return 0;
-          // }
+          if (a.price === b.price) {
+            return 0;
+          }
           // nulls sort after anything else
-          if (a.price === null) {
+          else if (a.price === null) {
             return 1;
           } else if (b.price === null) {
             return -1;
@@ -125,11 +126,11 @@ const DisplayRestaurant = ({
           //     return b.rating - a.rating;
           //   });{
           // equal items sort equally
-          // if (a.price === b.price) {
-          //   return 0;
-          // }
+          if (a.price === b.price) {
+            return 0;
+          }
           // nulls sort after anything else
-          if (a.price === null) {
+          else if (a.price === null) {
             return 1;
           } else if (b.price === null) {
             return -1;
@@ -165,71 +166,73 @@ const DisplayRestaurant = ({
 
   return (
     <div className="hscroll">
-      <p className="sort-message">Sort by: {sortBy}</p>
-      <table className="table">
-        <thead>
-          <tr className="row100   head">
-            <th className="column100 column1">
-              <button
-                type="button"
-                className="sorting-button"
-                onClick={() => sortByName()}
-              >
-                Restaurant Name
-                <Icon name="sort" />
-              </button>
-            </th>
-            <th className="column100 column2">
-              <button
-                type="button"
-                className="sorting-button"
-                onClick={() => sortByRating()}
-              >
-                Rating
-                <Icon name="sort" />
-              </button>
-            </th>
-            <th className="column100 column3">
-              <button
-                type="button"
-                className="sorting-button"
-                onClick={() => sortByPrice()}
-              >
-                Price ($)
-                <Icon name="sort" />
-              </button>
-            </th>
-            <th className="column100 column4">Phone Number</th>
-            <th className="column100 column5">Address</th>
-            <th className="column100 column6"></th>
-          </tr>
-        </thead>
-
-        {restaurantData.map((obj) => (
-          <tbody key={obj.display_phone}>
-            <tr>
-              <td className="row100">{obj.name}</td>
-              <td className="row100">{obj.rating}</td>
-              <td className="row100">{obj.price}</td>
-              <td className="row100">{obj.display_phone}</td>
-              <td className="row100">
-                {obj.location.display_address[0] +
-                  ", " +
-                  obj.location.display_address[1]}
-              </td>
-              <td className="favorite-res">
+      <Fade up>
+        <p className="sort-message">Sort by: {sortBy}</p>
+        <table className="table">
+          <thead>
+            <tr className="row100   head">
+              <th className="column100 column1">
                 <button
                   type="button"
-                  className="button-fav"
-                  onClick={() => submitRestaurantFavorites(obj.name)}
+                  className="sorting-button"
+                  onClick={() => sortByName()}
                 >
-                  <FaStar className="faStar" />
+                  Restaurant Name
+                  <Icon name="sort" />
                 </button>
-              </td>
+              </th>
+              <th className="column100 column2">
+                <button
+                  type="button"
+                  className="sorting-button"
+                  onClick={() => sortByRating()}
+                >
+                  Rating
+                  <Icon name="sort" />
+                </button>
+              </th>
+              <th className="column100 column3">
+                <button
+                  type="button"
+                  className="sorting-button"
+                  onClick={() => sortByPrice()}
+                >
+                  Price ($)
+                  <Icon name="sort" />
+                </button>
+              </th>
+              <th className="column100 column4">Phone Number</th>
+              <th className="column100 column5">Address</th>
+              <th className="column100 column6"></th>
             </tr>
-          </tbody>
-        ))}
-      </table>
+          </thead>
+
+          {restaurantData.map((obj, i) => (
+            <tbody key={obj.display_phone + i}>
+              <tr>
+                <td className="row100">{obj.name}</td>
+                <td className="row100">{obj.rating}</td>
+                <td className="row100">{obj.price}</td>
+                <td className="row100">{obj.display_phone}</td>
+                <td className="row100">
+                  {obj.location.display_address[0] +
+                    ", " +
+                    obj.location.display_address[1]}
+                </td>
+                <td className="favorite-res">
+                  <button
+                    type="button"
+                    className="button-fav"
+                    onClick={() => submitRestaurantFavorites(obj.name)}
+                  >
+                    <FaStar className="faStar" />
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          ))}
+        </table>
+      </Fade>
     </div>
   );
 };

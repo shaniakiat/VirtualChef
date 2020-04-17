@@ -38,18 +38,11 @@ class AppNavbar extends Component {
 
     const authLinks = (
       <Fragment>
-        <NavItem>
-          <span className="navbar-text mr-3">
-            {/* <strong> */}
-            {user
-              ? `Welcome ${
-                  user.name.charAt(0).toUpperCase() +
-                  user.name.slice(1).toLowerCase()
-                }`
-              : ""}
-            {/* </strong> */}
-          </span>
-        </NavItem>
+        <NavLink onClick={this.toggle} href="/user">
+          {/* <span className="user-name">{user ? `${user.name}` : ""}</span> */}
+
+          <span className="user-name">Profile</span>
+        </NavLink>
         <NavLink onClick={this.toggle} href="/user/restaurant">
           Restaurant
         </NavLink>
@@ -84,9 +77,18 @@ class AppNavbar extends Component {
       <div>
         <Navbar color="faded" light expand="sm" className="mb-5 ">
           <Container>
-            <Link to="/">
+            {isAuthenticated ? (
+              <Link to="/home/user">
+                <NavbarBrand>Virtual Chef</NavbarBrand>
+              </Link>
+            ) : (
+              <Link to="/home">
+                <NavbarBrand>Virtual Chef</NavbarBrand>
+              </Link>
+            )}
+            {/* <Link to="/home">
               <NavbarBrand>Virtual Chef</NavbarBrand>
-            </Link>
+            </Link> */}
 
             <NavbarToggler onClick={this.toggle} />
             <Collapse isOpen={this.state.isOpen} navbar>

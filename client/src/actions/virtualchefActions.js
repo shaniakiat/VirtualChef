@@ -19,3 +19,18 @@ export const genkey = (id) => (dispatch, getState) => {
       dispatch(returnErrors(err.response.data, err.response.status));
     });
 };
+// `api/virtualchef/predict/${food}`
+export const predictFood = (id) => (dispatch, getState) => {
+  axios
+    .get(`/api/virtualchef/predict/${id}`, id, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: PREDICT,
+        payload: res,
+      });
+      return res;
+    })
+    .catch((err) => {
+      dispatch(returnErrors(err.response.data, err.response.status));
+    });
+};

@@ -2,6 +2,7 @@ import { CREATEKEY, PREDICT } from "../actions/types";
 
 const initialState = {
   keys: [],
+  data: [],
   loading: false,
 };
 export default function (state = initialState, action) {
@@ -15,6 +16,7 @@ export default function (state = initialState, action) {
     case PREDICT:
       return {
         ...state,
+        data: action.payload,
         loading: false,
       };
 

@@ -23,7 +23,7 @@ const Documentation = (props) => {
 
   const createNewKey = () => {
     props.genkey(userID);
-    console.log("creatnewkey function finished");
+    console.log("create new key function finished");
   };
 
   return (

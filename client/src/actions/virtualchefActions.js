@@ -1,9 +1,7 @@
 import axios from "axios";
-import { CREATEKEY, PREDICT } from "./types";
+import { CREATEKEY } from "./types";
 import { tokenConfig } from "./authActions";
 import { returnErrors } from "./errorActions";
-import { create } from "d3";
-import { JsonWebTokenError } from "jsonwebtoken";
 
 export const genkey = (id) => (dispatch, getState) => {
   axios

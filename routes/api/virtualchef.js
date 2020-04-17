@@ -1,14 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const auth = require("../../middleware/auth");
 const User = require("../../models/User");
 const fetch = require("node-fetch");
 const mongo = require("mongodb");
 
 router.get("/create-key/:id", (req, res) => {
-  //add query parameters **
-  console.log(req.params.id);
-
   var o_id = new mongo.ObjectID(req.params.id);
   User.findOne({
     $and: [{ _id: o_id }, { "apikey.access_token": { $exists: false } }],
@@ -16,45 +12,30 @@ router.get("/create-key/:id", (req, res) => {
     if (err) {
       console.log(err);
     } else {
-      //create the key with flask endpoint
-      // console.log(user);
       fetch(`https://floating-plains-35923.herokuapp.com/genkey/${o_id}`);
       console.log(user);
     }
   });
+});
 
-  /*(this works
-  User.find({ "apikey.access_token": { $exists: true } }).then((users) => {
-    return res.json(users);
-  });*/
+router.get("/predict/:id", (req, res) => {
+  let response = [];
+  const key =
+    "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODUxMDQ1NDQsIm5iZiI6MTU4NTEwNDU0NCwianRpIjoiYjZjMmQ2MjQtMzI0Zi00NWExLWI5NDktN2I0NTUwYjY5OWIwIiwiaWRlbnRpdHkiOiJEYXZpZCIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.dJ9fA5dOjHYOv434xS03N0QQW0lspsKUGmEFcRbZW_s";
+  let food = req.params.id;
+  // https://stackoverflow.com/questions/54555778/async-await-fetch-in-node-js
+  // https://stackoverflow.com/questions/51369866/calling-an-api-endpoint-from-within-another-route-in-node-express
 
-  // User.find({ "apikey.access": { $exists: true } }).toArray((err, result) => {
-  //   if (err) {
-  //     console.log("The search errored");
-  //   } else if (validate.isEmpty(result)) {
-  //     console.log("record not found");
-  //   } else {
-  //     console.log(result);
-  //   }
-  // });
-
-  //need to create key then save the key back into the model**
-
-  // User.findOne({ apikey }).then((user) => {
-  //   if (user) {
-  //     console.log(typeof user);
-  //     //check if user has key**
-
-  //     return res
-  //       .status(400)
-  //       .json({ msg: "You already have an api key created" });
-  //   } else {
-  //     fetch(`https://floating-plains-35923.herokuapp.com/create`).then(
-  //       (res) => {
-  //         return res;
-  //       }
-  //     );
-  //   }
-  // });
+  fetch(`https://floating-plains-35923.herokuapp.com/prediction/${food}`, {
+    headers: {
+      Authorization: `Bearer ${key}`,
+    },
+  })
+    .then((res) => res.json())
+    .then(function (data) {
+      console.log(data); //expecting array
+      res.status(200).send({ data });
+      //note: changed to ({data}) do not know the difference
+    });
 });
 module.exports = router;

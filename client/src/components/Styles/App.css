@@ -117,6 +117,7 @@ input[type="button"] {
   }
 
   input {
+    height: 40px;
     width: 100%;
     font-size: 12px;
   }

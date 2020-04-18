@@ -50,7 +50,11 @@ p {
 input[type="text"],
 input[type="button"] {
   -webkit-appearance: none !important;
-  -webkit-border-radius: 0 !important;
+  /* -webkit-border-radius: 0 !important; */
+}
+
+input {
+  border-radius: 5px !important;
 }
 
 /* NAVBAR */

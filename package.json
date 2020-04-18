@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/DavidLuong98/VirtualChef#readme",
   "dependencies": {
+    "@glidejs/glide": "^3.4.1",
     "axios": "^0.19.2",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
@@ -41,12 +42,14 @@
     "react-d3-library": "^1.1.8",
     "react-icons": "^3.9.0",
     "react-loader-spinner": "^3.1.5",
+    "react-multi-carousel": "^2.5.5",
     "react-reveal": "^1.2.2",
     "react-scripts": "^3.3.0",
     "reselect": "^4.0.0",
     "scripts": "^0.1.0",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^0.88.2",
+    "ua-parser-js": "^0.7.21",
     "use-position": "0.0.6",
     "zipcodes": "^8.0.0"
   },

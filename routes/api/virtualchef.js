@@ -60,7 +60,24 @@ router.get("/fetch-yelp/:long/:lat/:userYelpQuery", (req, res) => {
   )
     .then((res) => res.json())
     .then(function (data) {
-      console.log(data); //expecting array
+      res.status(200).send({ data });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+//edamam api
+router.get("/edamam/:id", (req, res) => {
+  const base = "https://api.edamam.com/search";
+  const YOUR_APP_ID = "d9383e24";
+  const YOUR_APP_KEY = "d76bf79039ba4df599b7902b99cb0630";
+
+  let params = req.params.id;
+
+  fetch(`${base}?q=${params}&app_id=${YOUR_APP_ID}&app_key=${YOUR_APP_KEY}`)
+    .then((res) => res.json())
+    .then(function (data) {
       res.status(200).send({ data });
     })
     .catch((err) => {

@@ -7,57 +7,40 @@ function IngredientList({ match }) {
   /* -------------- INGREDIENTS -----------------*/
   const [ingredient, setIngredient] = useState([]);
   const [id, setId] = useState("");
-
   /* -------------- NUTRITION -----------------*/
   const keysAllowed = ["FAT", "SUGAR", "CHOCDF", "FIBTG", "PROCNT"];
-  const [nutrition, setNutrition] = useState();
-  // const [nutritionType, setNutritionType] = useState([]);
-  // const [quantityData, setQuanityData] = useState([]);
-  // const [unit, setUnit] = useState([]);
-
   let getNutritionData;
 
   useEffect(() => {
-    const base = "https://api.edamam.com/search";
-    const YOUR_APP_ID = "d9383e24";
-    const YOUR_APP_KEY = "d76bf79039ba4df599b7902b99cb0630";
     setId(match.params.id.replace(/-/g, " ").toLowerCase());
-    console.log("id= " + match.params.id.replace(/-/g, "+").toLowerCase());
+    let id = match.params.id.replace(/-/g, " ").toLowerCase();
     axios
-      .get(
-        `${base}?q=${match.params.id
-          .replace(/-/g, "+")
-          .toLowerCase()}&app_id=${YOUR_APP_ID}&app_key=${YOUR_APP_KEY}`
-      )
-      .then(res => {
+      .get(`/api/virtualchef/edamam/${id}`)
+      .then((res) => {
         // SET INGREDIENTS
-        setIngredient(res.data.hits);
+        setIngredient(res.data.data.hits);
 
         //NUTRITION
-        let param = res.data.hits[0].recipe.totalNutrients;
-        setNutrition(res.data.hits[0].recipe.totalNutrients);
+        let param = res.data.data.hits[0].recipe.totalNutrients;
         getNutritionData(param);
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   }, [getNutritionData, match.params.id]);
-  console.log(nutrition);
 
-  getNutritionData = params => {
-    console.log("in the getNutritionData function");
+  getNutritionData = (params) => {
     let nutritiontypearray = [];
     let quantityarr = [];
     let unitarr = [];
     let data = [];
-    //let data: { labels: string; quantities: number}[] = [];
     const filteredNutritionObj = Object.keys(params)
-      .filter(key => keysAllowed.includes(key))
+      .filter((key) => keysAllowed.includes(key))
       .reduce((obj, key) => {
         obj[key] = params[key];
         return obj;
       }, {});
-    keysAllowed.map(i => {
+    keysAllowed.map((i) => {
       nutritiontypearray.push(filteredNutritionObj[i].label);
       quantityarr.push(
         Math.round(filteredNutritionObj[i].quantity * 100) / 100
@@ -77,29 +60,9 @@ function IngredientList({ match }) {
     const margin = { top: 40, right: 40, bottom: 40, left: 50 };
     const width = 380 - margin.left - margin.right;
     const height = 300 - margin.top - margin.bottom;
-    // set the ranges for the graph
-    const x = d3
-      .scaleBand()
-      .range([0, width])
-      .padding(0.3);
-
-    // const xScale = d3
-    //   .scale()
-    //   .ordinal()
-    //   .domain(
-    //     nutritiontypearray.map(function(d) {
-    //       return d;
-    //     })
-    //   )
-    //   .rangeRoundBands([0, width], 0.05);
-
-    // var xAxis = d3.svg
-    //   .axis()
-    //   .scale(xScale)
-    //   .orient("bottom");
+    const x = d3.scaleBand().range([0, width]).padding(0.3);
 
     const y = d3.scaleLinear().range([height, 0]);
-    // append the container for the graph to the page
     const container = d3
       .select(".d3-bar-chart")
       .append("div")
@@ -109,9 +72,6 @@ function IngredientList({ match }) {
       .append("h3")
       .text(`Nutritional Values`)
       .attr("class", "ingredient-h3");
-    // append the svg object to the body of the page
-    // append a 'group' element to 'svg'
-    // moves the 'group' element to the top left margin
     const svg = container
       .append("svg")
       .attr("width", width + margin.left + margin.right)
@@ -120,10 +80,6 @@ function IngredientList({ match }) {
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
       .attr("class", "graph-svg");
 
-    // .attr("class", "ingredient-h3");
-
-    // Create a skeleton structure for a tooltip and append it to the page
-    //investigate in this bullshit
     const tip = d3
       .select(".d3-bar-chart")
       .append("div")
@@ -134,10 +90,7 @@ function IngredientList({ match }) {
       .attr("transform", "translate(0," + height + ")")
       .attr("class", "x-axis")
       .call(d3.axisBottom(y));
-    svg
-      .append("g")
-      .attr("class", "y-axis")
-      .call(d3.axisLeft(y));
+    svg.append("g").attr("class", "y-axis").call(d3.axisLeft(y));
 
     update(data, unit, margin, width, height, x, y, container, svg, tip);
   }
@@ -154,25 +107,21 @@ function IngredientList({ match }) {
     svg,
     tip
   ) {
-    // Scale the range of the data in the x axis
-    // console.log(data.labels);
     x.domain(
-      data.map(d => {
+      data.map((d) => {
         console.log(d.labels);
         return d.labels;
       })
     );
 
-    // Scale the range of the data in the y axis
     console.log(data.quantities);
     y.domain([
       0,
-      d3.max(data, d => {
+      d3.max(data, (d) => {
         return d.quantities;
-      })
+      }),
     ]);
-    // Select all bars on the graph, take them out, and exit the previous data set.
-    // Enter the new data and append the rectangles for each object in the poll array
+
     svg
       .selectAll(".bar")
       .data(data)
@@ -180,17 +129,17 @@ function IngredientList({ match }) {
       .append("rect")
       .attr("class", "bar")
       .attr("fill", "#196d4c")
-      .attr("x", d => {
+      .attr("x", (d) => {
         return x(d.labels);
       })
       .attr("width", x.bandwidth())
-      .attr("y", d => {
+      .attr("y", (d) => {
         return y(d.quantities);
       })
-      .attr("height", d => {
+      .attr("height", (d) => {
         return height - y(d.quantities);
       })
-      .on("mousemove", d => {
+      .on("mousemove", (d) => {
         tip
           .style("position", "absolute")
           .style("left", `${d3.event.pageX + 10}px`)
@@ -203,7 +152,6 @@ function IngredientList({ match }) {
       })
       .on("mouseout", () => tip.style("display", "none"));
 
-    // .attr("x", nutritiontypearray.map());
     //Create X axis label
     svg
       .append("text")
@@ -231,19 +179,17 @@ function IngredientList({ match }) {
 
   return (
     <div className="ingredient-list">
-      {/* <h3 className="ingredient-h3">You have clicked on </h3> */}
       <h3 className="ingredient-h3-id">{id.toLocaleUpperCase()}</h3>
       <div className="d3-bar-chart"></div>
-      {/* <div>⬅️</div> */}
       <ul className="recipes">
         <div className="grid-container">
-          {ingredient.map(obj => (
+          {ingredient.map((obj) => (
             <div className="grid-item">
               <img className="ingredient-img" src={obj.recipe.image}></img>
               <li>
                 <h3 className="label">{obj.recipe.label.toLowerCase()}</h3>
                 <ul>
-                  {obj.recipe.ingredientLines.map(ngrdnt => (
+                  {obj.recipe.ingredientLines.map((ngrdnt) => (
                     <li className="ingredients">{ngrdnt.toLowerCase()}</li>
                   ))}
                 </ul>
@@ -252,7 +198,6 @@ function IngredientList({ match }) {
           ))}
         </div>
       </ul>
-      {/* <div>➡️</div> */}
     </div>
   );
 }

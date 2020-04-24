@@ -48,6 +48,7 @@
   font-size: 1.2rem;
   position: relative;
   transition: all 0.5s;
+  background-color: white;
 }
 
 .button:hover {

@@ -29,8 +29,15 @@ const Documentation = (props) => {
   return (
     <div className="documentation-page">
       {/* if auth.user has apikey, then show your api key, else, show the button */}
-      <h1>Hello</h1>
-      <button onClick={createNewKey}>Get your API key</button>
+      <h1>API Documentation</h1>
+      <p>
+        Welcome to <strong>Virtual Chef API intergration guide!</strong>
+      </p>
+
+      <button type="button" className="button" onClick={createNewKey}>
+        Get API Key
+      </button>
+      <p>Your API key will show up in the bottom of your profile.</p>
     </div>
   );
 };

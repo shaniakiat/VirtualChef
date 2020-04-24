@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import { TiDelete } from "react-icons/ti";
 import { connect, useDispatch, useSelector } from "react-redux";
 import axios from "axios";
@@ -32,7 +32,7 @@ const UserProfile = (props) => {
     dispatch(loadUser(tokenRecognized));
   }, [dispatch, tokenRecognized]);
   useEffect(() => {
-    console.log(auth.isAuthenicated);
+    // console.log(auth.isAuthenicated);
     if (auth.user) {
       setUserID(auth.user._id);
       setName(auth.user.name);
@@ -48,7 +48,7 @@ const UserProfile = (props) => {
       axios
         .get(`/api/restaurants/restaurant/${auth.user._id}`)
         .then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
           return res.data;
         })
         .then((json) => {
@@ -71,7 +71,7 @@ const UserProfile = (props) => {
     };
 
     props.addItem(newFoodFavorite, foodFavoritesArray);
-    console.log(newFoodFavorite);
+    // console.log(newFoodFavorite);
   };
 
   //delete favorite food
@@ -86,14 +86,14 @@ const UserProfile = (props) => {
 
   // GETTING INGREDIENTS
   const [idFromFoodButtonClick, setIdFromFoodButtonClick] = useState("");
-  const [isToggled, setToggled] = useState(false);
+  // const [isToggled, setToggled] = useState(false);
   const [predictionsRecipes, setPredictionsRecipes] = useState([]);
 
   const handleToogle = (e) => {
-    console.log(e);
+    // console.log(e);
     setIdFromFoodButtonClick("" + e);
-    console.log(idFromFoodButtonClick.replace(/\s/g, "+").toLocaleLowerCase());
-    setToggled(true); //if this is true than open up the textbox with the list of ingredients
+    // console.log(idFromFoodButtonClick.replace(/\s/g, "+").toLocaleLowerCase());
+    // setToggled(true); //if this is true than open up the textbox with the list of ingredients
   };
 
   useEffect(() => {

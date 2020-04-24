@@ -15,7 +15,6 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import RegisterModal from "./auth/RegisterModal";
 import LoginModal from "./auth/LoginModal";
-import Restaurant from "./Globals/Restaurant/Restaurants";
 import Logout from "./auth/Logout";
 
 class AppNavbar extends Component {
@@ -34,7 +33,7 @@ class AppNavbar extends Component {
   };
 
   render() {
-    const { isAuthenticated, user } = this.props.auth;
+    const { isAuthenticated } = this.props.auth;
 
     const authLinks = (
       <Fragment>

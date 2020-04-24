@@ -1,0 +1,9 @@
+.no-match-page {
+  min-height: 90vh;
+  overflow: hidden;
+  margin: 0 15%;
+}
+
+.no-match-page h1 {
+  font-size: 100px;
+}

@@ -10,7 +10,6 @@ import "../Styles/UserProfile.css";
 import "../Styles/Header.css";
 import "../Styles/Predictions.css";
 import "../Styles/About.css";
-import { Redirect } from "react-router-dom";
 // import "../St
 
 class Dashboard extends Component {

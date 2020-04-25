@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import RestaurantDashBoard from "./RestaurantDashboard";
 import {
   addRestaurant,
@@ -35,6 +35,7 @@ const Restaurants = (props) => {
 
   const [favRestaurantsArray, setFavRestaurantsArray] = useState([]);
   const [findRestaurantsBtn, setFindRestaurants] = useState(false);
+  const [noRestaurantFound, setNoRestaurantFound] = useState(false);
   const [buttonClick, setButtonClick] = useState(false);
 
   const findRestaurants = () => {
@@ -62,6 +63,7 @@ const Restaurants = (props) => {
       } else {
         console.log("Please enter in a valid zip code");
         setFindRestaurants(false);
+        setNoRestaurantFound(true);
       }
     } else {
       console.log("it's empty");
@@ -126,6 +128,7 @@ const Restaurants = (props) => {
         favRestaurantsArray={favRestaurantsArray}
         props={props}
         handleAlert={handleAlert}
+        noRestaurantFound={noRestaurantFound}
       />
     </div>
   );

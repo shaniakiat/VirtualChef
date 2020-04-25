@@ -97,8 +97,11 @@ input {
 /* RESPONSIVE */
 
 @media only screen and (max-width: 500px) {
+  h1 {
+    font-size: 25px;
+  }
   h2 {
-    font-size: 20px;
+    font-size: 15px;
   }
 
   h3 {
@@ -113,7 +116,6 @@ input {
     font-weight: 400;
     font-size: 12px;
     color: var(--mainOrange);
-    padding: 0 10%;
   }
 
   button {

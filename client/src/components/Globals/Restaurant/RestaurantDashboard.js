@@ -1,4 +1,4 @@
-import React, { useState, useInput, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import DisplayRestaurant from "./DisplayRestaurant";
 
 const RestaurantDashBoard = ({

@@ -119,7 +119,7 @@ const UserProfile = (props) => {
     <div className="login">
       <div className="user-hello">
         <Fade up delay={50}>
-          <h2>Hello {name}</h2>
+          <h1>Hello {name}</h1>
         </Fade>
         <Fade up delay={200}>
           <h3>What is your favorite food?</h3>

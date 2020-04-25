@@ -25,11 +25,9 @@ class Header extends Component {
             </h3>
           </Fade>
           <Fade left>
-            <div className="div-button">
-              <a href="#about" className="button">
-                Learn More
-              </a>
-            </div>
+            <button href="#about" type="button" className="button">
+              Learn More
+            </button>
           </Fade>
         </div>
       </section>

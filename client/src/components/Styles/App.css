@@ -54,7 +54,39 @@ input[type="button"] {
 }
 
 input {
-  border-radius: 5px !important;
+  border-radius: 3px !important;
+}
+
+.form-control {
+  text-align: left;
+}
+
+input:focus,
+.form-control:focus {
+  outline: none !important;
+  box-shadow: none;
+  border-color: none;
+}
+
+.register-input-container {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ced4da;
+  border-radius: 3px !important ;
+}
+.register-input-container input {
+  margin: 0 !important;
+  border: none !important;
+}
+.register-input-container i {
+  margin: 0 12px;
+
+  color: var(--mainDark);
+}
+
+.icon-visibility {
+  width: 20px;
+  height: 20px;
 }
 
 /* NAVBAR */

@@ -41,9 +41,9 @@ const Restaurants = (props) => {
   const findRestaurants = () => {
     setButtonClick(true);
     if (!validate.isEmpty(userYelpQuery)) {
-      if (zipcodes.lookup(parseInt(userZip))) {
+      if (zipcodes.lookup(userZip)) {
         console.log(userZip);
-        let zipInfo = zipcodes.lookup(parseInt(userZip));
+        let zipInfo = zipcodes.lookup(userZip);
         axios
           .get(
             `api/virtualchef/fetch-yelp/${zipInfo.longitude}/${zipInfo.latitude}/${userYelpQuery}`

@@ -80,7 +80,6 @@ input:focus,
 }
 .register-input-container i {
   margin: 0 12px;
-
   color: var(--mainDark);
 }
 
@@ -88,6 +87,11 @@ input:focus,
   width: 20px;
   height: 20px;
 }
+/* .icon-visibility-fill {
+  width: 20px;
+  height: 20px;
+  color: var(--mainLight);
+} */
 
 /* NAVBAR */
 .navbar-light {

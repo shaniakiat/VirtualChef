@@ -139,10 +139,7 @@ class RegisterModal extends Component {
                     placeholder="Password"
                     onChange={this.onChange}
                   />
-                  <i
-                    className="visibility"
-                    onClick={this.togglePasswordVisiblity}
-                  >
+                  <i onClick={this.togglePasswordVisiblity}>
                     {this.state.isPasswordShown ? (
                       <AiFillEyeInvisible className="icon-visibility" />
                     ) : (

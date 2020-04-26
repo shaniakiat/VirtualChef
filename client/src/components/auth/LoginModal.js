@@ -15,8 +15,22 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { login } from "../../actions/authActions";
 import { clearErrors } from "../../actions/errorActions";
+import { AiFillEyeInvisible } from "react-icons/ai";
+import { AiFillEye } from "react-icons/ai";
+
+import "../Styles/App.css";
 
 class LoginModal extends Component {
+  state = {
+    isPasswordShown: false,
+  };
+
+  togglePasswordVisiblity = () => {
+    const { isPasswordShown } = this.state;
+    this.setState({ isPasswordShown: !isPasswordShown });
+  };
+  input = () => {};
+
   state = {
     modal: false,
     email: "",
@@ -76,6 +90,7 @@ class LoginModal extends Component {
   };
 
   render() {
+    const { isPasswordShown } = this.state;
     return (
       <div>
         <NavLink onClick={this.toggle} href="#">
@@ -101,14 +116,22 @@ class LoginModal extends Component {
                 />
 
                 <Label for="password">Password</Label>
-                <Input
-                  type="password"
-                  name="password"
-                  id="password"
-                  placeholder="Password"
-                  className="mb-3"
-                  onChange={this.onChange}
-                />
+                <div className="register-input-container">
+                  <Input
+                    type={isPasswordShown ? "text" : "password"}
+                    name="password"
+                    id="password"
+                    placeholder="Password"
+                    onChange={this.onChange}
+                  />
+                  <i onClick={this.togglePasswordVisiblity}>
+                    {this.state.isPasswordShown ? (
+                      <AiFillEyeInvisible className="icon-visibility" />
+                    ) : (
+                      <AiFillEye className="icon-visibility" />
+                    )}
+                  </i>
+                </div>
                 <Button
                   // to="/user"
                   // renderas={Link}

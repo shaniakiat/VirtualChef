@@ -9,26 +9,40 @@ import {
   Label,
   Input,
   NavLink,
-  Alert
+  Alert,
 } from "reactstrap";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { login } from "../../actions/authActions";
 import { clearErrors } from "../../actions/errorActions";
+import { AiFillEyeInvisible } from "react-icons/ai";
+import { AiFillEye } from "react-icons/ai";
+
+import "../Styles/App.css";
 
 class LoginModal extends Component {
+  state = {
+    isPasswordShown: false,
+  };
+
+  togglePasswordVisiblity = () => {
+    const { isPasswordShown } = this.state;
+    this.setState({ isPasswordShown: !isPasswordShown });
+  };
+  input = () => {};
+
   state = {
     modal: false,
     email: "",
     password: "",
-    msg: null
+    msg: null,
   };
 
   static propTypes = {
     isAuthenticated: PropTypes.bool,
     error: PropTypes.object.isRequired,
     login: PropTypes.func.isRequired,
-    clearErrors: PropTypes.func.isRequired
+    clearErrors: PropTypes.func.isRequired,
   };
 
   componentDidUpdate(prevProps) {
@@ -53,22 +67,22 @@ class LoginModal extends Component {
     // Clear errors
     this.props.clearErrors();
     this.setState({
-      modal: !this.state.modal
+      modal: !this.state.modal,
     });
   };
 
-  onChange = e => {
+  onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  onSubmit = e => {
+  onSubmit = (e) => {
     e.preventDefault();
 
     const { email, password } = this.state;
 
     const user = {
       email,
-      password
+      password,
     };
 
     // Attempt to login
@@ -76,6 +90,7 @@ class LoginModal extends Component {
   };
 
   render() {
+    const { isPasswordShown } = this.state;
     return (
       <div>
         <NavLink onClick={this.toggle} href="#">
@@ -101,14 +116,22 @@ class LoginModal extends Component {
                 />
 
                 <Label for="password">Password</Label>
-                <Input
-                  type="password"
-                  name="password"
-                  id="password"
-                  placeholder="Password"
-                  className="mb-3"
-                  onChange={this.onChange}
-                />
+                <div className="register-input-container">
+                  <Input
+                    type={isPasswordShown ? "text" : "password"}
+                    name="password"
+                    id="password"
+                    placeholder="Password"
+                    onChange={this.onChange}
+                  />
+                  <i onClick={this.togglePasswordVisiblity}>
+                    {this.state.isPasswordShown ? (
+                      <AiFillEyeInvisible className="icon-visibility" />
+                    ) : (
+                      <AiFillEye className="icon-visibility" />
+                    )}
+                  </i>
+                </div>
                 <Button
                   // to="/user"
                   // renderas={Link}
@@ -127,9 +150,9 @@ class LoginModal extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
-  error: state.error
+  error: state.error,
 });
 
 export default connect(mapStateToProps, { login, clearErrors })(LoginModal);

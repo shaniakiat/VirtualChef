@@ -9,27 +9,42 @@ import {
   Alert,
   Label,
   Input,
-  NavLink
+  NavLink,
 } from "reactstrap";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { register } from "../../actions/authActions";
 import { clearErrors } from "../../actions/errorActions";
+import { AiFillEyeInvisible } from "react-icons/ai";
+import { AiFillEye } from "react-icons/ai";
+
+import "../Styles/App.css";
 
 class RegisterModal extends Component {
+  state = {
+    isPasswordShown: false,
+  };
+
+  togglePasswordVisiblity = () => {
+    const { isPasswordShown } = this.state;
+    this.setState({ isPasswordShown: !isPasswordShown });
+  };
+  input = () => {};
+
   state = {
     modal: false,
     name: "",
     email: "",
     password: "",
-    msg: null
+    show: "",
+    msg: null,
   };
 
   static propTypes = {
     isAuthenticated: PropTypes.bool,
     error: PropTypes.object.isRequired,
     register: PropTypes.func.isRequired,
-    clearErrors: PropTypes.func.isRequired
+    clearErrors: PropTypes.func.isRequired,
   };
 
   componentDidUpdate(prevProps) {
@@ -55,15 +70,15 @@ class RegisterModal extends Component {
     // Clear errors
     this.props.clearErrors();
     this.setState({
-      modal: !this.state.modal
+      modal: !this.state.modal,
     });
   };
 
-  onChange = e => {
+  onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  onSubmit = e => {
+  onSubmit = (e) => {
     e.preventDefault();
 
     const { name, email, password } = this.state;
@@ -72,7 +87,7 @@ class RegisterModal extends Component {
     const newUser = {
       name,
       email,
-      password
+      password,
     };
 
     // Attempt to register
@@ -80,6 +95,7 @@ class RegisterModal extends Component {
   };
 
   render() {
+    const { isPasswordShown } = this.state;
     return (
       <div>
         <NavLink onClick={this.toggle} href="#">
@@ -115,14 +131,22 @@ class RegisterModal extends Component {
                 />
 
                 <Label for="password">Password</Label>
-                <Input
-                  type="password"
-                  name="password"
-                  id="password"
-                  placeholder="Password"
-                  className="mb-3"
-                  onChange={this.onChange}
-                />
+                <div className="register-input-container">
+                  <Input
+                    type={isPasswordShown ? "text" : "password"}
+                    name="password"
+                    id="password"
+                    placeholder="Password"
+                    onChange={this.onChange}
+                  />
+                  <i onClick={this.togglePasswordVisiblity}>
+                    {this.state.isPasswordShown ? (
+                      <AiFillEyeInvisible className="icon-visibility" />
+                    ) : (
+                      <AiFillEye className="icon-visibility" />
+                    )}
+                  </i>
+                </div>
                 <Button color="dark" style={{ marginTop: "2rem" }} block>
                   Register
                 </Button>
@@ -135,9 +159,9 @@ class RegisterModal extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
-  error: state.error
+  error: state.error,
 });
 
 export default connect(mapStateToProps, { register, clearErrors })(

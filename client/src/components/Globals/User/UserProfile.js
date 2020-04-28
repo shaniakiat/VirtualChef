@@ -32,7 +32,6 @@ const UserProfile = (props) => {
     dispatch(loadUser(tokenRecognized));
   }, [dispatch, tokenRecognized]);
   useEffect(() => {
-    // console.log(auth.isAuthenicated);
     if (auth.user) {
       setUserID(auth.user._id);
       setName(auth.user.name);
@@ -48,7 +47,6 @@ const UserProfile = (props) => {
       axios
         .get(`/api/restaurants/restaurant/${auth.user._id}`)
         .then((res) => {
-          // console.log(res.data);
           return res.data;
         })
         .then((json) => {
@@ -71,29 +69,23 @@ const UserProfile = (props) => {
     };
 
     props.addItem(newFoodFavorite, foodFavoritesArray);
-    // console.log(newFoodFavorite);
   };
 
-  //delete favorite food
   const deleteFav = (id) => {
     props.deleteItem(id);
   };
 
-  //delete favorite restaurant
   const deleteFavoriteRes = (id) => {
     props.deleteRestaurant(id);
   };
 
   // GETTING INGREDIENTS
   const [idFromFoodButtonClick, setIdFromFoodButtonClick] = useState("");
-  // const [isToggled, setToggled] = useState(false);
+
   const [predictionsRecipes, setPredictionsRecipes] = useState([]);
 
   const handleToogle = (e) => {
-    // console.log(e);
     setIdFromFoodButtonClick("" + e);
-    // console.log(idFromFoodButtonClick.replace(/\s/g, "+").toLocaleLowerCase());
-    // setToggled(true); //if this is true than open up the textbox with the list of ingredients
   };
 
   useEffect(() => {

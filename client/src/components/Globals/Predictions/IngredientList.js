@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-
+import { connect, useDispatch, useSelector } from "react-redux";
 import UAParser from "ua-parser-js";
 import Fade from "react-reveal/Fade";
-
+import { addItem, deleteItem, getItems } from "../../../actions/itemActions";
+import { loadUser } from "../../../actions/authActions";
 import Carousel from "react-multi-carousel";
-
 import "../../Styles/Ingredients.css";
 import * as d3 from "d3";
 
@@ -27,7 +27,12 @@ const responsive = {
   },
 };
 
-function IngredientList({ match, deviceType }) {
+function IngredientList(
+  { match, deviceType },
+  props,
+  userID,
+  foodFavoritesArray
+) {
   /* -------------- INGREDIENTS -----------------*/
   const [ingredient, setIngredient] = useState([]);
   const [id, setId] = useState("");
@@ -200,12 +205,79 @@ function IngredientList({ match, deviceType }) {
     // update the y-axis
     svg.select(".y-axis").call(d3.axisLeft(y));
   }
+  const tokenRecognized = useSelector((state) => state.auth.token);
+  // const [userID, setUserID] = useState();
+  const auth = useSelector((state) => state.auth);
+  // const foodFavoritesArray = useSelector((state) => state.item);
+  const [favArray, setFavArray] = useState([]);
+  const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   // fetch user data when component mounts
+  //   dispatch(loadUser(tokenRecognized));
+  // }, [dispatch, tokenRecognized]);
+  // useEffect(() => {
+  //   // console.log(auth.isAuthenicated);
+  //   if (auth.user) {
+  //     setUserID(auth.user._id);
+
+  //     axios
+  //       .get(`/api/items/item/${auth.user._id}`)
+  //       .then((res) => {
+  //         return res.data;
+  //       })
+  //       .then((json) => {
+  //         setFavArray(json);
+  //       })
+  //       .catch((err) => console.log(err));
+  //   }
+  // }, [auth.isAuthenicated, auth.user, foodFavoritesArray]);
+
+  const [alert, setAlert] = useState({ show: false });
+  const handleAlert = ({ type, text }) => {
+    setAlert({ show: true, type, text });
+    setTimeout(() => {
+      setAlert({ show: false });
+    }, 3000);
+  };
+  const submitFavorites = (e) => {
+    // alert(e);
+    console.log(props);
+    console.log(userID);
+    console.log(e);
+    if (Boolean(userID)) {
+      const newFoodFavorite = {
+        FoodFavorited: e,
+        userCode: userID,
+      };
+      // props.addItem(newFoodFavorite, foodFavoritesArray);
+      console.log(userID);
+      console.log(e);
+      props.addItem(newFoodFavorite, foodFavoritesArray);
+      handleAlert({
+        type: "success",
+        text: `food added`,
+      });
+    } else {
+      handleAlert({
+        type: "danger",
+        text: `please login to add food to favorite list`,
+      });
+    }
+  };
 
   return (
     <div className="ingredient-list">
       {/* <h3 className="ingredient-h3">You have clicked on </h3> */}
       <Fade up delay={50}>
         <h2 className="ingredient-h3-id">{id.toLocaleUpperCase()}</h2>
+        <button
+          className="button-login"
+          type="button"
+          onClick={() => submitFavorites(id)}
+        >
+          Add to favorites
+        </button>
         <div className="d3-bar-chart"></div>
       </Fade>
       <Fade up delay={100}>
@@ -262,4 +334,14 @@ IngredientList.getInitialProps = ({ req }) => {
   return { deviceType };
 };
 
+// const mapStateToProps = (state) => ({
+//   auth: state.auth,
+//   errors: state.errors,
+//   item: state.item,
+// });
+// export default connect(mapStateToProps, {
+//   addItem,
+//   deleteItem,
+//   getItems,
+// })(IngredientList);
 export default IngredientList;

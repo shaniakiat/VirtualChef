@@ -22,7 +22,10 @@ const FoodPredictions = ({
   open,
   setOpen,
   options,
-  loading
+  loading,
+  props,
+  userID,
+  foodFavoritesArray,
 }) => {
   return (
     <div className="prediction-container">
@@ -58,12 +61,15 @@ const FoodPredictions = ({
                 <div className="foodie">
                   {findPrediction ? (
                     <FoodList
+                      props={props}
                       predictions={predictions}
                       handleToogle={handleToogle}
                       isToggled={isToggled}
                       idFromFoodButtonClick={idFromFoodButtonClick}
                       predictionsRecipes={predictionsRecipes}
                       isLoading={isLoading}
+                      foodFavoritesArray={foodFavoritesArray}
+                      userID={userID}
                     />
                   ) : (
                     <div>

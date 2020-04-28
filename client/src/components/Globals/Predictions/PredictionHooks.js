@@ -2,7 +2,7 @@ import React, { useState, useEffect, useLayoutEffect } from "react";
 import axios from "axios";
 import { connect, useDispatch, useSelector } from "react-redux";
 import FoodPredictions from "./FoodPredictions";
-
+import { loadUser } from "../../../actions/authActions";
 import "../../Styles/Predictions.css";
 let validate = require("../Functions/validation");
 
@@ -12,8 +12,13 @@ const PredictionHooks = (props) => {
   const [idFromButtonClick, setIdFromButtonClick] = useState("");
   const [buttonClick, setButtonClick] = useState(false);
   const [findPrediction, setFindPrediction] = useState(false);
-
   const [isLoading, setLoading] = useState(false);
+
+  const tokenRecognized = useSelector((state) => state.auth.token);
+  const [userID, setUserID] = useState();
+  const auth = useSelector((state) => state.auth);
+  const foodFavoritesArray = useSelector((state) => state.item);
+  const [favArray, setFavArray] = useState([]);
 
   const handleClickPrediction = () => {
     setLoading(true);
@@ -21,6 +26,29 @@ const PredictionHooks = (props) => {
     setIdFromButtonClick("" + userFood);
     setUserFood("");
   };
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    // fetch user data when component mounts
+    dispatch(loadUser(tokenRecognized));
+  }, [dispatch, tokenRecognized]);
+  useEffect(() => {
+    // console.log(auth.isAuthenicated);
+    if (auth.user) {
+      setUserID(auth.user._id);
+
+      axios
+        .get(`/api/items/item/${auth.user._id}`)
+        .then((res) => {
+          return res.data;
+        })
+        .then((json) => {
+          setFavArray(json);
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [auth.isAuthenicated, auth.user, foodFavoritesArray]);
 
   useLayoutEffect(() => {
     if (isLoading) {
@@ -107,6 +135,9 @@ const PredictionHooks = (props) => {
         findPrediction={findPrediction}
         predictions={predictions}
         isLoading={isLoading}
+        props={props}
+        userID={userID}
+        foodFavoritesArray={foodFavoritesArray}
         /*----------DICTIONARY----------*/
         open={open}
         setOpen={setOpen}
@@ -117,4 +148,10 @@ const PredictionHooks = (props) => {
   );
 };
 
-export default PredictionHooks;
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+  errors: state.errors,
+  item: state.item,
+});
+// export default PredictionHooks;
+export default connect(mapStateToProps)(PredictionHooks);

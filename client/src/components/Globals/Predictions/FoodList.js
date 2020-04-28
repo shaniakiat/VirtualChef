@@ -2,16 +2,27 @@ import React from "react";
 import "../../Styles/App.css";
 import Fade from "react-reveal/Fade";
 import { Link } from "react-router-dom";
+import { addItem } from " ../../../client/src/actions/itemActions";
+import { connect, useDispatch, useSelector } from "react-redux";
 
 /* -----DIPSLAY THE LIST OF FOOD TO THE USER ------*/
 const FoodList = ({
   predictions,
-  // handleToogle,
-  // isToggled,
-  // idFromFoodButtonClick,
-  // predictionsRecipes,
-  isLoading
+  props,
+  isLoading,
+  foodFavoritesArray,
+  userID,
 }) => {
+  const submitFavorites = (e) => {
+    // alert(e);
+    const newFoodFavorite = {
+      FoodFavorited: e,
+      userCode: userID,
+    };
+
+    alert(newFoodFavorite);
+    props.addItem(newFoodFavorite, foodFavoritesArray);
+  };
   return (
     <div>
       {isLoading ? (
@@ -31,6 +42,13 @@ const FoodList = ({
                 {predictions.map((obj, i) => (
                   <div className="grid-food">
                     <li key={obj[1]}>
+                      <button
+                        className="button-login"
+                        type="button"
+                        onClick={() => submitFavorites(obj[0])}
+                      >
+                        Add to favorites
+                      </button>
                       <Link to={`/food/${obj[0].replace(/\s/g, "-")}`}>
                         <button type="button">{obj[0]}</button>
                       </Link>
@@ -40,17 +58,15 @@ const FoodList = ({
               </div>
             </ul>
           </Fade>
-          {/*------------------------RECIPE---------------------------*/}
-          {/* <IngredientsPredictions
-            isToggled={isToggled}
-            idFromFoodButtonClick={idFromFoodButtonClick}
-            predictionsRecipes={predictionsRecipes}
-          /> */}
-          {/*---------------------------------------------------------*/}
         </div>
       )}
     </div>
   );
 };
-
-export default FoodList;
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+  errors: state.errors,
+  item: state.item,
+});
+export default connect(mapStateToProps, { addItem })(FoodList);
+// export default FoodList;

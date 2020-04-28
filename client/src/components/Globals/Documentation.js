@@ -9,7 +9,15 @@ const Documentation = (props) => {
   const auth = useSelector((state) => state.auth);
   const tokenRecognized = useSelector((state) => state.auth.token);
   const [userID, setUserID] = useState();
+  const [keyFound, setKeyFound] = useState(false);
+  const [apiKey, setApiKey] = useState();
   const dispatch = useDispatch();
+
+  const createNewKey = () => {
+    props.genkey(userID);
+    console.log("create new key function finished");
+    setApiKey(auth.user.apikey.access_token);
+  };
 
   useEffect(() => {
     dispatch(loadUser(tokenRecognized));
@@ -18,13 +26,17 @@ const Documentation = (props) => {
     console.log(auth.isAuthenicated);
     if (auth.user) {
       setUserID(auth.user._id);
+      console.log();
+      if ((JSON.stringify(auth.user) + "").includes("apikey")) {
+        console.log(auth.user.apikey.access_token);
+        setApiKey(auth.user.apikey.access_token);
+        setKeyFound(true);
+      } else {
+        console.log("null");
+        setKeyFound(false);
+      }
     }
-  }, [auth.isAuthenicated, auth.user]);
-
-  const createNewKey = () => {
-    props.genkey(userID);
-    console.log("create new key function finished");
-  };
+  }, [auth.isAuthenicated, auth.length, auth.user]);
 
   const fetchExample = `fetch(https://floating-plains-35923.herokuapp.com/prediction/:id", {
     headers: {
@@ -48,10 +60,20 @@ const Documentation = (props) => {
         network that we use to make your food prediction.
       </p>
 
-      <button type="button" className="button" onClick={createNewKey}>
-        Get API Key
-      </button>
-      <p>Your API key will show up in the bottom of your profile.</p>
+      {keyFound ? (
+        //shows the key
+        <div className="show-api-key">
+          <p>This is your API key: {apiKey}</p>
+        </div>
+      ) : (
+        //shows the button
+        <div>
+          <button type="button" className="button" onClick={createNewKey}>
+            Get API Key
+          </button>
+          <p>Your API key will show up in the bottom of your profile.</p>
+        </div>
+      )}
 
       <p>
         Virtual Chefuses API keys to authenticate requests, please request one
@@ -67,7 +89,9 @@ const Documentation = (props) => {
         Base URL for prediction:
         https://floating-plains-35923.herokuapp.com/prediction
       </p>
-      <p>${fetchExample}</p>
+      <div className="fetch-example">
+        <p>${fetchExample}</p>
+      </div>
 
       <p>":id" should be the food you are searching</p>
 

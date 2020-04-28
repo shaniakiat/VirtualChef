@@ -2,6 +2,7 @@ import React, { useState, useEffect, useLayoutEffect } from "react";
 import axios from "axios";
 import { connect, useDispatch, useSelector } from "react-redux";
 import FoodPredictions from "./FoodPredictions";
+import { addItem, deleteItem, getItems } from "../../../actions/itemActions";
 import { loadUser } from "../../../actions/authActions";
 import "../../Styles/Predictions.css";
 let validate = require("../Functions/validation");
@@ -26,6 +27,17 @@ const PredictionHooks = (props) => {
     setIdFromButtonClick("" + userFood);
     setUserFood("");
   };
+
+  // const submitFavorites = (e) => {
+  //   // alert(e);
+  //   const newFoodFavorite = {
+  //     FoodFavorited: e,
+  //     userCode: userID,
+  //   };
+
+  //   alert(newFoodFavorite);
+  //   props.addItem(newFoodFavorite, foodFavoritesArray);
+  // };
 
   const dispatch = useDispatch();
 
@@ -154,4 +166,8 @@ const mapStateToProps = (state) => ({
   item: state.item,
 });
 // export default PredictionHooks;
-export default connect(mapStateToProps)(PredictionHooks);
+export default connect(mapStateToProps, {
+  addItem,
+  deleteItem,
+  getItems,
+})(PredictionHooks);

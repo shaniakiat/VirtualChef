@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container } from "reactstrap";
 import Fade from "react-reveal/Fade";
 
 import AutoFillDictionary from "./AutoFillDictionary";
 import FoodList from "./FoodList";
 import BackgroundPrediction from "../../../images/background_prediction.png";
+
+import Alert from "../../Alert";
 
 const FoodPredictions = ({
   idFromButtonClick,
@@ -26,7 +28,16 @@ const FoodPredictions = ({
   props,
   userID,
   foodFavoritesArray,
+  // submitFavorites,
 }) => {
+  const [alert, setAlert] = useState({ show: false });
+
+  const handleAlert = ({ type, text }) => {
+    setAlert({ show: true, type, text });
+    setTimeout(() => {
+      setAlert({ show: false });
+    }, 3000);
+  };
   return (
     <div className="prediction-container">
       <div className="predictions">
@@ -57,6 +68,8 @@ const FoodPredictions = ({
             </button>
             {/*---------------DISPLAY THE FOOD FROM THE FLASK API ---------------*/}
             <div>
+              {alert.show && <Alert type={alert.type} text={alert.text} />}
+              <Alert />
               {buttonClick ? (
                 <div className="foodie">
                   {findPrediction ? (
@@ -70,6 +83,7 @@ const FoodPredictions = ({
                       isLoading={isLoading}
                       foodFavoritesArray={foodFavoritesArray}
                       userID={userID}
+                      handleAlert={handleAlert}
                     />
                   ) : (
                     <div>

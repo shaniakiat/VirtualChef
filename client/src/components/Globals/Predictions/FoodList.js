@@ -12,17 +12,28 @@ const FoodList = ({
   isLoading,
   foodFavoritesArray,
   userID,
+  handleAlert,
 }) => {
   const submitFavorites = (e) => {
     // alert(e);
-    const newFoodFavorite = {
-      FoodFavorited: e,
-      userCode: userID,
-    };
-
-    alert(newFoodFavorite);
-    props.addItem(newFoodFavorite, foodFavoritesArray);
+    if (Boolean(userID)) {
+      const newFoodFavorite = {
+        FoodFavorited: e,
+        userCode: userID,
+      };
+      props.addItem(newFoodFavorite, foodFavoritesArray);
+      handleAlert({
+        type: "success",
+        text: `food added`,
+      });
+    } else {
+      handleAlert({
+        type: "danger",
+        text: `please login to add food to favorite list`,
+      });
+    }
   };
+
   return (
     <div>
       {isLoading ? (
@@ -63,10 +74,10 @@ const FoodList = ({
     </div>
   );
 };
-const mapStateToProps = (state) => ({
-  auth: state.auth,
-  errors: state.errors,
-  item: state.item,
-});
-export default connect(mapStateToProps, { addItem })(FoodList);
-// export default FoodList;
+// const mapStateToProps = (state) => ({
+//   auth: state.auth,
+//   errors: state.errors,
+//   item: state.item,
+// });
+// export default connect(mapStateToProps, { addItem })(FoodList);
+export default FoodList;

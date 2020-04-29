@@ -41,7 +41,6 @@ router.get("/item/:userCode", (req, res) => {
         console.log("This user has no food");
         return res.status(404).json.err;
       } else {
-        console.log(userFoodFavs);
         return res.json(userFoodFavs);
       }
     })

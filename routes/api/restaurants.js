@@ -49,7 +49,6 @@ router.get("/restaurant/:userCode", (req, res) => {
         console.log("This user has no restaurant");
         return res.status(404).json.err;
       } else {
-        console.log(userResFavs);
         return res.json(userResFavs);
       }
     })

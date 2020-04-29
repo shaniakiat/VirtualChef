@@ -18,7 +18,8 @@ const Documentation = (props) => {
   const createNewKey = () => {
     props.genkey(userID);
     console.log("create new key function finished");
-    setApiKey(auth.user.apikey.access_token);
+    // setApiKey(auth.user.apikey.access_token);
+    window.location.reload(true);
   };
 
   useEffect(() => {

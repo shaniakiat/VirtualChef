@@ -4,7 +4,6 @@ import Fade from "react-reveal/Fade";
 import { Link } from "react-router-dom";
 import { addItem } from " ../../../client/src/actions/itemActions";
 import { connect, useDispatch, useSelector } from "react-redux";
-import IngredientList from "./IngredientList";
 
 /* -----DIPSLAY THE LIST OF FOOD TO THE USER ------*/
 const FoodList = ({
@@ -16,8 +15,6 @@ const FoodList = ({
   handleAlert,
 }) => {
   const submitFavorites = (e) => {
-    // alert(e);
-
     if (Boolean(userID)) {
       const newFoodFavorite = {
         FoodFavorited: e,
@@ -71,21 +68,10 @@ const FoodList = ({
               </div>
             </ul>
           </Fade>
-
-          <IngredientList
-            props={props}
-            foodFavoritesArray={foodFavoritesArray}
-            userID={userID}
-          />
         </div>
       )}
     </div>
   );
 };
-// const mapStateToProps = (state) => ({
-//   auth: state.auth,
-//   errors: state.errors,
-//   item: state.item,
-// });
-// export default connect(mapStateToProps, { addItem })(FoodList);
+
 export default FoodList;

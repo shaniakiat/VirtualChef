@@ -36,7 +36,6 @@ const PredictionHooks = (props) => {
     dispatch(loadUser(tokenRecognized));
   }, [dispatch, tokenRecognized]);
   useEffect(() => {
-    // console.log(auth.isAuthenicated);
     if (auth.user) {
       setUserID(auth.user._id);
 

@@ -3,7 +3,7 @@ import axios from "axios";
 import { connect, useDispatch, useSelector } from "react-redux";
 import UAParser from "ua-parser-js";
 import Fade from "react-reveal/Fade";
-import { addItem, deleteItem, getItems } from "../../../actions/itemActions";
+import { addItem } from "../../../actions/itemActions";
 import { loadUser } from "../../../actions/authActions";
 import Carousel from "react-multi-carousel";
 import "../../Styles/Ingredients.css";
@@ -27,12 +27,7 @@ const responsive = {
   },
 };
 
-function IngredientList(
-  { match, deviceType },
-  props,
-  userID,
-  foodFavoritesArray
-) {
+const IngredientList = (props) => {
   /* -------------- INGREDIENTS -----------------*/
   const [ingredient, setIngredient] = useState([]);
   const [id, setId] = useState("");
@@ -41,8 +36,8 @@ function IngredientList(
   let getNutritionData;
 
   useEffect(() => {
-    setId(match.params.id.replace(/-/g, " ").toLowerCase());
-    let id = match.params.id.replace(/-/g, " ").toLowerCase();
+    setId(props.match.params.id.replace(/-/g, " ").toLowerCase());
+    let id = props.match.params.id.replace(/-/g, " ").toLowerCase();
     axios
       .get(`/api/virtualchef/edamam/${id}`)
       .then((res) => {
@@ -56,7 +51,7 @@ function IngredientList(
       .catch((err) => {
         console.log(err);
       });
-  }, [getNutritionData, match.params.id]);
+  }, [getNutritionData, props.match.params.id]);
 
   getNutritionData = (params) => {
     let nutritiontypearray = [];
@@ -206,32 +201,31 @@ function IngredientList(
     svg.select(".y-axis").call(d3.axisLeft(y));
   }
   const tokenRecognized = useSelector((state) => state.auth.token);
-  // const [userID, setUserID] = useState();
+  const [userID, setUserID] = useState();
   const auth = useSelector((state) => state.auth);
-  // const foodFavoritesArray = useSelector((state) => state.item);
+  const foodFavoritesArray = useSelector((state) => state.item);
   const [favArray, setFavArray] = useState([]);
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   // fetch user data when component mounts
-  //   dispatch(loadUser(tokenRecognized));
-  // }, [dispatch, tokenRecognized]);
-  // useEffect(() => {
-  //   // console.log(auth.isAuthenicated);
-  //   if (auth.user) {
-  //     setUserID(auth.user._id);
+  useEffect(() => {
+    // fetch user data when component mounts
+    dispatch(loadUser(tokenRecognized));
+  }, [dispatch, tokenRecognized]);
+  useEffect(() => {
+    if (auth.user) {
+      setUserID(auth.user._id);
 
-  //     axios
-  //       .get(`/api/items/item/${auth.user._id}`)
-  //       .then((res) => {
-  //         return res.data;
-  //       })
-  //       .then((json) => {
-  //         setFavArray(json);
-  //       })
-  //       .catch((err) => console.log(err));
-  //   }
-  // }, [auth.isAuthenicated, auth.user, foodFavoritesArray]);
+      axios
+        .get(`/api/items/item/${auth.user._id}`)
+        .then((res) => {
+          return res.data;
+        })
+        .then((json) => {
+          setFavArray(json);
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [auth.isAuthenicated, auth.user, foodFavoritesArray]);
 
   const [alert, setAlert] = useState({ show: false });
   const handleAlert = ({ type, text }) => {
@@ -241,8 +235,6 @@ function IngredientList(
     }, 3000);
   };
   const submitFavorites = (e) => {
-    // alert(e);
-    console.log(props);
     console.log(userID);
     console.log(e);
     if (Boolean(userID)) {
@@ -250,9 +242,7 @@ function IngredientList(
         FoodFavorited: e,
         userCode: userID,
       };
-      // props.addItem(newFoodFavorite, foodFavoritesArray);
-      console.log(userID);
-      console.log(e);
+
       props.addItem(newFoodFavorite, foodFavoritesArray);
       handleAlert({
         type: "success",
@@ -268,7 +258,6 @@ function IngredientList(
 
   return (
     <div className="ingredient-list">
-      {/* <h3 className="ingredient-h3">You have clicked on </h3> */}
       <Fade up delay={50}>
         <h2 className="ingredient-h3-id">{id.toLocaleUpperCase()}</h2>
         <button
@@ -285,7 +274,7 @@ function IngredientList(
           ssr={true}
           partialVisbile
           swipeable={true}
-          deviceType={deviceType}
+          deviceType={props.deviceType}
           responsive={responsive}
           keyBoardControl={true}
           /* dotListClass="custom-dot-list-style"
@@ -318,7 +307,7 @@ function IngredientList(
       </Fade>
     </div>
   );
-}
+};
 
 IngredientList.getInitialProps = ({ req }) => {
   let userAgent;
@@ -334,14 +323,13 @@ IngredientList.getInitialProps = ({ req }) => {
   return { deviceType };
 };
 
-// const mapStateToProps = (state) => ({
-//   auth: state.auth,
-//   errors: state.errors,
-//   item: state.item,
-// });
-// export default connect(mapStateToProps, {
-//   addItem,
-//   deleteItem,
-//   getItems,
-// })(IngredientList);
-export default IngredientList;
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+  errors: state.errors,
+  item: state.item,
+  restaurants: state.restaurant,
+});
+
+export default connect(mapStateToProps, {
+  addItem,
+})(IngredientList);

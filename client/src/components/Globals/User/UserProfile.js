@@ -20,7 +20,6 @@ const UserProfile = (props) => {
   const [restaurantFavorites, setRestaurantFavorites] = useState([]);
   const [userID, setUserID] = useState();
   const tokenRecognized = useSelector((state) => state.auth.token);
-  // const name = useSelector((state) => state.auth.user.name);
   const auth = useSelector((state) => state.auth);
   const foodFavoritesArray = useSelector((state) => state.item);
   const favoriteRestaurantArraay = useSelector((state) => state.restaurant);
@@ -28,7 +27,6 @@ const UserProfile = (props) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // fetch user data when component mounts
     dispatch(loadUser(tokenRecognized));
   }, [dispatch, tokenRecognized]);
   useEffect(() => {
@@ -162,7 +160,6 @@ const UserProfile = (props) => {
                           {obj.FoodFavorited}
                         </button>
                       </Link>
-                      {/* <button>Delete button</button> */}
                       <TiDelete
                         className="tiDelete"
                         onClick={() => deleteFav(obj._id)}
@@ -202,8 +199,6 @@ const UserProfile = (props) => {
                   ))
                 )}
               </ul>
-
-              {/* <Restaurants /> */}
             </div>
           </Fade>
         </div>

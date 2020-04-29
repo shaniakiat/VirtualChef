@@ -2,12 +2,6 @@ import React, { Component } from "react";
 import David from "../../images/david-luong-pp.png";
 import Shania from "../../images/shania-kiat-pp.png";
 import Anthony from "../../images/anthony-ibe-pp.png";
-// import makeCarousel from "react-reveal/makeCarousel"
-// import Fade from "react-reveal/Fade"
-// import { FaLinkedin } from "react-icons/fa"
-// import { FaGithub } from "react-icons/fa"
-// import styled from "styled-components"
-// import Resume from "../../../../static/resume.pdf"
 
 class Team extends Component {
   render() {

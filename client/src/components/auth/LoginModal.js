@@ -126,9 +126,9 @@ class LoginModal extends Component {
                   />
                   <i onClick={this.togglePasswordVisiblity}>
                     {this.state.isPasswordShown ? (
-                      <AiFillEyeInvisible className="icon-visibility" />
-                    ) : (
                       <AiFillEye className="icon-visibility" />
+                    ) : (
+                      <AiFillEyeInvisible className="icon-visibility" />
                     )}
                   </i>
                 </div>

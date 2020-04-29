@@ -17,6 +17,7 @@ import { register } from "../../actions/authActions";
 import { clearErrors } from "../../actions/errorActions";
 import { AiFillEyeInvisible } from "react-icons/ai";
 import { AiFillEye } from "react-icons/ai";
+import axios from "axios";
 
 import "../Styles/App.css";
 
@@ -38,6 +39,7 @@ class RegisterModal extends Component {
     password: "",
     show: "",
     msg: null,
+    key: "",
   };
 
   static propTypes = {
@@ -76,6 +78,12 @@ class RegisterModal extends Component {
 
   onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
+  };
+  generatekey = () => {
+    axios.get(`api/virtualchef/create-key`).then((res) => {
+      // this.setState({key:res.data.data.access_token})
+      return res.data.data.access_token;
+    });
   };
 
   onSubmit = (e) => {
@@ -141,9 +149,9 @@ class RegisterModal extends Component {
                   />
                   <i onClick={this.togglePasswordVisiblity}>
                     {this.state.isPasswordShown ? (
-                      <AiFillEyeInvisible className="icon-visibility" />
-                    ) : (
                       <AiFillEye className="icon-visibility" />
+                    ) : (
+                      <AiFillEyeInvisible className="icon-visibility" />
                     )}
                   </i>
                 </div>

@@ -1,9 +1,15 @@
 @import url("App.css");
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 
 .documentation-page {
   min-height: 90vh;
   overflow: hidden;
   margin: 0 15%;
+}
+
+.documentation-page p {
+  color: var(--mainDark);
+  font-size: 15px;
 }
 
 .show-api-key {
@@ -12,4 +18,16 @@
   white-space: -pre-wrap; /* Opera <7 */
   white-space: -o-pre-wrap; /* Opera 7 */
   word-wrap: break-word; /* IE */
+}
+
+.get-api-key button {
+  margin-bottom: 1rem;
+}
+
+.show-api-key p {
+  color: var(--mainOrange);
+}
+
+p .api-url {
+  color: var(--mainOrange);
 }

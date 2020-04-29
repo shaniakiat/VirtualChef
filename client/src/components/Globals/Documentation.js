@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useReducer, useCallback } from "react";
+import Prism from "prismjs";
+import "./../Styles/prism.css";
 import { loadUser } from "../../actions/authActions";
 import { connect, useDispatch, useSelector } from "react-redux";
 import "./../Styles/Documentation.css";
@@ -62,23 +64,25 @@ const Documentation = (props) => {
 
       {keyFound ? (
         //shows the key
-        <div className="show-api-key">
-          <p>This is your API key: {apiKey}</p>
-        </div>
+        <>
+          <h3>This is your API key: </h3>
+          <div className="show-api-key">
+            <p>{apiKey}</p>
+          </div>
+        </>
       ) : (
         //shows the button
-        <div>
+        <div className="get-api-key">
           <button type="button" className="button" onClick={createNewKey}>
             Get API Key
           </button>
-          <p>Your API key will show up in the bottom of your profile.</p>
+          <p>
+            Virtual Chef uses API keys to authenticate requests, please request
+            one if you don't have one.
+          </p>
         </div>
       )}
-
-      <p>
-        Virtual Chefuses API keys to authenticate requests, please request one
-        if you don't have one{" "}
-      </p>
+      <br />
       <p>
         Your API keys carry many privileges, so be sure to keep them secure! Do
         not share your secret API keys in publicly accessible areas such as
@@ -86,14 +90,21 @@ const Documentation = (props) => {
       </p>
 
       <p>
-        Base URL for prediction:
-        https://floating-plains-35923.herokuapp.com/prediction
+        Base URL for prediction:{" "}
+        <span className="api-url">
+          https://floating-plains-35923.herokuapp.com/prediction
+        </span>
       </p>
       <div className="fetch-example">
-        <p>${fetchExample}</p>
+        <pre>
+          <code className="language-javascript">{fetchExample}</code>
+        </pre>
       </div>
 
-      <p>":id" should be the food you are searching</p>
+      <p>
+        <span className="api-url">":id"</span> should be the food you are
+        searching.
+      </p>
 
       <p>
         Finally, the reponse will be ten foods or ingredients with the accuracy

@@ -4,7 +4,7 @@ import Fade from "react-reveal/Fade";
 class About extends Component {
   render() {
     return (
-      <section>
+      <section id="about">
         <div id="about" className="about">
           {/* <div className="left-content"> */}
           <Fade right>

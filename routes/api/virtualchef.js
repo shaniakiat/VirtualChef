@@ -67,6 +67,16 @@ router.get("/fetch-yelp/:long/:lat/:userYelpQuery", (req, res) => {
     });
 });
 
+//generating key from floating plains
+router.get("/create-key", (req, res) => {
+  fetch(`https://floating-plains-35923.herokuapp.com/create`)
+    .then((res) => res.json())
+    .then(function (data) {
+      console.log(data); //expecting array
+      res.status(200).send({ data });
+    });
+});
+
 //edamam api
 router.get("/edamam/:id", (req, res) => {
   const base = "https://api.edamam.com/search";

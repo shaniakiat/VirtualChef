@@ -7,6 +7,7 @@ import { addItem } from "../../../actions/itemActions";
 import { loadUser } from "../../../actions/authActions";
 import Carousel from "react-multi-carousel";
 import "../../Styles/Ingredients.css";
+import Alert from "../../Alert";
 import * as d3 from "d3";
 
 const responsive = {
@@ -28,6 +29,15 @@ const responsive = {
 };
 
 const IngredientList = (props) => {
+  const [alert, setAlert] = useState({ show: false });
+
+  const handleAlert = ({ type, text }) => {
+    setAlert({ show: true, type, text });
+    setTimeout(() => {
+      setAlert({ show: false });
+    }, 3000);
+  };
+
   /* -------------- INGREDIENTS -----------------*/
   const [ingredient, setIngredient] = useState([]);
   const [id, setId] = useState("");
@@ -227,13 +237,6 @@ const IngredientList = (props) => {
     }
   }, [auth.isAuthenicated, auth.user, foodFavoritesArray]);
 
-  const [alert, setAlert] = useState({ show: false });
-  const handleAlert = ({ type, text }) => {
-    setAlert({ show: true, type, text });
-    setTimeout(() => {
-      setAlert({ show: false });
-    }, 3000);
-  };
   const submitFavorites = (e) => {
     console.log(userID);
     console.log(e);
@@ -258,15 +261,20 @@ const IngredientList = (props) => {
 
   return (
     <div className="ingredient-list">
+      {alert.show && <Alert type={alert.type} text={alert.text} />}
+      <Alert />
       <Fade up delay={50}>
         <h2 className="ingredient-h3-id">{id.toLocaleUpperCase()}</h2>
-        <button
-          className="button-login"
-          type="button"
-          onClick={() => submitFavorites(id)}
-        >
-          Add to favorites
-        </button>
+        <div className="fav-list">
+          <button
+            className="button-login"
+            type="button"
+            onClick={() => submitFavorites(id)}
+          >
+            Add to favorites
+          </button>
+        </div>
+
         <div className="d3-bar-chart"></div>
       </Fade>
       <Fade up delay={100}>

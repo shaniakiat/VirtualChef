@@ -46,6 +46,10 @@
   color: var(--mainGreen);
   text-decoration: none;
 } */
+
+.react-reveal.fav-list {
+  text-align: -webkit-center;
+}
 .ingredient-h3 {
   text-align: center;
 }
@@ -75,6 +79,20 @@ input {
 .container-food {
   display: grid;
   grid-template-columns: 50% 50%;
+}
+
+.grid-food {
+  display: grid;
+  grid-template-columns: 80% 20%;
+}
+
+.food-list-fav {
+  align-self: center;
+  margin-right: auto;
+}
+
+.food-list-fav button {
+  background-color: #dbe7c5;
 }
 
 .predictions .button {

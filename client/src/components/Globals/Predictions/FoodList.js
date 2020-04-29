@@ -1,6 +1,7 @@
 import React from "react";
 import "../../Styles/App.css";
 import Fade from "react-reveal/Fade";
+import { FaStar } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { addItem } from " ../../../client/src/actions/itemActions";
 import { connect, useDispatch, useSelector } from "react-redux";
@@ -51,18 +52,21 @@ const FoodList = ({
               <div className="container-food">
                 {predictions.map((obj, i) => (
                   <div className="grid-food">
-                    <li key={obj[1]}>
+                    <div>
+                      <li key={obj[1]}>
+                        <Link to={`/food/${obj[0].replace(/\s/g, "-")}`}>
+                          <button type="button">{obj[0]}</button>
+                        </Link>
+                      </li>
+                    </div>
+                    <div className="food-list-fav">
                       <button
-                        className="button-login"
                         type="button"
                         onClick={() => submitFavorites(obj[0])}
                       >
-                        Add to favorites
+                        <FaStar className="faStar" />
                       </button>
-                      <Link to={`/food/${obj[0].replace(/\s/g, "-")}`}>
-                        <button type="button">{obj[0]}</button>
-                      </Link>
-                    </li>
+                    </div>
                   </div>
                 ))}
               </div>

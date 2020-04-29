@@ -66,6 +66,7 @@ const FoodPredictions = ({
             >
               View Food
             </button>
+           
             {/*---------------DISPLAY THE FOOD FROM THE FLASK API ---------------*/}
             <div>
               {alert.show && <Alert type={alert.type} text={alert.text} />}

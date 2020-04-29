@@ -1,9 +1,35 @@
 .no-match-page {
   min-height: 90vh;
   overflow: hidden;
-  margin: 0 15%;
 }
-
+.no-match-page {
+  display: grid;
+  align-items: center;
+  text-align: center;
+  grid-template-rows: 30% 60%;
+}
 .no-match-page h1 {
   font-size: 100px;
+}
+
+.no-match-page .grid {
+  margin: 0;
+  padding: 0;
+  /* height: 0px; */
+}
+
+.background-404 {
+  width: 70vh;
+}
+
+@media only screen and (max-width: 800px) {
+  .background-404 {
+    width: 50vh;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .background-404 {
+    width: 40vh;
+  }
 }

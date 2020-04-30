@@ -42,7 +42,7 @@ class AppNavbar extends Component {
 
           <span className="user-name">Profile</span>
         </NavLink>
-        <NavLink onClick={this.toggle} href="/user/restaurant">
+        <NavLink onClick={this.toggle} href="/restaurant">
           Restaurant
         </NavLink>
         <NavLink onClick={this.toggle} href="/user/documentation">

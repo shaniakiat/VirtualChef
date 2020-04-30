@@ -61,12 +61,12 @@ class App extends Component {
                 component={IngredientList}
               />
               <Route key="/" path="/restaurant" exact component={Restaurant} />
-              <Route
+              {/* <Route
                 key="/"
                 path="/user/restaurant"
                 exact
                 component={Restaurant}
-              />
+              /> */}
               <Route
                 key="/"
                 path="/user/documentation"

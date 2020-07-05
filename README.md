@@ -1,44 +1,51 @@
 # VirtualChef
 
-We feel an app which can help recommend foods to you based on your ingredients on hand and/or your taste would not only be a convenient edition to your everyday life, but could become a necessary time saving commodity in your everyday routine. No more indecision when looking for restaurants, no more struggling to find something to eat when your pantry isn’t fully stocked. This app would allow to make the most of what you have, or give you ideas you might not have had before.
+By David Luong, Shania Kiat, & Anthony Ibe
 
-Keep track of stories -- Trello Board : https://trello.com/b/NoPaPb3O/software-engineering-project
+## Our Mission
 
-Tech Stack : MERN ( MongoDb, Express, React.js, Redux ), Python (AI/ML)
+We want to develop an app which helps to recommend foods based on ingredients you have on hand and or your tastes.
+Our app would not only be a convenient edition to your everyday life, but it can also become a necessary time-saving commodity in your everyday routine.
+With no more indecisive choices when looking for restaurants and struggling when you have minimal ingredients, this app allows you to make the most of what you have and give you new ideas you might not have had before.
 
-# Diagrams
+Keep track of stories: [Trello Board](https://trello.com/b/NoPaPb3O/software-engineering-project)
 
-## Use Case Diagram
+## Tech Stack
+
+MERN ([MongoDB](https://www.mongodb.com), [Express](https://expressjs.com), [React](https://reactjs.org) + [Redux](https://redux.js.org), and [Node.js](https://nodejs.org/en/)) and [Python](https://www.python.org) (AI/ML)
+
+## Estimated Sprint Schedule
+
+### Sprint 1:
+
+1. UI prototypes should be completed
+2. EDA for a few models should be completed
+3. Environment should have a running instance of frontend + backend
+4. MongoDB should be completed
+
+### Sprint 2:
+
+1. CRUD/RESTFUL should be completed
+2. Users should be able to retrieve food suggestions
+3. Login, registration, authentication, and password hashing should be completed
+4. Have a demo to be presented
+
+### Sprint 3:
+
+1. Fix any bugs or any requirements that were not met.
+2. Meet most non-functional requirements
+3. Optimze for better performance
+4. Final demonstration
+
+## Branch Naming Convention
+
+**Format:** _name/feature/short-description_ <br />
+**Example:** _david/blogs/logo-fix_
+
+## Diagrams
 
 ![demo](https://github.com/shaniakiat/VirtualChef/blob/master/diagrams/UseCaseDiagram.png)
 
 ![demo](https://github.com/shaniakiat/VirtualChef/blob/master/diagrams/ContextDiagram.png)
 
 ![demo](https://github.com/shaniakiat/VirtualChef/blob/master/diagrams/ArchitecturePlan.png)
-
-# Estimated Sprint Schedule:
-
-## Sprint 1:
-
-1. Prototype of UI should be completed
-2. EDA a few models should be completed
-3. Enviorment should have a running instance of front end + backend, MongoDb should be completed
-
-## Sprint 2:
-
-1. CRUD/RESTFUL should be completed
-2. Users should be able to retrieve food suggestions
-3. Login/Register/Authentication/Hashing should be completed
-4. Have a demonstration(?)
-
-## Sprint 3:
-
-1. Fix any bugs or any requirements that were not met.
-2. Meet most non-functional requirements
-3. Optimze for better performance
-4. Be ready for final demonstration
-
-# Creating Branches Format:
-
-**Naming branches:** name/feature/short-description <br />
-**Example:** david/blogs/logo-fix

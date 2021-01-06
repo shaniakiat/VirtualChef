@@ -26,7 +26,7 @@
   "homepage": "https://github.com/DavidLuong98/VirtualChef#readme",
   "dependencies": {
     "@glidejs/glide": "^3.4.1",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "concurrently": "^5.0.2",

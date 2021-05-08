@@ -50,7 +50,7 @@
     "scripts": "^0.1.0",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^0.88.2",
-    "ua-parser-js": "^0.7.21",
+    "ua-parser-js": "^0.7.24",
     "us-zips": "^4.0.1",
     "use-position": "0.0.6",
     "zipcodes": "^8.0.0"
